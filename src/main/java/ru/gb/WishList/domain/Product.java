@@ -4,12 +4,15 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 /**
- * Gift - подарок
+ * Product - товар
  *
- * @id - идентификационный номер подарка в базе данных
- * @comment - уточнения от желающего подарок
- * @priority - приоритет к дарению
- * @status - статус подарка
+ * @id - идентификационный номер товара в базе данных
+ * @name - название
+ * @price - стоимость
+ * @link - ссылка на товар в маркетплейсе
+ * @imgLink - ссылка на фото товара
+ * @description - описание товара
+ * @score - оценка (рейтинг)
  *
  * @@Data   -  дает нам геттеры для всех полей, сеттеры для всех нефинальных полей, правильные реализации toString,
  *            equals и hashCode, охватывающие все поля класса,
@@ -24,16 +27,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "gifts")
-public class Gift extends Product {
+@Table (name = "products")
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String comment;
-    @Column(nullable = false)
-    private Enum<Priority> priority;
     @Column (nullable = false)
-    private Enum<Status> status;
-    // добавить ли сюда желающего подарка и кто забронил его?
+    private String name;
+    private Double price;
+    private String link;
+    private String imgLink;
+    private String description;
+    private Float score;
 }
