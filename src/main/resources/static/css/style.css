@@ -29,24 +29,127 @@
 
 .header__main__right__text {
     color: black;
-    text-decoration: none;
     font-size: 18px;
 }
 
 .logo__main {
     color: #F25822;
     font-size: 24px;
+    font-family: Bold;
 }
 
-.header__main__nav__button {
+.main__button {
     border: none;
     border-radius: 40px;
     padding: 8px 28px;
     background-color: #F25822;
 }
 
-.header__main__nav__button__text {
+.main__button__text {
     color: white;
     font-size: 18px;
+}
+
+.index__content {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main__icon {
+    max-width: 400px;
+}
+
+.index__left {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.index__text {
+    max-width: 390px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    gap: 15px;
+}
+
+.tagline {
+    font-size: 45px;
+}
+
+.index__description {
+    font-size: 30px;
+}
+
+.index__links {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    gap: 50px;
+}
+
+.index__links__registration {
+    color: #aaaaaa;
+}
+
+.footer__ {
+    background: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+.footer__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+.footer__left {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.footer__text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.footer__right {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.contacts {
+    font-size: 24px;
+}
+
+.gray {
+    color: #666666;
+}
+
+.copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.text__decoration__none {
     text-decoration: none;
 }
