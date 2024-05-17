@@ -50,7 +50,7 @@
     font-size: 18px;
 }
 
-.index__content {
+.content {
     padding-top: 35px;
     padding-bottom: 35px;
     display: flex;
@@ -63,16 +63,16 @@
     max-width: 400px;
 }
 
-.index__left {
+.content__left {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     flex-wrap: nowrap;
     justify-content: center;
     gap: 20px;
 }
 
-.index__text {
+.content__text {
     max-width: 390px;
     display: flex;
     flex-direction: column;
@@ -81,12 +81,55 @@
     gap: 15px;
 }
 
+.entry__left__text {
+    max-width: 390px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+    align-items: center;
+}
+
 .tagline {
     font-size: 45px;
 }
 
+.welcome {
+    font-size: 30px;
+}
+
 .index__description {
     font-size: 30px;
+}
+
+.entry__form__group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: "a a a" ". b ." "c c c";
+    font-size: 18px;
+    gap: 10px;
+}
+
+.entry__form {
+    display: flex;
+    gap: 10px;
+}
+
+.entry__form__email {
+    grid-area: a;
+    justify-self: end;
+}
+
+.entry__form__phone {
+    grid-area: c;
+    justify-self: end;
+}
+
+.or {
+    grid-area: b;
+    justify-self: center;
 }
 
 .index__links {
