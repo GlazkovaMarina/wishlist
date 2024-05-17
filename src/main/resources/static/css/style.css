@@ -176,6 +176,11 @@ input {
     justify-items: end;
 }
 
+.links {
+    color: #000;
+    font-size: large;
+}
+
 .footer__ {
     background: #f3f3f3;
     display: flex;
@@ -216,6 +221,14 @@ input {
 
 .gray {
     color: #666666;
+}
+
+.color_6A646D {
+    color: #6A646D;
+}
+
+.color_AAAAAA {
+    color: #AAAAAA;
 }
 
 .copyright {
