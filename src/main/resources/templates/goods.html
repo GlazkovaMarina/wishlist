@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -14,15 +14,75 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <a href="goods.html" class="goods header__main__right__text text__decoration__none">Товары</a>
-            <a href="../static/personal_office.html" class="personal__office header__main__right__text text__decoration__none">Личный кабинет</a>
+            <a href="goods.html" class="black text__decoration__none">Товары</a>
+            <a href="../static/personal_office.html" class="black header__main__right__text text__decoration__none">Личный кабинет</a>
             <button class="main__button">
                   <a href="../static/index.html" class="main__button__text text__decoration__none">Выход</a>
             </button>
         </nav>
     </header>
     <section class="goods center">
-
+        <div class="goods__card__item">
+            <div class="img__bord">
+                <img src="../static/img/phone.svg" alt="phone" class="item__card__img">
+            </div>
+            <div class="item__info">
+                <p class="item__name">Смартфон</p>
+                <p class="item__pric color__F25822">34999</p>
+            </div>
+            <!-- <div class="img__bord"> -->
+            <!-- <img th:src="${item.image}" alt="image of item" class="item__card__img"> -->
+            <!-- </div> -->
+            <!-- <div class="item__info"> -->
+            <!-- <p class="item__name" th:text="${item.name}"></p>
+                <p class="item__price color__F25822" th:text="${item.price}"></p> -->
+            <!-- </div> -->
+        </div>
+        <div class="goods__card__item">
+            <div class="img__bord">
+                <img src="../static/img/book.svg" alt="book" class="item__card__img">
+            </div>
+            <div class="item__info">
+                <p class="item__name">Книга</p>
+                <p class="item__price color__F25822">999</p>
+            </div>
+        </div>
+        <div class="goods__card__item">
+            <div class="img__bord">
+                <img src="../static/img/glass.svg" alt="glass" class="item__card__img">
+            </div>
+            <div class="item__info">
+                <p class="item__name">Чайная пара</p>
+                <p class="item__price color__F25822">1399</p>
+            </div>
+        </div>
+        <div class="goods__card__item">
+            <div class="img__bord">
+                <img src="../static/img/iron.svg" alt="iron" class="item__card__img">
+            </div>
+            <div class="item__info">
+                <p class="item__name">Утюг</p>
+                <p class="item__price color__F25822">3489</p>
+            </div>
+        </div>
+        <div class="goods__card__item">
+            <div class="img__bord">
+                <img src="../static/img/drill.svg" alt="drill" class="item__card__img">
+            </div>
+            <div class="item__info">
+                <p class="item__name">Дрель</p>
+                <p class="item__price color__F25822">2588</p>
+            </div>
+        </div>
+        <div class="goods__card__item">
+            <div class="img__bord">
+                <img src="../static/img/toys.svg" alt="toys" class="item__card__img">
+            </div>
+            <div class="item__info">
+                <p class="item__name">Игрушка</p>
+                <p class="item__price color__F25822">858</p>
+            </div>
+        </div>
     </section>
 
     <footer class="footer__ center">
