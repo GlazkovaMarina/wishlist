@@ -22,7 +22,7 @@ input {
     background: #f3f3f3;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: nowrap;
     padding-top: 35px;
     padding-bottom: 35px;
@@ -125,6 +125,13 @@ input {
     gap: 10px;
 }
 
+.form_row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
 .entry__form__email {
     grid-area: a;
     justify-self: end;
@@ -179,6 +186,29 @@ input {
 .links {
     color: #000;
     font-size: large;
+}
+
+.new__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 35px;
+    padding-bottom: 50px;
+}
+
+.new__item__group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: end;
+    justify-items: stretch;
+    gap: 20px;
+}
+
+.input__new__item {
+    width: 250px;
 }
 
 .footer__ {
