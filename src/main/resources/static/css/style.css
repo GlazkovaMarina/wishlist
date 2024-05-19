@@ -234,7 +234,6 @@ input {
 
 .goods__card__item:hover {
     transform: scale(1.05);
-    background: none;
 }
 
 .item__info {
@@ -258,6 +257,47 @@ input {
 .item__card__img {
     max-width: 300px;
     max-height: 300px;
+}
+
+.card__item {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.item {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.score__group {
+    display: flex;
+    gap: 5px;
+}
+
+.description__group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+output {
+    max-width: 300px;
+    border: 1px solid #666666;
+    border-radius: 1px solid #666666;
+    border-radius: 0.5rem;
+    padding: 5px;
+    box-shadow: 1px 1px #F25822;
+    font-size: 20px;
 }
 
 .footer__ {
