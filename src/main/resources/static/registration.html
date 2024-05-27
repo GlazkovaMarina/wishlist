@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -26,35 +26,37 @@
             <h1 class="welcome gray">Добро пожаловать<br> в MARKETPLACE!</h1>
             <h3 class="entry__description gray">Для регистрации заполните,<br> пожалуйста,<br> данные:</h3>
         </div>
-        <div class="registration__form__group">
-            <form class="form registration__form__lastname">
-                <p class="lastname__form__text">Фамилия</p>
-                <input type="text" placeholder="Введите фамилию">
-            </form>
-            <form class="form registration__form__bd">
-                <p class="bd__form__text">День рождения</p>
-                <input type="date" placeholder="Введите дату рождения">
-            </form>
-            <form class="form registration__form__name">
-                <p class="name__form__text">Имя</p>
-                <input type="text" placeholder="Введите имя">
-            </form>
-            <form class="form registration__form__phone">
-                <p class="phone__form__text">Телефон</p>
-                <input type="tel" placeholder="Формат: +79999999999">
-            </form>
-            <form class="form registration__form__name">
-                <p class="name__form__text">Отчество</p>
-                <input type="text" placeholder="Введите отчество">
-            </form>
-            <form class="form registration__form__email">
-                <p class="email__form__text">Email</p>
-                <input type="email" placeholder="Введите email">
-            </form>
-        </div>
-        <button class="main__button">
+        <form class="registration__form" action="/registration" method="post">
+            <div class="registration__form__group">
+                <div class="form registration__form__lastname">
+                    <p class="lastname__form__text">Фамилия</p>
+                    <input type="text" placeholder="Введите фамилию" name="lastName">
+                </div>
+                <div class="form registration__form__bd">
+                    <p class="bd__form__text">День рождения</p>
+                    <input type="date" placeholder="Введите дату рождения" name="birthday">
+                </div>
+                <div class="form registration__form__name">
+                    <p class="name__form__text">Имя</p>
+                    <input type="text" placeholder="Введите имя" name="firstName">
+                </div>
+                <div class="form registration__form__phone">
+                    <p class="phone__form__text">Телефон</p>
+                    <input type="tel" placeholder="Формат: +79999999999" name="number">
+                </div>
+                <div class="form registration__form__name">
+                    <p class="name__form__text">Отчество</p>
+                    <input type="text" placeholder="Введите отчество" name="surname">
+                </div>
+                <div class="form registration__form__email">
+                    <p class="email__form__text">Email</p>
+                    <input type="email" placeholder="Введите email" name="email">
+                </div>
+            </div>
+            <button class="main__button" type="submit">
                 <a href="personal_office.html" class="main__button__text text__decoration__none">Зарегистрироваться</a>
-        </button>
+            </button>
+        </form>
     </section>
 
     <footer class="footer__ center">
