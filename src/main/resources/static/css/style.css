@@ -65,6 +65,7 @@ input {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    gap: 20px;
 }
 
 .main__icon {
@@ -77,6 +78,14 @@ input {
     align-items: center;
     flex-wrap: nowrap;
     justify-content: center;
+    gap: 20px;
+}
+.content__right {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 

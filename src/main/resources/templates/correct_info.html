@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -14,10 +14,10 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <a href="goods.html" class="black header__main__right__text text__decoration__none">Товары</a>
-            <a href="../static/personal_office.html" class="black header__main__right__text text__decoration__none">Личный кабинет</a>
+            <a href="goods" class="black header__main__right__text text__decoration__none">Товары</a>
+            <a href="personal_office" class="black header__main__right__text text__decoration__none">Личный кабинет</a>
             <button class="main__button">
-                  <a href="../static/index.html" class="main__button__text text__decoration__none">Выход</a>
+                  <a href="/" class="main__button__text text__decoration__none">Выход</a>
             </button>
         </nav>
     </header>
@@ -28,7 +28,7 @@
         <div class="registration__form__group">
             <form class="form registration__form__lastname">
                 <p class="lastname__form__text">Фамилия</p>
-                <input type="text" placeholder="Введите фамилию">
+                <input type="text" th:name="lastName" th:attr="value = ${user.lastName}">
             </form>
             <form>
             </form>
@@ -50,14 +50,14 @@
             </form>
         </div>
         <button class="main__button">
-                <a href="../static/personal_office.html" class="main__button__text text__decoration__none">Изменить</a>
+                <a href="personal_office" class="main__button__text text__decoration__none">Изменить</a>
         </button>
     </section>
 
     <footer class="footer__ center">
         <div class="footer__content">
             <div class="footer__left">
-                <a href="../static/index.html" class="logo__main text__decoration__none">MARKETPLACE</a>
+                <a href="correct_info" class="logo__main text__decoration__none">MARKETPLACE</a>
                 <div class="footer__text gray">
                     <p>Сделать заказ</p>
                     <p>понятно</p>

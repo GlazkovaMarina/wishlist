@@ -14,9 +14,9 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <a href="registration.html" class="registration__link header__main__right__text text__decoration__none">Регистрация</a>
+            <a href="registration" class="registration__link header__main__right__text text__decoration__none">Регистрация</a>
             <button class="main__button">
-                <a href="entry.html" class="main__button__text text__decoration__none">Вход</a>
+                <a href="entry" class="main__button__text text__decoration__none">Вход</a>
           </button>
         </nav>
     </header>
@@ -26,35 +26,35 @@
             <h1 class="welcome gray">Добро пожаловать<br> в MARKETPLACE!</h1>
             <h3 class="entry__description gray">Для регистрации заполните,<br> пожалуйста,<br> данные:</h3>
         </div>
-        <form class="registration__form" action="/registration" method="post">
+        <form method="post" th:action="@{/registration}" th:object="${user}" class="registration__form">
             <div class="registration__form__group">
                 <div class="form registration__form__lastname">
                     <p class="lastname__form__text">Фамилия</p>
-                    <input type="text" placeholder="Введите фамилию" name="lastName">
+                    <input id="lastName" name="lastName" placeholder="Введите фамилию" field="*{lastName}" type="text" required>
                 </div>
                 <div class="form registration__form__bd">
                     <p class="bd__form__text">День рождения</p>
-                    <input type="date" placeholder="Введите дату рождения" name="birthday">
+                    <input id="birthday" name="birthday" type="date" field="*{birthday}" placeholder="Введите дату рождения" required>
                 </div>
                 <div class="form registration__form__name">
                     <p class="name__form__text">Имя</p>
-                    <input type="text" placeholder="Введите имя" name="firstName">
+                    <input id="firstName" name="firstName" type="text" field="*{firstName}" placeholder="Введите имя" required>
                 </div>
                 <div class="form registration__form__phone">
                     <p class="phone__form__text">Телефон</p>
-                    <input type="tel" placeholder="Формат: +79999999999" name="number">
+                    <input id="number" name="number" type="tel" field="*{number}" placeholder="Формат: 79999999999" required>
                 </div>
                 <div class="form registration__form__name">
                     <p class="name__form__text">Отчество</p>
-                    <input type="text" placeholder="Введите отчество" name="surname">
+                    <input id="surname" name="surname" type="text" field="*{surname}" placeholder="Введите отчество" required>
                 </div>
                 <div class="form registration__form__email">
                     <p class="email__form__text">Email</p>
-                    <input type="email" placeholder="Введите email" name="email">
+                    <input id="email" name="email" type="email" field="*{email}" placeholder="Введите email" required>
                 </div>
             </div>
             <button class="main__button" type="submit">
-                <a href="personal_office.html" class="main__button__text text__decoration__none">Зарегистрироваться</a>
+                <a href="personal_office" class="main__button__text text__decoration__none">Зарегистрироваться</a>
             </button>
         </form>
     </section>
@@ -62,7 +62,7 @@
     <footer class="footer__ center">
         <div class="footer__content">
             <div class="footer__left">
-                <a href="index.html" class="logo__main text__decoration__none">MARKETPLACE</a>
+                <a href="registration" class="logo__main text__decoration__none">MARKETPLACE</a>
                 <div class="footer__text gray">
                     <p>Сделать заказ</p>
                     <p>понятно</p>
@@ -80,9 +80,7 @@
             </div>
         </div>
         <hr>
-        <p class="copyright gray"> Copyright MARKETPLACE © 2024. Все права защищены
-        </p>
-
+        <p class="copyright gray"> Copyright MARKETPLACE © 2024. Все права защищены</p>
     </footer>
 </body>
 

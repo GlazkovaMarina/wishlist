@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Личный кабинет</title>
+</head>
+
+<body>
+    <header class="header__main center">
+        <div class="header__main__left">
+            <p class="logo__main">MARKETPLACE</p>
+        </div>
+        <nav class="header__main__right">
+            <a href="goods" class="black header__main__right__text text__decoration__none">Товары</a>
+            <a href="personal_office" class="black header__main__right__text text__decoration__none">Личный кабинет</a>
+            <button class="main__button">
+                <a href="/" class="main__button__text text__decoration__none">Выход</a>
+            </button>
+        </nav>
+    </header>
+
+    <section class="content center">
+        <div class="content__left">
+            <a href="correct_info" class="links text__decoration__none color_6A646D">Редактировать личную информацию</a>
+            <a href="wishlist" class="links text__decoration__none color_6A646D">Перейти в список подарков</a>
+            <a href="new_item" class="links text__decoration__none color_AAAAAA">Добавить новый товар</a>
+        </div>
+        <div class="content__right">
+            <p class="content__text">Личные данные:</p>
+            <div class="registration__form__group">
+                <div class="form registration__form__lastname">
+                    <p class="lastname__form__text">Фамилия:</p>
+                    <span th:text="${user.lastName}"></span>
+<!--                    <input type="text" attr="value = ${user.lastName}" name="lastName" readonly>-->
+                </div>
+                <div class="form registration__form__bd">
+                    <p class="bd__form__text">День рождения:</p>
+                    <span th:text="${user.birthday}"></span>
+<!--                    <input type="date" th:attr="value=${user.birthday}" name="birthday" readonly>-->
+                </div>
+                <div class="form registration__form__name">
+                    <p class="name__form__text">Имя:</p>
+                    <span th:text="${user.firstName}"></span>
+<!--                    <input type="text" attr="value = ${user.firstName}" name="firstName" readonly>-->
+                </div>
+                <div class="form registration__form__phone">
+                    <p class="phone__form__text">Телефон:</p>
+                    <span th:text="${user.number}"></span>
+<!--                    <input type="tel" attr="value = ${user.number}" name="number" readonly>-->
+                </div>
+                <div class="form registration__form__name">
+                    <p class="name__form__text">Отчество:</p>
+                    <span th:text="${user.surname}"></span>
+<!--                    <input type="text" attr="value = ${user.surname}" name="surname" readonly>-->
+                </div>
+                <div class="form registration__form__email">
+                    <p class="email__form__text">Email:</p>
+                    <span th:text="${user.email}"></span>
+<!--                    <input type="email" attr="value = ${user.email}" name="email" readonly>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer__ center">
+        <div class="footer__content">
+            <div class="footer__left">
+                <a href="personal_office" class="logo__main text__decoration__none">MARKETPLACE</a>
+                <div class="footer__text gray">
+                    <p>Сделать заказ</p>
+                    <p>понятно</p>
+                    <p>быстро</p>
+                    <p>доступно</p>
+                </div>
+            </div>
+            <div class="footer__right">
+                <p class="contacts">Контакты</p>
+                <div class="footer__text">
+                    <p>Расположение: <span class="gray">Москва</span></p>
+                    <p>Email: <span class="gray">glazkova.mv@bk.ru</span></p>
+                    <p>Телефон: <span class="gray">+7-917-511-75-83</span></p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright gray"> Copyright MARKETPLACE © 2024. Все права защищены
+        </p>
+
+    </footer>
+</body>
+
+</html>
