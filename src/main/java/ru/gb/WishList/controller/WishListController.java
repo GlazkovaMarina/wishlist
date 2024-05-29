@@ -20,16 +20,18 @@ public class WishListController {
     private final UserService userService;
     @GetMapping("/index")
     public String getStartPage(){
-        return "";
+        return "index";
     }
 
 
-//
-//    @GetMapping("/correct_info")
-//    public String getCorrectInfo(Model model){
-//        model.addAttribute("user",userService.findById(1L));
-//        return "correct_info.html";
-//    }
+
+    @GetMapping("/correct_info")
+    public String getCorrectInfo(Model model){
+        User user = userService.findUserById(1L);
+        model.addAttribute("user", user);
+        return "correct_info";
+    }
+
     @GetMapping("/personal_office")
     public String getPersonalOffice(Model model){
         // TODO: убрать готового юзера, считать из бд
@@ -75,11 +77,6 @@ public class WishListController {
     public String getCardPresent(){
         log.severe("Get card_present");
         return "card_present";
-    }
-    @GetMapping("/correct_info")
-    public String getCorrectInfo(){
-        log.severe("Get correct_info");
-        return "correct_info";
     }
     @GetMapping("/edit_item")
     public String getEditItem(){
