@@ -1,4 +1,4 @@
-package ru.gb.WishList.service;
+package ru.gb.WishList.service.userService;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

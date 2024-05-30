@@ -1,4 +1,4 @@
-package ru.gb.WishList.service;
+package ru.gb.WishList.service.userService;
 import ru.gb.WishList.domain.User;
 import java.util.List;
 

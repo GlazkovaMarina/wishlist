@@ -2,6 +2,7 @@ package ru.gb.WishList.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.math.BigDecimal;
 
 /**
  * Product - товар
@@ -35,7 +36,7 @@ public class Product {
     private Long id;
     @Column (nullable = false)
     private String name;
-    private Double price;
+    private BigDecimal price;
     private String link;
     private String imgLink;
     private String description;

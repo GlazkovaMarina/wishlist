@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
-import ru.gb.WishList.service.UserService;
+import ru.gb.WishList.service.userService.UserService;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import lombok.extern.java.Log;
