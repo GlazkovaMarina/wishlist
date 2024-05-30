@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -24,23 +24,25 @@
     </header>
     <section class="new__item center">
         <h3>Редактирование подарка</h3>
-        <div class="new__item__group">
-            <form class="form_row">
+        <form  action="#" th:action="@{/edit_present/{id}(id=${user.id})}" method="post" class="registration__form">
+            <div class="form_row">
                 <p>Забронирован</p>
                 <input class="input__new__item" type="text" placeholder="Введите того, кто забронировал подарок">
-            </form>
-            <form class="form_row">
+            </div>
+            <div class="form_row">
                 <p>Приоритет</p>
                 <input class="input__new__item" type="text" placeholder="Введите приоритет">
-            </form>
-            <form class="form_row">
+            </div>
+            <div class="form_row">
                 <p>Комментарий</p>
                 <input class="input__new__item" type="text" placeholder="Введите комментарий">
-            </form>
-            <button class="main__button">
-                <a href="card_item" class="main__button__text text__decoration__none">Сохранить</a>
-            </button>
-        </div>
+            </div>
+<!--            <button class="main__button">-->
+<!--                <a href="card_item" class="main__button__text text__decoration__none">Сохранить</a>-->
+<!--            </button>-->
+            <input class="main__button main__button__text text__decoration__none" type="submit" value="Сохранить">
+
+        </form>
     </section>
 
     <footer class="footer__ center">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -42,9 +42,12 @@
                 <img src="../static/img/phone.svg" alt="phone" class="item__card__img">
             </div>
         </div>
-        <button class="main__button">
-            <a href="edit_item" class="main__button__text text__decoration__none">Редактировать</a>
-        </button>
+        <form method="get" th:action="@{/edit_item}">
+            <input class="main__button main__button__text text__decoration__none" type="submit" value="Редактировать">
+        </form>
+<!--        <button class="main__button">-->
+<!--            <a href="edit_item" class="main__button__text text__decoration__none">Редактировать</a>-->
+<!--        </button>-->
     </section>
 
     <footer class="footer__ center">

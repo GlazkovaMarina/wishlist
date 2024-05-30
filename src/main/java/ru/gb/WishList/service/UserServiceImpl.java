@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
 
     @Override
-    public User addUser(User user){
+    public User saveUser(User user){
         return userRepository.save(user);
     }
 
@@ -34,20 +34,22 @@ public class UserServiceImpl implements UserService{
         }
     }
 
-    @Override
-    public User updateUser(Long id, User user) {
-        // мы должны сначала проверить, существует ли User с данным ID
-        User existingUser = findUserById(id);
-        // обновляем поля существующего User
-        existingUser.setLastName(user.getLastName());
-        existingUser.setFirstName(user.getFirstName());
-        existingUser.setSurname(user.getSurname());
-        existingUser.setNumber(user.getNumber());
-        existingUser.setEmail(user.getEmail());
-        existingUser.setBirthday(user.getBirthday());
-        // сохраняем и возвращаем обновленного User
-        return userRepository.save(existingUser);
-    }
+//    @Override
+//    public User updateUser(User user, Long id) {
+//        // мы должны сначала проверить, существует ли User с данным ID
+//        User existingUser = userRepository.findById(id).orElse(null);
+//        if (existingUser != null){
+//            // обновляем поля существующего User
+//            existingUser.setLastName(user.getLastName());
+//            existingUser.setFirstName(user.getFirstName());
+//            existingUser.setSurname(user.getSurname());
+//            existingUser.setNumber(user.getNumber());
+//            existingUser.setEmail(user.getEmail());
+//            existingUser.setBirthday(user.getBirthday());
+//            userRepository.save(existingUser);
+//        }
+//        return existingUser;
+//    }
     @Override
     public void deleteUser(Long id) {
         // проверяем, существует ли User с данным ID

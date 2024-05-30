@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Личный кабинет</title>
 </head>
 
@@ -24,7 +24,10 @@
 
     <section class="content center">
         <div class="content__left">
-            <a href="correct_info" class="links text__decoration__none color_6A646D">Редактировать личную информацию</a>
+            <form  action="#" th:action="@{/correct_info/{id}(id=${user.id})}" method="get" class="registration__form">
+<!--                <a href="@{/correct_info/{id}(id=${user.id})}" class="links text__decoration__none color_6A646D">Редактировать личную информацию</a>-->
+                <input class="link color_6A646D submit text__decoration__none" type="submit" value="Редактировать личную информацию">
+            </form>
             <a href="wishlist" class="links text__decoration__none color_6A646D">Перейти в список подарков</a>
             <a href="new_item" class="links text__decoration__none color_AAAAAA">Добавить новый товар</a>
         </div>

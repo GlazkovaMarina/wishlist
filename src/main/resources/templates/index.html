@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -29,10 +29,16 @@
                 <h3 class="index__description gray">Добавь товары в wishlist и поделись им со своими контактами</h3>
             </div>
             <div class="index__links">
-                <button class="main__button">
-                    <a href="entry" class="main__button__text text__decoration__none">Вход</a>
-                </button>
-                <a href="registration" class="index__links__registration text__decoration__none">Регистрация</a>
+<!--                <button class="main__button">-->
+<!--                    <a href="entry" class="main__button__text text__decoration__none">Вход</a>-->
+<!--                </button>-->
+                <form method="get" th:action="@{/entry}">
+                    <input class="main__button main__button__text text__decoration__none" type="submit" value="Вход">
+                </form>
+<!--                <form method="get" th:action="@{/registration}">-->
+<!--                    <input class="main__button main__button__text text__decoration__none" type="submit" value="Регистрация">-->
+                    <a href="registration" class="index__links__registration text__decoration__none">Регистрация</a>
+<!--                </form>-->
             </div>
         </div>
         <img src="img/index.svg" alt="main__icon" class="main__icon">

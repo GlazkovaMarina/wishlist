@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -38,9 +38,12 @@
                     <input type="tel" placeholder="Формат: +79999999999">
                 </form>
             </div>
-            <button class="main__button">
-                <a href="personal_office" class="main__button__text text__decoration__none">Войти</a>
-            </button>
+            <form method="get" th:action="@{/personal_office}">
+                <input class="main__button main__button__text text__decoration__none" type="submit" value="Войти">
+            </form>
+<!--            <button class="main__button">-->
+<!--                <a href="personal_office" class="main__button__text text__decoration__none">Войти</a>-->
+<!--            </button>-->
         </div>
         <img src="img/index.svg" alt="main__icon" class="main__icon">
     </section>

@@ -1,6 +1,7 @@
 package ru.gb.WishList.domain;
 
 import jakarta.persistence.*;
+//import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -32,15 +33,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+//    @NotBlank(message = "Поле _фамилия_ не может быть пустым")
     @Column (name = "last_name", nullable = false)
     private String lastName;
+//    @NotBlank(message = "Поле _имя_ не может быть пустым")
     @Column (name = "first_name", nullable = false)
     private String firstName;
     private String surname;
+//    @NotBlank(message = "Поле _день рождения_ не может быть пустым")
     @Column (nullable = false)
     private LocalDate birthday;
+//    @NotBlank(message = "Поле _номер телефона_ не может быть пустым")
     @Column (nullable = false, unique = true)
     private Long number;
+//    @NotBlank(message = "Поле _электронная почта_ не может быть пустым")
     @Column (nullable = false, unique = true)
     private String email;
 }

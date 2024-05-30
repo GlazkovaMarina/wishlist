@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -24,31 +24,32 @@
 
     <section class="new__item center">
         <h3>Добавление товара</h3>
-        <div class="new__item__group">
-            <form class="form_row">
+        <form  action="#" th:action="@{/new_item" method="post" class="registration__form">
+        <div class="form_row">
                 <p>Название</p>
                 <input class="input__new__item" type="text" placeholder="Введите название">
-            </form>
-            <form enctype="multipart/form-data" method="post" class="form_row">
-                <p>Фото товара</p>
-                <input class="input__new__item" type="file" name="photo" placeholder="Добавить фото">
-            </form>
-            <form class="form_row">
+            </div>
+<!--            <div enctype="multipart/form-data" method="post" class="form_row">-->
+<!--                <p>Фото товара</p>-->
+<!--                <input class="input__new__item" type="file" name="photo" placeholder="Добавить фото">-->
+<!--            </div>-->
+            <div class="form_row">
                 <p>Цена</p>
                 <input class="input__new__item" type="number" placeholder="Введите цену">
-            </form>
-            <form class="form_row">
+            </div>
+            <div class="form_row">
                 <p>Описание</p>
                 <input class="input__new__item" type="text" placeholder="Введите описание">
-            </form>
-            <form class="form_row">
+            </div>
+            <div class="form_row">
                 <p>Рейтинг</p>
                 <input class="input__new__item" type="number" placeholder="Введите рейтинг">
-            </form>
-            <button class="main__button">
-                    <a href="card_item" class="main__button__text text__decoration__none">Добавить</a>
-                </button>
-        </div>
+            </div>
+<!--            <button class="main__button">-->
+<!--                    <a href="card_item" class="main__button__text text__decoration__none">Добавить</a>-->
+<!--                </button>-->
+            <input class="main__button main__button__text text__decoration__none" type="submit" value="Добавить">
+        </form>
     </section>
 
     <footer class="footer__ center">

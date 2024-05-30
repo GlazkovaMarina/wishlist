@@ -9,12 +9,17 @@
     padding-left: calc(50% - 1140px/2);
     padding-right: calc(50% - 1140px/2);
 }
+.submit{
+    background: none;
+    border: none;
+    box-shadow: none;
+}
 
 input {
     border: 1px solid #666666;
     border-radius: 1px solid #666666;
     border-radius: 0.5rem;
-    padding: 5px;
+    padding: 2px;
     box-shadow: 1px 1px #F25822;
 }
 
@@ -184,7 +189,7 @@ input {
     box-sizing: border-box;
 }
 .registration__form{
-display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: nowrap;
@@ -399,4 +404,7 @@ output {
 
 .text__decoration__none {
     text-decoration: none;
+}
+.div__none{
+display: none
 }
