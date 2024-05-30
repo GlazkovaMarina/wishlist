@@ -15,7 +15,10 @@
         </div>
         <nav class="header__main__right">
             <a href="goods" class="black header__main__right__text text__decoration__none">Товары</a>
-            <a href="personal_office" class="black header__main__right__text text__decoration__none">Личный кабинет</a>
+            <form  action="#" th:action="@{/personal_office/{id}(id=${user.id})}" method="get" class="registration__form">
+                <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
+            </form>
+<!--            <a href="personal_office" class="black header__main__right__text text__decoration__none">Личный кабинет</a>-->
             <button class="main__button">
                   <a href="/" class="main__button__text text__decoration__none">Выход</a>
             </button>
@@ -62,7 +65,7 @@
                 </div>
                 <div class="form registration__form__name">
                     <p class="name__form__text">Отчество</p>
-                    <input type="text" th:name="surname" th:attr="value = ${user.surname}" required>
+                    <input type="text" th:name="surname" th:attr="value = ${user.surname}">
                 </div>
                 <div class="form registration__form__email">
                     <p class="email__form__text">Email</p>
