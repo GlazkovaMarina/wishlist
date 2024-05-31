@@ -1,6 +1,7 @@
 package ru.gb.WishList.controller;
 
 import lombok.AllArgsConstructor;
+import ru.gb.WishList.domain.Product;
 import ru.gb.WishList.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import ru.gb.WishList.service.userService.UserService;
+import ru.gb.WishList.service.productService.ProductService;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import lombok.extern.java.Log;
+import java.util.List;
 
 
 
@@ -23,6 +26,8 @@ import lombok.extern.java.Log;
 public class WishListController {
 
     private final UserService userService;
+    private final ProductService productService;
+
     @GetMapping("/index")
     public String getStartPage(){
         return "index";
@@ -107,9 +112,13 @@ public class WishListController {
         log.severe("Get edit_present");
         return "edit_present";
     }
-    @GetMapping("/goods")
-    public String getGoods(){
+    @GetMapping("/goods/{id}")
+    public String getGoods(Model model, @PathVariable Long id){
+        User user = userService.findUserById(id);
+        model.addAttribute("user", user);
         log.severe("Get goods");
+        List<Product> products =  productService.findAllProducts();
+        model.addAttribute("products", products);
         return "goods";
     }
 

@@ -37,8 +37,7 @@ public class Product {
     @Column (nullable = false)
     private String name;
     private BigDecimal price;
-    private String link;
-    private String imgLink;
+    private String image;
     private String description;
     private Float score;
 }

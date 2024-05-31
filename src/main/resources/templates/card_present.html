@@ -14,8 +14,10 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <a href="goods" class="black header__main__right__text text__decoration__none">Товары</a>
-            <a href="wishlist" class="black header__main__right__text text__decoration__none">Список подарков</a>
+            <form  action="#" th:action="@{/goods/{id}(id=${user.id})}" method="get" class="registration__form">
+                <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
+            </form>
+            <a href="/wishlist" class="black header__main__right__text text__decoration__none">Список подарков</a>
             <form  action="#" th:action="@{/personal_office/{id}(id=${user.id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
