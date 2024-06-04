@@ -3,9 +3,9 @@ spring:
     name:
       WishList
   jpa:
-#    hibernate:
-#      ddl-auto: none
-#    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
     show-sql: true
 #    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 #  datasource:

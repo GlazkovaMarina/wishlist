@@ -32,34 +32,34 @@
     <section class="new__item center">
         <h3>Редактирование подарка</h3>
         <div class="new__item__group">
-            <form  action="#" th:action="@{/edit_present/{user_id}/{gift_id}(user_id=${user_id}, gift_id=${gift.id})}" method="post" class="registration__form">
+            <form  action="#" th:action="@{/edit_present/{user_id}/{product_id}/{gift_id}(user_id=${user_id}, product_id=${product_id}, gift_id=${gift.id})}" method="post" class="registration__form">
                 <div class="div__none">
                     <p class="id__form__text">Id</p>
                     <input th:name="id" th:attr="value = ${gift.id}" type="number">
                 </div>
-                <div class="div__none">
-                    <p>Название</p>
-                    <input type="text" th:name="name" th:attr="value = ${gift.product.name}" readonly>
-                </div>
-                <div class="div__none">
-                    <p>Фото товара</p>
-                    <input class="input__new__item" type="text" th:name="image" th:attr="value = ${gift.product.image}" readonly>
-                </div>
-                <div class="div__none">
-                    <p>Цена</p>
-                    <input class="input__new__item" type="text" th:name="price" th:attr="value = ${gift.product.price}" readonly>
-                </div>
-                <div class="div__none">
-                    <p>Описание</p>
-                    <input class="input__new__item" type="text" th:name="description" th:attr="value = ${gift.product.description}" readonly>
-                </div>
-                <div class="form_row">
-                    <p>Рейтинг</p>
-                    <input class="input__new__item" type="text"  th:name="score" th:attr="value = ${product.score}" readonly>
-                </div>
+<!--                <div class="div__none">-->
+<!--                    <p>Название</p>-->
+<!--                    <input type="text" th:name="name" th:attr="value = ${gift.product.name}">-->
+<!--                </div>-->
+<!--                <div class="div__none">-->
+<!--                    <p>Фото товара</p>-->
+<!--                    <input class="input__new__item" type="text" th:name="image" th:attr="value = ${gift.product.image}" >-->
+<!--                </div>-->
+<!--                <div class="div__none">-->
+<!--                    <p>Цена</p>-->
+<!--                    <input class="input__new__item" type="text" th:name="price" th:attr="value = ${gift.product.price}" >-->
+<!--                </div>-->
+<!--                <div class="div__none">-->
+<!--                    <p>Описание</p>-->
+<!--                    <input class="input__new__item" type="text" th:name="description" th:attr="value = ${gift.product.description}" readonly>-->
+<!--                </div>-->
+<!--                <div class="div__none">-->
+<!--                    <p>Рейтинг</p>-->
+<!--                    <input class="input__new__item" type="text"  th:name="score" th:attr="value = ${gift.product.score}">-->
+<!--                </div>-->
                 <div class="form_row">
                     <h4>Текущий статус подарка:</h4>
-                    <span th:text="${gift.status.label}"></span>-->
+                    <span th:text="${gift.status.label}"></span>
                     <h4>Измените статус подарка:</h4>
                     <div class="radiobutton">
                         <input id="UNBOOKED" type="radio" name="status" value="UNBOOKED" field="{gift.status}">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="form_row">
                     <h4>Текущий приорите подарка:</h4>
-                    <span th:text="${gift.priority.label}"></span>-->
+                    <span th:text="${gift.priority.label}"></span>
                     <h4>Выберите приоритет подарка:</h4>
                     <div class="radiobutton">
                         <input id="HIGH" type="radio" name="priority" value="HIGH" field="{gift.priority}">

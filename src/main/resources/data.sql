@@ -28,5 +28,8 @@ VALUES ('Дрель', 2588, '/img/drill.svg', 'Дрель стандартная
 INSERT INTO products (name, price, image, description, score)
 VALUES ('Игрушка', 858, '/img/toys.svg', 'Игрушка 3+, материал: безопасный пластик', 4.4);
 
+insert into gifts (comment,owner_user_id,priority,product_product_id,status)
+values ('Для Олеси',1,'HIGH',6,'UNBOOKED');
+
 
 

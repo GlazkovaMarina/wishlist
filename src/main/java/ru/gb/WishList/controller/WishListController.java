@@ -139,13 +139,15 @@ public class WishListController {
         model.addAttribute("user_id", userId);
         Gift gift = giftService.findGiftById(giftId);
         model.addAttribute("gift", gift);
+        model.addAttribute("product_id", gift.getProduct().getId());
         log.severe("Get edit_present");
         return "edit_present";
     }
 
-    @PostMapping("/edit_present/{user_id}/{gift_id}")
-    public String postEditPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Gift gift){
+    @PostMapping("/edit_present/{user_id}/{product_id}/{gift_id}")
+    public String postEditPresent(@PathVariable("user_id") Long userId, @PathVariable("product_id") Long productId,@PathVariable("gift_id") Long giftId, Gift gift){
         log.severe("Post edit_present");
+        gift.setProduct(productService.findProductById(productId));
         giftService.saveGift(gift);
         String returnPage = "redirect:/card_present/" + userId + "/" + giftId;
         return returnPage;

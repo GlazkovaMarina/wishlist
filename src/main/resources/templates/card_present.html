@@ -30,13 +30,17 @@
     </header>
     <section class="card__item center">
         <h2>Карточка подарка</h2>
-        <form  action="#" th:action="@{/edit_present/{user_id}/{gift_id}(user_id=${user_id}, item_id=${gift.id})}" method="get" class="registration__form">
+        <form  action="#" th:action="@{/edit_present/{user_id}/{gift_id}(user_id=${user_id}, gift_id=${gift.id})}" method="get" class="registration__form">
             <div class="item">
                 <div class="gift__info">
-                    <p class="item__description">Название: </p>
-                    <p class="item__name color__F25822" th:text="${gift.product.name}"></p>
-                    <p class="item__description">Цена: </p>
-                    <p class="item__price gray" th:text="${gift.product.price}"></p>
+                    <div class="score__group">
+                        <p class="item__description">Название: </p>
+                        <p class="item__name gray" th:text="${gift.product.name}"></p>
+                    </div>
+                    <div class="score__group">
+                        <p class="item__description">Цена: </p>
+                        <p class="item__price gray" th:text="${gift.product.price}"></p>
+                    </div>
                     <div class="score__group">
                         <p class="item__score">Рейтинг: </p>
                         <p class="item__score gray" th:text="${gift.product.score}"></p>
