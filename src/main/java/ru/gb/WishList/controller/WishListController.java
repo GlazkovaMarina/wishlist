@@ -168,6 +168,8 @@ public class WishListController {
     @GetMapping("/wishlist/{user_id}")
     public String getWishlist(@PathVariable("user_id") Long userId, Model model){
         model.addAttribute("user_id", userId);
+        List<Gift> gifts =  giftService.findAllGifts();
+        model.addAttribute("gifts", gifts);
         log.severe("Get wishlist");
         return "wishlist";
     }

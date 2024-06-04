@@ -334,7 +334,9 @@ output {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 35xpx;
 }
+
 
 .card__present {
     width: 300px;
