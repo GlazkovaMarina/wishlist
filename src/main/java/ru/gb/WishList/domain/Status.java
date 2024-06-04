@@ -8,6 +8,13 @@ package ru.gb.WishList.domain;
  **/
 
 public enum Status {
-    UNBOOKED,
-    BOOKED
-}
+    UNBOOKED("Не забронирован"),
+    BOOKED("Забронирован");
+
+    public final String label;
+
+    private Status(String label) {
+        this.label = label;
+    }
+
+    }

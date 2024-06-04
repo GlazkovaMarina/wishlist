@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Карточка товара</title>
 </head>
 
@@ -28,30 +28,24 @@
 
     <section class="card__item center">
         <h2>Карточка товара</h2>
-        <div class="item">
-            <div class="item__info">
-                <p class="item__name">Смартфон</p>
-                <p class="item__price color__F25822">34999</p>
-                <div class="score__group">
-                    <p class="item__score gray">Рейтинг: </p>
-                    <p class="item__score gray">4.8</p>
+        <form  action="#" th:action="@{/edit_item/{user_id}/{item_id}(user_id=${user.id}, item_id=${product.id})}" method="get" class="registration__form">
+            <div class="item">
+                <div class="item__info">
+                    <p class="item__name" th:text="${product.name}"></p>
+                    <p class="item__price color__F25822" th:text="${product.price}"></p>
+                    <div class="score__group">
+                        <p class="item__score gray">Рейтинг: </p>
+                        <p class="item__score gray" th:text="${product.score}"></p>
+                    </div>
+                    <div class="description__group">
+                        <p class="item__description gray">Описание: </p>
+                        <output class="output__description" type="text" th:text="${product.description}"></output>
+                    </div>
                 </div>
-                <div class="description__group">
-                    <p class="item__description gray">Описание</p>
-                    <output class="output__decription" type="text">ОписаниеОписаниеОписание dfd Описание Описание Описание Описание Описани еОписание ОписаниеО писаниеОпис ание ОписаниеОписан иеОписание</output>
-                </div>
-
+                <a th:href="@{/card_item/{user_id}/{item_id}(user_id=${user.id}, item_id=${product.id})}"> <img th:src="${product.image}" alt="Фото товара отсутствует" class="img__bord"></a>
             </div>
-            <div class="img__bord">
-                <img src="../static/img/phone.svg" alt="phone" class="item__card__img">
-            </div>
-        </div>
-        <form method="get" th:action="@{/edit_item}">
             <input class="main__button main__button__text text__decoration__none" type="submit" value="Редактировать">
         </form>
-<!--        <button class="main__button">-->
-<!--            <a href="edit_item" class="main__button__text text__decoration__none">Редактировать</a>-->
-<!--        </button>-->
     </section>
 
     <footer class="footer__ center">
@@ -75,8 +69,7 @@
             </div>
         </div>
         <hr>
-        <p class="copyright gray"> Copyright MARKETPLACE © 2024. Все права защищены
-        </p>
+        <p class="copyright gray"> Copyright MARKETPLACE © 2024. Все права защищены</p>
 
     </footer>
 </body>

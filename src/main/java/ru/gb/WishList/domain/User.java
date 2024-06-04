@@ -3,6 +3,7 @@ package ru.gb.WishList.domain;
 import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import java.util.Set;
 
 import java.time.LocalDate;
 
@@ -32,6 +33,7 @@ import java.time.LocalDate;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 //    @NotBlank(message = "Поле _фамилия_ не может быть пустым")
     @Column (name = "last_name", nullable = false)
@@ -49,4 +51,8 @@ public class User {
 //    @NotBlank(message = "Поле _электронная почта_ не может быть пустым")
     @Column (nullable = false, unique = true)
     private String email;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "gift_id", referencedColumnName = "id")
+    @OneToMany(mappedBy="owner")
+    private Set<Gift> gifts;
 }

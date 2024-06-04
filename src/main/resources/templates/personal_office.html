@@ -32,7 +32,10 @@
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Редактировать личную информацию">
             </form>
             <a href="wishlist" class="links text__decoration__none color_6A646D">Перейти в список подарков</a>
-            <a href="new_item" class="links text__decoration__none color_AAAAAA">Добавить новый товар</a>
+<!--            <a href="new_item" class="links text__decoration__none color_AAAAAA">Добавить новый товар</a>-->
+            <form  action="#" th:action="@{/new_item/{id}(id=${user.id})}" method="get" class="registration__form">
+                <input class="links color_AAAAAA submit text__decoration__none" type="submit" value="Добавить новый товар">
+            </form>
         </div>
         <div class="content__right">
             <p class="content__text">Личные данные:</p>

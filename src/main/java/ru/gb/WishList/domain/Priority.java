@@ -7,7 +7,13 @@ package ru.gb.WishList.domain;
  * @LOW - низкий
  **/
 public enum Priority {
-    HIGH,
-    MIDDLE,
-    LOW
+    HIGH("Высокий"),
+    MIDDLE("Средний"),
+    LOW("Низкий");
+
+    public final String label;
+
+    private Priority(String label) {
+        this.label = label;
+    }
 }

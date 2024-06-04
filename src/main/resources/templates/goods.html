@@ -14,7 +14,7 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/personal_office/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office/{user_id}(user_id=${user.id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -23,86 +23,20 @@
         </nav>
     </header>
 
-    <div class="card__characters center">
-        <tr th:each ="character: ${characters}">
-            <div class="character__card">
-                <a th:href="@{../../character/{id}(id=${character.id})}"> <img th:src="${character.image}" alt="image of character" class="character__card__img"></a>
-                <div class="character__info">
-                    <h2 class="character__name" th:text="${character.name}"></h2>
-                </div>
-            </div>
-        </tr>
-    </div>
-
     <section th:switch="${products}" class="goods center">
         <h2 th:case="null">К сожалению, все товары проданы! Совсем скоро мы завезем новый! Возвращайтесь к нам!</h2>
         <tr th:each="product : ${products}">
-            <div class="goods__card__item" onclick="location.href='card_item.html';">
-<!--                <div class="img__bord">-->
-                    <a th:href="@{card_item/{user_id}/{id}(user_id=${user.id}, id=${product.id})}"> <img th:src="${product.image}" alt="image of character" class="img__bord"></a>
-<!--                    <img src="/img/book.svg" alt="book" class="item__card__img">-->
-<!--                </div>-->
+            <div class="goods__card__item">
+                <a th:href="@{/card_item/{user_id}/{item_id}(user_id=${user.id}, item_id=${product.id})}"> <img th:src="${product.image}" alt="Фото товара отсутствует" class="img__bord"></a>
                 <div class="item__info">
                     <p class="item__name" th:text="${product.name}"></p>
                     <p class="item__price color__F25822" th:text="${product.price}"></p>
+                    <a th:href="@{/new_present/{user_id}/{item_id}(user_id=${user.id}, item_id=${product.id})}">
+                        <img width="50" height="50" src="https://img.icons8.com/ios/50/gift--v1.png" alt="gift--v1">
+                    </a>
                 </div>
             </div>
         </tr>
-
-<!--            <a th:href="@{/edit_item/{id}(id=${product.id})}"> Edit</a>-->
-
-<!--                <div class="goods__card__item" onclick="location.href='card_item.html';">-->
-        <!--            <div class="img__bord">-->
-        <!--                <img src="../static/img/phone.svg" alt="phone" class="item__card__img">-->
-        <!--            </div>-->
-        <!--            <div class="item__info">-->
-        <!--                <p class="item__name">Смартфон</p>-->
-        <!--                <p class="item__price color__F25822">34999</p>-->
-        <!--            </div>-->
-        <!--            &lt;!&ndash; <div class="img__bord"> &ndash;&gt;-->
-        <!--            &lt;!&ndash; <img th:src="${item.image}" alt="image of item" class="item__card__img"> &ndash;&gt;-->
-        <!--            &lt;!&ndash; </div> &ndash;&gt;-->
-        <!--            &lt;!&ndash; <div class="item__info"> &ndash;&gt;-->
-        <!--            &lt;!&ndash; <p class="item__name" th:text="${item.name}"></p>-->
-        <!--                <p class="item__price color__F25822" th:text="${item.price}"></p> &ndash;&gt;-->
-        <!--            &lt;!&ndash; </div> &ndash;&gt;-->
-        <!--        </div>-->
-<!--        <div class="goods__card__item" onclick="location.href='card_item.html';">-->
-<!--            <div class="img__bord">-->
-<!--                <img src="../static/img/glass.svg" alt="glass" class="item__card__img">-->
-<!--            </div>-->
-<!--            <div class="item__info">-->
-<!--                <p class="item__name">Чайная пара</p>-->
-<!--                <p class="item__price color__F25822">1399</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="goods__card__item" onclick="location.href='card_item.html';">-->
-<!--            <div class="img__bord">-->
-<!--                <img src="../static/img/iron.svg" alt="iron" class="item__card__img">-->
-<!--            </div>-->
-<!--            <div class="item__info">-->
-<!--                <p class="item__name">Утюг</p>-->
-<!--                <p class="item__price color__F25822">3489</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="goods__card__item" onclick="location.href='card_item.html';">-->
-<!--            <div class="img__bord">-->
-<!--                <img src="../static/img/drill.svg" alt="drill" class="item__card__img">-->
-<!--            </div>-->
-<!--            <div class="item__info">-->
-<!--                <p class="item__name">Дрель</p>-->
-<!--                <p class="item__price color__F25822">2588</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="goods__card__item" onclick="location.href='card_item.html';">-->
-<!--            <div class="img__bord">-->
-<!--                <img src="../static/img/toys.svg" alt="toys" class="item__card__img">-->
-<!--            </div>-->
-<!--            <div class="item__info">-->
-<!--                <p class="item__name">Игрушка</p>-->
-<!--                <p class="item__price color__F25822">858</p>-->
-<!--            </div>-->
-<!--        </div>-->
     </section>
 
     <footer class="footer__ center">

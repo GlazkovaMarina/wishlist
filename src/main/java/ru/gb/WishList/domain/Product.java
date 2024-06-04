@@ -3,6 +3,7 @@ package ru.gb.WishList.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
+import java.util.Set;
 
 /**
  * Product - товар
@@ -29,10 +30,12 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table (name = "products")
+//@Inheritance(strategy = InheritanceType.JOINED)
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private Long id;
     @Column (nullable = false)
     private String name;
@@ -40,4 +43,6 @@ public class Product {
     private String image;
     private String description;
     private Float score;
+    @OneToMany(mappedBy="product")
+    private Set<Gift> gifts;
 }

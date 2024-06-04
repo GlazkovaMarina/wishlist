@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import ru.gb.WishList.service.userService.UserService;
 import ru.gb.WishList.service.productService.ProductService;
+import ru.gb.WishList.service.giftService.GiftService;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import lombok.extern.java.Log;
 import java.util.List;
+import ru.gb.WishList.domain.Gift;
+import ru.gb.WishList.domain.Status;
+import ru.gb.WishList.domain.Priority;
 
 
 
@@ -27,6 +31,7 @@ public class WishListController {
 
     private final UserService userService;
     private final ProductService productService;
+    private final GiftService giftService;
 
     @GetMapping("/index")
     public String getStartPage(){
@@ -92,21 +97,44 @@ public class WishListController {
         log.severe("Get entry");
         return "entry";
     }
-    @GetMapping("/card_item")
-    public String getCardItem(){
+
+    @GetMapping("/card_item/{user_id}/{item_id}")
+    public String getCardItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        Product product = productService.findProductById(itemId);
+        model.addAttribute("product", product);
         log.severe("Get card_item");
         return "card_item";
     }
-    @GetMapping("/card_present")
-    public String getCardPresent(){
+
+    @GetMapping("/card_present/{user_id}/{gift_id}")
+    public String getCardPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Model model){
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        Gift gift = giftService.findGiftById(giftId);
+        model.addAttribute("gift", gift);
         log.severe("Get card_present");
         return "card_present";
     }
-    @GetMapping("/edit_item")
-    public String getEditItem(){
+    @GetMapping("/edit_item/{user_id}/{item_id}")
+    public String getEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        Product product = productService.findProductById(itemId);
+        model.addAttribute("product", product);
         log.severe("Get edit_item");
         return "edit_item";
     }
+
+    @PostMapping("/edit_item/{user_id}/{item_id}")
+    public String postEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Product product){
+        productService.saveProduct(product);
+        String returnPage = "redirect:/card_item/" + userId + "/" + itemId; // формируем персональный личный кабинет
+        log.severe("Post edit_item");
+        return returnPage;
+    }
+
     @GetMapping("/edit_present")
     public String getEditPresent(){
         log.severe("Get edit_present");
@@ -122,16 +150,56 @@ public class WishListController {
         return "goods";
     }
 
-    @GetMapping("/new_item")
-    public String getNewItem(){
+    @GetMapping("/new_item/{user_id}")
+    public String getNewItem(@PathVariable("user_id") Long userId, Model model){
         log.severe("Get new_item");
+        model.addAttribute("user_id", userId);
         return "new_item";
     }
 
-    @GetMapping("/wishlist")
-    public String getWishlist(){
+    @PostMapping("/new_item/{user_id}")
+    public String postNewItem(@PathVariable("user_id") Long userId, Product product){
+        log.severe("Post new_item");
+        productService.saveProduct(product);
+        String returnPage = "redirect:/goods/" + userId;
+        return returnPage;
+    }
+
+    @GetMapping("/wishlist/{user_id}")
+    public String getWishlist(@PathVariable("user_id") Long userId, Model model){
+        model.addAttribute("user_id", userId);
         log.severe("Get wishlist");
         return "wishlist";
     }
+
+    @GetMapping("/new_present/{user_id}/{item_id}")
+    public String getNewPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
+        //User user = userService.findUserById(userId);
+        model.addAttribute("user_id", userId);
+        Product product = productService.findProductById(itemId);
+        model.addAttribute("product", product);
+        model.addAttribute("gift", new Gift());
+        log.severe("Get new_present");
+        return "new_present";
+    }
+
+    @PostMapping("/new_present/{user_id}/{item_id}")
+    public String getNewPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId,  Gift gift){
+        User user = userService.findUserById(userId);
+        Product product = productService.findProductById(itemId);
+//        Gift newGift = new Gift();
+//        newGift.setComment(gift.getComment());
+//        newGift.setStatus(gift.getStatus());
+//        newGift.setPriority(gift.getPriority());
+//        newGift.setOwner(user);
+//        newGift.setProduct(product);
+        gift.setOwner(user);
+        gift.setProduct(product);
+        log.severe("Post new_present");
+        giftService.saveGift(gift);
+        String returnPage = "redirect:/wishlist/" + userId;
+        return returnPage;
+    }
+
 
 }

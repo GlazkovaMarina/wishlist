@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Добавление нового товара</title>
 </head>
 
@@ -14,10 +14,11 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/goods/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/goods/{user_id}(user_id=${user_id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
             </form>
-            <form  action="#" th:action="@{/personal_office/{id}(id=${user.id})}" method="get" class="registration__form">
+
+            <form  action="#" th:action="@{/personal_office/{user_id}(user_id=${user_id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -28,30 +29,27 @@
 
     <section class="new__item center">
         <h3>Добавление товара</h3>
-        <form  action="#" th:action="@{/new_item" method="post" class="registration__form">
-        <div class="form_row">
+        <form  action="#" th:action="@{/new_item/{user_id}(user_id=${user_id})}" method="post" class="registration__form">
+            <div class="form_row">
                 <p>Название</p>
-                <input class="input__new__item" type="text" placeholder="Введите название">
+                <input class="input__new__item" type="text" id="name" name="name" field="{product.name}" placeholder="Введите название" required>
             </div>
-<!--            <div enctype="multipart/form-data" method="post" class="form_row">-->
-<!--                <p>Фото товара</p>-->
-<!--                <input class="input__new__item" type="file" name="photo" placeholder="Добавить фото">-->
-<!--            </div>-->
+            <div class="form_row">
+                <p>Фото товара</p>
+                <input class="input__new__item" type="text" id="image" name="image" field="{product.image}" placeholder="Введите путь до фотографии">
+            </div>
             <div class="form_row">
                 <p>Цена</p>
-                <input class="input__new__item" type="number" placeholder="Введите цену">
+                <input class="input__new__item" type="text" id="price" name="price" field="{product.price}" placeholder="Введите цену">
             </div>
             <div class="form_row">
                 <p>Описание</p>
-                <input class="input__new__item" type="text" placeholder="Введите описание">
+                <input class="input__new__item" type="text" id="description" name="description" field="{product.description}" placeholder="Введите описание">
             </div>
             <div class="form_row">
                 <p>Рейтинг</p>
-                <input class="input__new__item" type="number" placeholder="Введите рейтинг">
+                <input class="input__new__item" type="text" id="score" name="score" field="{product.score}" placeholder="Введите рейтинг">
             </div>
-<!--            <button class="main__button">-->
-<!--                    <a href="card_item" class="main__button__text text__decoration__none">Добавить</a>-->
-<!--                </button>-->
             <input class="main__button main__button__text text__decoration__none" type="submit" value="Добавить">
         </form>
     </section>
