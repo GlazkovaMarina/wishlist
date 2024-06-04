@@ -14,11 +14,13 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/goods/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/goods/{id}(id=${user_id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
             </form>
-            <a href="/wishlist" class="black header__main__right__text text__decoration__none">Список подарков</a>
-            <form  action="#" th:action="@{/personal_office/{id}(id=${user.id})}" method="get" class="registration__form">
+            <<form  action="#" th:action="@{/wishlist/{id}(id=${user_id})}" method="get" class="registration__form">
+                <input class="links color_6A646D submit text__decoration__none" type="submit" value="Список подарков">
+            </form>
+            <form  action="#" th:action="@{/personal_office/{id}(id=${user_id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -26,28 +28,78 @@
             </button>
         </nav>
     </header>
+
     <section class="new__item center">
         <h3>Редактирование подарка</h3>
-        <form  action="#" th:action="@{/edit_present/{id}(id=${user.id})}" method="post" class="registration__form">
-            <div class="form_row">
-                <p>Забронирован</p>
-                <input class="input__new__item" type="text" placeholder="Введите того, кто забронировал подарок">
-            </div>
-            <div class="form_row">
-                <p>Приоритет</p>
-                <input class="input__new__item" type="text" placeholder="Введите приоритет">
-            </div>
-            <div class="form_row">
-                <p>Комментарий</p>
-                <input class="input__new__item" type="text" placeholder="Введите комментарий">
-            </div>
-<!--            <button class="main__button">-->
-<!--                <a href="card_item" class="main__button__text text__decoration__none">Сохранить</a>-->
-<!--            </button>-->
-            <input class="main__button main__button__text text__decoration__none" type="submit" value="Сохранить">
+        <div class="new__item__group">
+            <form  action="#" th:action="@{/edit_present/{user_id}/{gift_id}(user_id=${user_id}, gift_id=${gift.id})}" method="post" class="registration__form">
+                <div class="div__none">
+                    <p class="id__form__text">Id</p>
+                    <input th:name="id" th:attr="value = ${gift.id}" type="number">
+                </div>
+                <div class="div__none">
+                    <p>Название</p>
+                    <input type="text" th:name="name" th:attr="value = ${gift.product.name}" readonly>
+                </div>
+                <div class="div__none">
+                    <p>Фото товара</p>
+                    <input class="input__new__item" type="text" th:name="image" th:attr="value = ${gift.product.image}" readonly>
+                </div>
+                <div class="div__none">
+                    <p>Цена</p>
+                    <input class="input__new__item" type="text" th:name="price" th:attr="value = ${gift.product.price}" readonly>
+                </div>
+                <div class="div__none">
+                    <p>Описание</p>
+                    <input class="input__new__item" type="text" th:name="description" th:attr="value = ${gift.product.description}" readonly>
+                </div>
+                <div class="form_row">
+                    <p>Рейтинг</p>
+                    <input class="input__new__item" type="text"  th:name="score" th:attr="value = ${product.score}" readonly>
+                </div>
+                <div class="form_row">
+                    <h4>Текущий статус подарка:</h4>
+                    <span th:text="${gift.status.label}"></span>-->
+                    <h4>Измените статус подарка:</h4>
+                    <div class="radiobutton">
+                        <input id="UNBOOKED" type="radio" name="status" value="UNBOOKED" field="{gift.status}">
+                        <label for="UNBOOKED">Не забронирован</label>
+                    </div>
+                    <div class="radiobutton">
+                        <input id="BOOKED" type="radio" name="status" value="BOOKED" field="{gift.status}">
+                        <label for="BOOKED">Забронирован</label>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <h4>Текущий приорите подарка:</h4>
+                    <span th:text="${gift.priority.label}"></span>-->
+                    <h4>Выберите приоритет подарка:</h4>
+                    <div class="radiobutton">
+                        <input id="HIGH" type="radio" name="priority" value="HIGH" field="{gift.priority}">
+                        <label for="HIGH">Высокий</label>
+                    </div>
+                    <div class="radiobutton">
+                        <input id="MIDDLE" type="radio" name="priority" value="MIDDLE" field="{gift.priority}">
+                        <label for="MIDDLE">Средний</label>
+                    </div>
+                    <div class="radiobutton">
+                        <input id="LOW" type="radio" name="priority" value="LOW" field="{gift.priority}">
+                        <label for="LOW">Низкий</label>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <p>Комментарий</p>
+                    <input class="input__new__item" type="text"  th:name="comment" th:attr="value = ${gift.comment}">
+                </div>
+                <!--            <button class="main__button">-->
+                <!--                <a href="card_item" class="main__button__text text__decoration__none">Сохранить</a>-->
+                <!--            </button>-->
+                <input class="main__button main__button__text text__decoration__none" type="submit" value="Сохранить">
+            </form>
 
-        </form>
+        </div>
     </section>
+
 
     <footer class="footer__ center">
         <div class="footer__content">

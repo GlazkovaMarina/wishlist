@@ -135,11 +135,23 @@ public class WishListController {
         return returnPage;
     }
 
-    @GetMapping("/edit_present")
-    public String getEditPresent(){
+    @GetMapping("/edit_present/{user_id}/{gift_id}")
+    public String getEditPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Model model){
+        model.addAttribute("user_id", userId);
+        Gift gift = giftService.findGiftById(giftId);
+        model.addAttribute("gift", gift);
         log.severe("Get edit_present");
         return "edit_present";
     }
+
+    @PostMapping("/edit_present/{user_id}/{gift_id}")
+    public String postEditPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Gift gift){
+        log.severe("Post edit_present");
+        giftService.saveGift(gift);
+        String returnPage = "redirect:/card_present/" + userId + "/" + giftId;
+        return returnPage;
+    }
+
     @GetMapping("/goods/{id}")
     public String getGoods(Model model, @PathVariable Long id){
         User user = userService.findUserById(id);
@@ -189,12 +201,6 @@ public class WishListController {
     public String getNewPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId,  Gift gift){
         User user = userService.findUserById(userId);
         Product product = productService.findProductById(itemId);
-//        Gift newGift = new Gift();
-//        newGift.setComment(gift.getComment());
-//        newGift.setStatus(gift.getStatus());
-//        newGift.setPriority(gift.getPriority());
-//        newGift.setOwner(user);
-//        newGift.setProduct(product);
         gift.setOwner(user);
         gift.setProduct(product);
         log.severe("Post new_present");
