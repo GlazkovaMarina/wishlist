@@ -272,6 +272,16 @@ input {
     font-size: 24px;
     margin-bottom: 35px;
 }
+.gift__info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: start;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    font-size: 24px;
+    margin-bottom: 35px;
+}
 
 .img__bord {
     width: 300px;

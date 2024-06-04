@@ -110,8 +110,7 @@ public class WishListController {
 
     @GetMapping("/card_present/{user_id}/{gift_id}")
     public String getCardPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Model model){
-        User user = userService.findUserById(userId);
-        model.addAttribute("user", user);
+        model.addAttribute("user_id", userId);
         Gift gift = giftService.findGiftById(giftId);
         model.addAttribute("gift", gift);
         log.severe("Get card_present");

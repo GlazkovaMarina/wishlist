@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Карточка подарка</title>
 </head>
 
@@ -14,11 +14,13 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/goods/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/goods/{id}(id=${user_id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
             </form>
-            <a href="/wishlist" class="black header__main__right__text text__decoration__none">Список подарков</a>
-            <form  action="#" th:action="@{/personal_office/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/wishlist/{id}(id=${user_id})}" method="get" class="registration__form">
+                <input class="links color_6A646D submit text__decoration__none" type="submit" value="Список подарков">
+            </form>
+            <form  action="#" th:action="@{/personal_office/{id}(id=${user_id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -28,28 +30,36 @@
     </header>
     <section class="card__item center">
         <h2>Карточка подарка</h2>
-        <div class="item">
-            <div class="item__info">
-                <p class="item__name">Смартфон</p>
-                <p class="item__price color__F25822">34999</p>
-                <p>Забронирован: </p>
-                <p class="gray">Иван Иванов</p>
-                <p>Приоритет: </p>
-                <p class="gray">средний</p>
-                <div class="description__group">
-                    <p class="item__description">Комментарий:</p>
-                    <output class="output__decription" type="text">ОписаниеОписаниеОписание dfd Описание Описание Описание Описание Описани еОписание ОписаниеО писаниеОпис ание ОписаниеОписан иеОписание</output>
+        <form  action="#" th:action="@{/edit_present/{user_id}/{gift_id}(user_id=${user_id}, item_id=${gift.id})}" method="get" class="registration__form">
+            <div class="item">
+                <div class="gift__info">
+                    <p class="item__description">Название: </p>
+                    <p class="item__name color__F25822" th:text="${gift.product.name}"></p>
+                    <p class="item__description">Цена: </p>
+                    <p class="item__price gray" th:text="${gift.product.price}"></p>
+                    <div class="score__group">
+                        <p class="item__score">Рейтинг: </p>
+                        <p class="item__score gray" th:text="${gift.product.score}"></p>
+                    </div>
+                    <div class="description__group">
+                        <p class="item__description">Описание: </p>
+                        <output class="output__description gray" type="text" th:text="${gift.product.description}"></output>
+                    </div>
+                    <div class="status__group">
+                        <p class="item__description">Статус: </p>
+                        <p class="item__price gray" th:text="${gift.status.label}"></p>
+                    </div>
+                    <div class="priority__group">
+                        <p class="item__description">Приоритет: </p>
+                        <p class="item__price gray" th:text="${gift.priority.label}"></p>
+                    </div>
+                    <div class="description__group">
+                        <p class="item__description">Комментарий: </p>
+                        <output class="output__description gray"  type="text" th:text="${gift.comment}"></output>
+                    </div>
                 </div>
-
+                <img th:src="${gift.product.image}" alt="Фото товара отсутствует" class="img__bord">
             </div>
-            <div class="img__bord">
-                <img src="../static/img/phone.svg" alt="phone" class="item__card__img">
-            </div>
-        </div>
-<!--        <button class="main__button">-->
-<!--            <a href="edit_present" class="main__button__text text__decoration__none">Редактировать</a>-->
-<!--        </button>-->
-        <form method="get" th:action="@{/edit_present}">
             <input class="main__button main__button__text text__decoration__none" type="submit" value="Редактировать">
         </form>
     </section>
