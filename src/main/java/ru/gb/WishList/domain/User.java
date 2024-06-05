@@ -4,6 +4,11 @@ import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import jakarta.validation.constraints.NotEmpty;
+import ru.gb.WishList.validation.PasswordMatches;
+import ru.gb.WishList.validation.ValidEmail;
 
 import java.time.LocalDate;
 
@@ -30,29 +35,47 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "users")
+@PasswordMatches
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
-//    @NotBlank(message = "Поле _фамилия_ не может быть пустым")
+    @NotEmpty(message = "Поле _фамилия_ не может быть пустым")
     @Column (name = "last_name", nullable = false)
     private String lastName;
-//    @NotBlank(message = "Поле _имя_ не может быть пустым")
+
+    @NotEmpty(message = "Поле _имя_ не может быть пустым")
     @Column (name = "first_name", nullable = false)
     private String firstName;
+
     private String surname;
-//    @NotBlank(message = "Поле _день рождения_ не может быть пустым")
+//    @NotEmpty(message = "Поле _день рождения_ не может быть пустым")
     @Column (nullable = false)
     private LocalDate birthday;
-//    @NotBlank(message = "Поле _номер телефона_ не может быть пустым")
+
+//    @NotEmpty(message = "Поле _номер телефона_ не может быть пустым")
     @Column (nullable = false, unique = true)
     private Long number;
-//    @NotBlank(message = "Поле _электронная почта_ не может быть пустым")
+
+    @ValidEmail
+    @NotEmpty(message = "Поле _эдектронная почта_ не может быть пустым")
     @Column (nullable = false, unique = true)
     private String email;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "gift_id", referencedColumnName = "id")
+
+    @NotEmpty(message = "Поле _пароль_ не может быть пустым")
+    @Column(nullable=false)
+    private String password;
+    @Column (name = "matching_password",nullable=false)
+    private String matchingPassword;
+
+//    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+//    @JoinTable(
+//            name="users_roles",
+//            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
+//            inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
+//    private List<Role> roles = new ArrayList<>();
+
     @OneToMany(mappedBy="owner")
     private Set<Gift> gifts;
 }

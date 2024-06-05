@@ -424,6 +424,12 @@ output {
 .div__none{
 display: none
 }
+.email__form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+}
 
 
 

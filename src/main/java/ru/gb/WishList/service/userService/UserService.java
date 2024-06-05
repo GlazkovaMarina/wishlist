@@ -1,5 +1,7 @@
 package ru.gb.WishList.service.userService;
 import ru.gb.WishList.domain.User;
+import ru.gb.WishList.exception.UserAlreadyExistException;
+
 import java.util.List;
 
 public interface UserService {

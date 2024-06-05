@@ -48,9 +48,22 @@
                     <p class="name__form__text">Отчество</p>
                     <input id="surname" name="surname" type="text" field="*{surname}" placeholder="Введите отчество">
                 </div>
-                <div class="form registration__form__email">
-                    <p class="email__form__text">Email</p>
-                    <input id="email" name="email" type="email" field="*{email}" placeholder="Введите email" required>
+                <div class="email__form">
+                    <div class="form">
+                        <p class="email__form__text">Email</p>
+                        <input id="email" name="email" type="email" field="*{email}" placeholder="Введите email" required>
+                    </div>
+                    <span class="color__F25822" th:text="${error}"></span>
+                </div>
+                <div class="form registration__form__password">
+                    <p class="email__form__text">Password</p>
+                    <input type="password" th:field="*{password}" placeholder="Введите пароль"/>
+<!--                    <p th:each="error : ${#fields.errors('password')}"-->
+<!--                       th:text="${error}">Validation error</p>-->
+                </div>
+                <div class="form registration__form__matchingPassword">
+                    <p class="email__form__text">Confirm</p>
+                    <input type="password" th:field="*{matchingPassword}" placeholder="Повторите пароль"/>
                 </div>
             </div>
 <!--            <button class="main__button" type="submit">-->

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
+import ru.gb.WishList.exception.UserAlreadyExistException;
 import ru.gb.WishList.service.userService.UserService;
 import ru.gb.WishList.service.productService.ProductService;
 import ru.gb.WishList.service.giftService.GiftService;
@@ -20,6 +21,14 @@ import java.util.List;
 import ru.gb.WishList.domain.Gift;
 import ru.gb.WishList.domain.Status;
 import ru.gb.WishList.domain.Priority;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.ModelAndView;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.validation.Errors;
+import jakarta.validation.Valid;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.validation.BindingResult;
+
 
 
 
@@ -80,18 +89,9 @@ public class WishListController {
         return "personal_office.html";
     }
 
-    @GetMapping("/registration")
-    public String getRegistration(){
-        log.severe("GET registration");
-        return "registration";
-    }
 
-    @PostMapping("/registration")
-    public String postRegistration(User user){
-        userService.saveUser(user);
-        String returnPage = "redirect:/personal_office/" + user.getId(); // формируем персональный личный кабинет
-        return returnPage;
-    }
+
+
     @GetMapping("/entry")
     public String getEntry(){
         log.severe("Get entry");
@@ -208,6 +208,42 @@ public class WishListController {
         giftService.saveGift(gift);
         String returnPage = "redirect:/wishlist/" + userId;
         return returnPage;
+    }
+
+//    @PostMapping("/registration")
+//    public String postRegistration(User user){
+//        userService.saveUser(user);
+//        String returnPage = "redirect:/personal_office/" + user.getId(); // формируем персональный личный кабинет
+//        return returnPage;
+//    }
+    @GetMapping("/registration")
+    public String getRegistration(WebRequest request, Model model){
+        User user = new User();
+        model.addAttribute("user", user);
+        model.addAttribute("error", "");
+        log.severe("GET registration");
+        return "registration";
+    }
+    @PostMapping("/registration")
+    public ModelAndView registerUserAccount(@ModelAttribute(value="user")@Valid User user, Model model,
+                                            HttpServletRequest request, Errors errors) {
+
+        log.severe(user.toString());
+        try {
+            User registered = userService.saveUser(user);
+            log.severe("Post registration");
+        } catch (UserAlreadyExistException uaeEx) {
+            ModelAndView mav = new ModelAndView("registration", "user", user);
+            model.addAttribute("error", "Аккаунт c таким username/email уже существует. Нажмите _Вход_");
+//            mav.addObject("error", "Аккаунт для этого username/email уже существует.");
+            log.severe("Post registration_catch");
+//            String errMessage = messages.getMessage("message.regError", null, request.getLocale());
+//            mav.addObject("message", errMessage);
+            return mav;
+        }
+        String returnPage = "redirect:/personal_office/" + user.getId(); // формируем персональный личный кабинет
+        return new ModelAndView(returnPage, "user", user);
+
     }
 
 
