@@ -54,12 +54,12 @@ public class User {
     @Column (nullable = false)
     private LocalDate birthday;
 
-//    @NotEmpty(message = "Поле _номер телефона_ не может быть пустым")
-    @Column (nullable = false, unique = true)
-    private Long number;
+////    @NotEmpty(message = "Поле _номер телефона_ не может быть пустым")
+//    @Column (nullable = false, unique = true)
+//    private Long number;
 
     @ValidEmail
-    @NotEmpty(message = "Поле _эдектронная почта_ не может быть пустым")
+    @NotEmpty(message = "Поле _электронная почта_ не может быть пустым")
     @Column (nullable = false, unique = true)
     private String email;
 

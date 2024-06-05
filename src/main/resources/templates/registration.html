@@ -40,10 +40,10 @@
                     <p class="name__form__text">Имя</p>
                     <input id="firstName" name="firstName" type="text" field="*{firstName}" placeholder="Введите имя" required>
                 </div>
-                <div class="form registration__form__phone">
-                    <p class="phone__form__text">Телефон</p>
-                    <input id="number" name="number" type="tel" field="*{number}" placeholder="Формат: 79999999999" required>
-                </div>
+<!--                <div class="form registration__form__phone">-->
+<!--                    <p class="phone__form__text">Телефон</p>-->
+<!--                    <input id="number" name="number" type="tel" field="*{number}" placeholder="Формат: 79999999999" required>-->
+<!--                </div>-->
                 <div class="form registration__form__name">
                     <p class="name__form__text">Отчество</p>
                     <input id="surname" name="surname" type="text" field="*{surname}" placeholder="Введите отчество">
@@ -60,6 +60,8 @@
                     <input type="password" th:field="*{password}" placeholder="Введите пароль"/>
 <!--                    <p th:each="error : ${#fields.errors('password')}"-->
 <!--                       th:text="${error}">Validation error</p>-->
+                </div>
+                <div>
                 </div>
                 <div class="form registration__form__matchingPassword">
                     <p class="email__form__text">Confirm</p>
