@@ -37,10 +37,6 @@
                     <p class="id__form__text">Id</p>
                     <input th:name="id" th:attr="value = ${user.id}" type="number">
                 </div>
-                <div class="div__none">
-                    <p class="bd__form__text">День рождения</p>
-                    <input  type="date" th:name="birthday" th:attr="value = ${user.birthday}">
-                </div>
                 <div class="form registration__form__lastname">
                     <p class="lastname__form__text">Фамилия</p>
                     <input type="text" th:name="lastName" th:attr="value = ${user.lastName}" required>
@@ -57,7 +53,11 @@
                     <p class="name__form__text">Отчество</p>
                     <input type="text" th:name="surname" th:attr="value = ${user.surname}">
                 </div>
-                <div class="form registration__form__email">
+                <div class="form">
+                    <p class="bd__form__text">День рождения</p>
+                    <input  type="date" th:name="birthday" th:attr="value = ${user.birthday}">
+                </div>
+                <div class="div__none">
                     <p class="email__form__text">Email</p>
                     <input type="email" th:name="email" th:attr="value = ${user.email}" required>
                 </div>

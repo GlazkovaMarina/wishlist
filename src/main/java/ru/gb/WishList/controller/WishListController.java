@@ -62,8 +62,12 @@ public class WishListController {
     // Редактирование личных данных пользователя в БД
     @PostMapping("/correct_info/{id}")
     public String postCorrectInfo(User user, @PathVariable Long id){
+        User originUser = userService.findUserById(id);
         log.severe("Post correct_info");
-        userService.saveUser(user);
+        user.setId(id);
+        user.setPassword(originUser.getPassword());
+        user.setMatchingPassword(originUser.getMatchingPassword());
+        userService.updateUser(user);
         String returnPage = "redirect:/personal_office/" + id; // формируем персональный личный кабинет
         return returnPage;
     }

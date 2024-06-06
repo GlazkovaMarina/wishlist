@@ -25,6 +25,10 @@ public class UserServiceImpl implements UserService{
 //        user.setRoles(Arrays.asList("ROLE_USER"));
         return userRepository.save(user);
     }
+    @Override
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
     private boolean emailExists(String email) {
         return !userRepository.findByEmail(email).isEmpty();
     }

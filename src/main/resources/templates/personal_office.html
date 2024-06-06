@@ -58,6 +58,12 @@
                     <input type="text" th:name="firstName" th:attr="value = ${user.firstName}" readonly>
 <!--                    <input type="text" attr="value = ${user.firstName}" name="firstName" readonly>-->
                 </div>
+                <div class="form registration__form__email">
+                    <p class="email__form__text">Email:</p>
+                    <!--                    <span th:text="${user.email}"></span>-->
+                    <input type="email" th:name="email" th:attr="value = ${user.email}" readonly>
+                    <!--                    <input type="email" attr="value = ${user.email}" name="email" readonly>-->
+                </div>
 <!--                <div class="form registration__form__phone">-->
 <!--                    <p class="phone__form__text">Телефон:</p>-->
 <!--&lt;!&ndash;                    <span th:text="${user.number}"></span>&ndash;&gt;-->
@@ -69,12 +75,6 @@
 <!--                    <span th:text="${user.surname}"></span>-->
                     <input type="text" th:name="surname" th:attr="value = ${user.surname}" readonly>
 <!--                    <input type="text" attr="value = ${user.surname}" name="surname" readonly>-->
-                </div>
-                <div class="form registration__form__email">
-                    <p class="email__form__text">Email:</p>
-<!--                    <span th:text="${user.email}"></span>-->
-                    <input type="email" th:name="email" th:attr="value = ${user.email}" readonly>
-<!--                    <input type="email" attr="value = ${user.email}" name="email" readonly>-->
                 </div>
             </div>
         </div>

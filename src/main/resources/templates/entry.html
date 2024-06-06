@@ -25,17 +25,22 @@
         <div class="content__left">
             <div class="entry__left__text">
                 <h1 class="welcome gray">Добро пожаловать<br> в MARKETPLACE!</h1>
-                <h3 class="entry__description gray">Выберите удобный для Вас способ входа:</h3>
+<!--                <h3 class="entry__description gray">Выберите удобный для Вас способ входа:</h3>-->
+                <h3 class="entry__description gray">Для входа на сайт введите почту и пароль, указанные при регистрации:</h3>
             </div>
             <div class="entry__form__group">
                 <form class="form entry__form__email">
                     <p class="email__form__text">Email</p>
                     <input type="email" placeholder="Введите email">
                 </form>
-                <p class="or">или</p>
-                <form class="form entry__form__phone">
-                    <p class="phone__form__text">Телефон</p>
-                    <input type="tel" placeholder="Формат: +79999999999">
+<!--                <p class="or">или</p>-->
+<!--                <form class="form entry__form__phone">-->
+<!--                    <p class="phone__form__text">Телефон</p>-->
+<!--                    <input type="tel" placeholder="Формат: +79999999999">-->
+<!--                </form>-->
+                <form class="form entry__form__email">
+                    <p class="email__form__text">Пароль</p>
+                    <input type="password" placeholder="Введите пароль">
                 </form>
             </div>
             <form method="get" th:action="@{/personal_office}">
