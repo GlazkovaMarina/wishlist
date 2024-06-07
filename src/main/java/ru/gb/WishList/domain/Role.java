@@ -1,8 +1,8 @@
 package ru.gb.WishList.domain;
 
 public enum Role {
-    USER("User"),
-    ADMIN("Admin");
+    USER("USER"),
+    ADMIN("ADMIN");
 
     private final String label;
 

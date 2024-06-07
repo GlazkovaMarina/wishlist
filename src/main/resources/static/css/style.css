@@ -135,12 +135,12 @@ input {
 }
 
 .entry__form__group {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-areas: "a a a" ". b ." "c c c";
-    font-size: 18px;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+    align-items: end;
 }
 
 .form {

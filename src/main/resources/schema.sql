@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS users
     surname varchar(255),
     birthday  DATE NOT NULL,
     email varchar(255) NOT NULL UNIQUE,
+    role varchar(255) NOT NULL,
 --    number BIGINT NOT NULL UNIQUE,
     password varchar(255) NOT NULL,
     matching_password varchar(255) NOT NULL

@@ -69,6 +69,8 @@ public class User {
     @Column (name = "matching_password",nullable=false)
     private String matchingPassword;
 
+    private String role;
+
 //    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 //    @JoinTable(
 //            name="users_roles",

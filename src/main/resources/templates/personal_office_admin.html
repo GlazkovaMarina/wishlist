@@ -30,8 +30,8 @@
             <form  action="#" th:action="@{/correct_info/{id}(id=${user.id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Редактировать личную информацию">
             </form>
-            <form  action="#" th:action="@{/wishlist/{id}(id=${user.id})}" method="get" class="registration__form">
-                <input class="links color_AAAAAA submit text__decoration__none" type="submit" value="Перейти в список подарков">
+            <form  action="#" th:action="@{/new_item/{id}(id=${user.id})}" method="get" class="registration__form">
+                <input class="links color_AAAAAA submit text__decoration__none" type="submit" value="Добавить новый товар">
             </form>
         </div>
         <div class="content__right">

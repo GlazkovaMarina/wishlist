@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Товары</title>
+</head>
+
+<body>
+    <header class="header__main center">
+        <div class="header__main__left">
+            <p class="logo__main">MARKETPLACE</p>
+        </div>
+        <nav class="header__main__right">
+            <form  action="#" th:action="@{/personal_office/{user_id}(user_id=${user.id})}" method="get" class="registration__form">
+                <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
+            </form>
+            <button class="main__button">
+                  <a href="/" class="main__button__text text__decoration__none">Выход</a>
+            </button>
+        </nav>
+    </header>
+
+    <section th:switch="${products}" class="goods center">
+        <h2 th:case="null">К сожалению, все товары проданы! Совсем скоро мы завезем новый! Возвращайтесь к нам!</h2>
+        <tr th:each="product : ${products}">
+            <div class="goods__card__item">
+                <a th:href="@{/card_item_admin/{user_id}/{item_id}(user_id=${user.id}, item_id=${product.id})}"> <img th:src="${product.image}" alt="Фото товара отсутствует" class="img__bord"></a>
+                <div class="item__info">
+                    <p class="item__name" th:text="${product.name}"></p>
+                    <p class="item__price color__F25822" th:text="${product.price}"></p>
+                    <a th:href="@{/new_present/{user_id}/{item_id}(user_id=${user.id}, item_id=${product.id})}">
+                        <img width="50" height="50" src="https://img.icons8.com/ios/50/gift--v1.png" alt="gift--v1">
+                    </a>
+                </div>
+            </div>
+        </tr>
+    </section>
+
+    <footer class="footer__ center">
+        <div class="footer__content">
+            <div class="footer__left">
+                <a href="goods" class="logo__main text__decoration__none">MARKETPLACE</a>
+                <div class="footer__text gray">
+                    <p>Сделать заказ</p>
+                    <p>понятно</p>
+                    <p>быстро</p>
+                    <p>доступно</p>
+                </div>
+            </div>
+            <div class="footer__right">
+                <p class="contacts">Контакты</p>
+                <div class="footer__text">
+                    <p>Расположение: <span class="gray">Москва</span></p>
+                    <p>Email: <span class="gray">glazkova.mv@bk.ru</span></p>
+                    <p>Телефон: <span class="gray">+7-917-511-75-83</span></p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright gray"> Copyright MARKETPLACE © 2024. Все права защищены
+        </p>
+
+    </footer>
+</body>
+
+</html>
