@@ -10,6 +10,9 @@
 //import ru.gb.WishList.service.userService.UserService;
 //import lombok.extern.java.Log;
 //import lombok.AllArgsConstructor;
+//import io.swagger.v3.oas.annotations.tags.Tag;
+//
+//@Tag(name="UserController", description="Контроллер для пользователя")
 //@Log
 //@Controller
 //@AllArgsConstructor

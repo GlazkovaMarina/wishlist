@@ -12,6 +12,10 @@
 //import ru.gb.WishList.entities.User;
 //import ru.gb.WishList.service.productService.ProductService;
 //import java.util.List;
+
+//import io.swagger.v3.oas.annotations.tags.Tag;
+//
+//@Tag(name="ProductController", description="Контроллер товаров")
 //@Log
 //@Controller
 //@AllArgsConstructor

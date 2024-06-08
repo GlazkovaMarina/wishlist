@@ -17,7 +17,9 @@ import java.util.List;
 import ru.gb.WishList.entities.Gift;
 import ru.gb.WishList.exception.UserAlreadyExistException;
 import org.springframework.web.servlet.ModelAndView;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name="WishlistController", description="Контроллер для списка подарков")
 @Log
 @Controller
 @AllArgsConstructor
@@ -32,11 +34,8 @@ public class WishlistController {
         log.severe("Get login");
         return "login.html";
     }
-    @PostMapping("/login")
-    public String postLogin() {
-        log.severe("Post login");
-        return "redirect:/personal_office";
-    }
+    // @PostMapping("/login") формируется Spring Boot автоматически
+
 
     @GetMapping("/registration")
     public String registration (Model model){

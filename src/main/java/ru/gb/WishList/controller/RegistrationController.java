@@ -20,6 +20,9 @@
 //import ru.gb.WishList.service.userService.UserService;
 //import ru.gb.WishList.exception.UserAlreadyExistException;
 //
+//import io.swagger.v3.oas.annotations.tags.Tag;
+//
+//@Tag(name="RegistrationController", description="Контроллер для регистрации")
 //@Log
 //@Controller
 //@AllArgsConstructor
