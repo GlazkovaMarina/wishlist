@@ -76,12 +76,13 @@ public class User implements UserDetails{
     @OneToMany(mappedBy="owner")
     private Set<Gift> gifts;
 
-
-
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Column (nullable = false)
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+//    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+//    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+//    @Enumerated(EnumType.STRING)
+//    private Set<Role> roles;
 
     // TODO: удалить лишние реализации role
     //    @Column (nullable = false)

@@ -4,12 +4,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
+import ru.gb.WishList.entities.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import ru.gb.WishList.entities.enums.Role;
+
+import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Collections;
 
 
 // класс конфигурации Spring Security
@@ -20,7 +26,7 @@ public class SecurityConfig{
 
     // Кодировщик пароля. Используем BCryptPasswordEncoder
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public PasswordEncoder PasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
@@ -32,21 +38,20 @@ public class SecurityConfig{
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/images/**", "/", "/index","/login**","/registration","/personal_office").permitAll()
-                        .requestMatchers("/card_item/**","/card_present/**","/correct_info/**", "/edit_present/**", "/goods/**", "goods_admin/**", "/new_present/**","/personal_office/**", "/personal_office", "/wishlist/**").hasRole("USER")
-                        .requestMatchers("/card_item_admin/**", "/edit_item/**", "/new_item/**", "/personal_office_admin/**").hasRole("ADMIN"))
+                        .requestMatchers("/css/**", "/images/**", "/", "/index","/login**","/registration").permitAll()
+                        .requestMatchers("/card_item/**","/card_present/**","/correct_info/**", "/edit_present/**", "/goods/**", "/goods_admin/**", "/new_present/**","/personal_office/**", "/personal_office", "/wishlist/**").hasAnyRole("USER")
+                        .requestMatchers("/card_item_admin/**", "/edit_item/**", "/new_item/**", "/personal_office_admin/**").hasAnyRole("ADMIN"))
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(formLogin -> formLogin
-                .loginPage("/login.html") // пользовательская страница входа в систему
+                //.loginPage("/login") // пользовательская страница входа в систему
                 //.loginProcessingUrl("/perform_login") // URL-адрес для отправки имени пользователя и пароля
-                .defaultSuccessUrl("/personal_office.html", true) // целевая страница после успешного входа в систему
+                .defaultSuccessUrl("/personal_office", true)) // целевая страница после успешного входа в систему
                         // Если для атрибута Always-use-default-target установлено значение true,
                         // то пользователь всегда перенаправляется на эту страницу.
                         // Если для этого атрибута установлено значение false,
                         // пользователь будет перенаправлен на предыдущую страницу,
                         // которую он хотел посетить, прежде чем ему будет предложено пройти аутентификацию.
-                        .failureUrl("/login.html?error=true"))
                 .logout(logout->logout
                 .deleteCookies("JSESSIONID"));
         return http.build();
@@ -56,19 +61,30 @@ public class SecurityConfig{
 //    // Здесь мы настроим трех пользователей с жестко запрограммированными именем пользователя, паролем и ролью
 //    @Bean
 //    public InMemoryUserDetailsManager userDetailsService() {
-//        UserDetails user1 = User.withUsername("user1")
-//                .password(bCryptPasswordEncoder().encode("user1Pass"))
-//                .roles("USER")
-//                .build();
-//        UserDetails user2 = User.withUsername("user2")
-//                .password(bCryptPasswordEncoder().encode("user2Pass"))
-//                .roles("USER")
-//                .build();
-//        UserDetails admin = User.withUsername("admin")
-//                .password(bCryptPasswordEncoder().encode("adminPass"))
-//                .roles("ADMIN")
-//                .build();
-//        return new InMemoryUserDetailsManager(user1, user2, admin);
+//        User user = new User();
+//        user.setLastName("Ivanov");
+//        user.setFirstName("Ivan");
+//        user.setSurname("Ivanovich");
+//        user.setUsername("user");
+//        String date = "2016-08-16";
+//        LocalDate localDate = LocalDate.parse(date);
+//        user.setBirthday(localDate);
+//        user.setRoles(Collections.singleton(Role.USER));
+//        user.setPassword(PasswordEncoder().encode("user"));
+//        UserDetails user1 = user;
+////                User.withUsername("user1")
+////                .password(PasswordEncoder().encode("user1Pass"))
+////                .roles("USER")
+////                .build();
+////        UserDetails user2 = User.withUsername("user2")
+////                .password(PasswordEncoder().encode("user2Pass"))
+////                .roles("USER")
+////                .build();
+////        UserDetails admin = User.withUsername("admin")
+////                .password(PasswordEncoder().encode("adminPass"))
+////                .roles("ADMIN")
+////                .build();
+//        return new InMemoryUserDetailsManager(user1);
 //    }
 
 }

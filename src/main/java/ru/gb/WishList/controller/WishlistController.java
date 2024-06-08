@@ -1,6 +1,7 @@
 package ru.gb.WishList.controller;
 
 import lombok.AllArgsConstructor;
+import java.util.Collections;
 import org.springframework.security.access.prepost.PreAuthorize;
 import ru.gb.WishList.entities.Product;
 import ru.gb.WishList.entities.User;
@@ -18,6 +19,7 @@ import ru.gb.WishList.entities.Gift;
 import ru.gb.WishList.exception.UserAlreadyExistException;
 import org.springframework.web.servlet.ModelAndView;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import ru.gb.WishList.entities.enums.Role;
 
 @Tag(name="WishlistController", description="Контроллер для списка подарков")
 @Log
@@ -32,7 +34,7 @@ public class WishlistController {
     @GetMapping("/login")
     public String getLogin() {
         log.severe("Get login");
-        return "login.html";
+        return "login";
     }
     // @PostMapping("/login") формируется Spring Boot автоматически
 
@@ -40,6 +42,7 @@ public class WishlistController {
     @GetMapping("/registration")
     public String registration (Model model){
         User user = new User();
+        user.setRoles(Collections.singleton(Role.USER));
         model.addAttribute("user", user);
         model.addAttribute("error", "");
         log.severe("GET registration");
@@ -48,7 +51,7 @@ public class WishlistController {
 
     @PostMapping("/registration")
     public ModelAndView registerUserAccount(User user, Model model) {
-
+        user.setRoles(Collections.singleton(Role.USER));
         log.severe(user.toString());
         try {
             log.severe("Post registration_DO");
