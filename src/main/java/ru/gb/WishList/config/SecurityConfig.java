@@ -44,7 +44,7 @@ public class SecurityConfig{
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(formLogin -> formLogin
-                //.loginPage("/login") // пользовательская страница входа в систему
+                .loginPage("/login") // пользовательская страница входа в систему
                 //.loginProcessingUrl("/perform_login") // URL-адрес для отправки имени пользователя и пароля
                 .defaultSuccessUrl("/personal_office", true)) // целевая страница после успешного входа в систему
                         // Если для атрибута Always-use-default-target установлено значение true,

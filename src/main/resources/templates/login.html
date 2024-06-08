@@ -1,130 +1,108 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <link rel="stylesheet" href="css/style.css">-->
-<!--    <title>Вход</title>-->
-<!--</head>-->
-
-<!--<body>-->
-<!--    <header class="header__main center">-->
-<!--        <div class="header__main__left">-->
-<!--            <p class="logo__main">MARKETPLACE</p>-->
-<!--        </div>-->
-<!--        <nav class="header__main__right">-->
-<!--            <a href="/registration" class="registration__link header__main__right__text text__decoration__none">Регистрация</a>-->
-<!--            <button class="main__button">-->
-<!--                <a href="index" class="main__button__text text__decoration__none">Стартовая страница</a>-->
-<!--          </button>-->
-<!--        </nav>-->
-<!--    </header>-->
-
-<!--    <section class="content center">-->
-<!--        <div class="content__left">-->
-<!--            <div class="entry__left__text">-->
-<!--                <h1 class="welcome gray">Добро пожаловать<br> в MARKETPLACE!</h1>-->
-<!--&lt;!&ndash;                <h3 class="entry__description gray">Выберите удобный для Вас способ входа:</h3>&ndash;&gt;-->
-<!--                <h3 class="entry__description gray">Для входа на сайт введите почту и пароль, указанные при регистрации:</h3>-->
-<!--            </div>-->
-<!--            <form method="post" th:action="@{/login}">-->
-<!--                <div class="entry__form__group">-->
-<!--                    <div class="form entry__form__email">-->
-<!--                        <p class="email__form__text">Email</p>-->
-<!--                        <input id="username" type="email" name="username" placeholder="Введите email">-->
-<!--                    </div>-->
-<!--    &lt;!&ndash;                <p class="or">или</p>&ndash;&gt;-->
-<!--    &lt;!&ndash;                <form class="form entry__form__phone">&ndash;&gt;-->
-<!--    &lt;!&ndash;                    <p class="phone__form__text">Телефон</p>&ndash;&gt;-->
-<!--    &lt;!&ndash;                    <input type="tel" placeholder="Формат: +79999999999">&ndash;&gt;-->
-<!--    &lt;!&ndash;                </form>&ndash;&gt;-->
-<!--                    <div class="form entry__form__email">-->
-<!--                        <p class="email__form__text">Пароль</p>-->
-<!--                        <input id="password" name="password" type="password" placeholder="Введите пароль">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <input class="main__button main__button__text text__decoration__none" type="submit" value="Войти">-->
-<!--            </form>-->
-<!--&lt;!&ndash;            <button class="main__button">&ndash;&gt;-->
-<!--&lt;!&ndash;                <a href="personal_office" class="main__button__text text__decoration__none">Войти</a>&ndash;&gt;-->
-<!--&lt;!&ndash;            </button>&ndash;&gt;-->
-<!--        </div>-->
-<!--        <img src="img/index.svg" alt="main__icon" class="main__icon">-->
-<!--    </section>-->
-
-<!--    <footer class="footer__ center">-->
-<!--        <div class="footer__content">-->
-<!--            <div class="footer__left">-->
-<!--                <a href="login" class="logo__main text__decoration__none">MARKETPLACE</a>-->
-<!--                <div class="footer__text gray">-->
-<!--                    <p>Сделать заказ</p>-->
-<!--                    <p>понятно</p>-->
-<!--                    <p>быстро</p>-->
-<!--                    <p>доступно</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="footer__right">-->
-<!--                <p class="contacts">Контакты</p>-->
-<!--                <div class="footer__text">-->
-<!--                    <p>Расположение: <span class="gray">Москва</span></p>-->
-<!--                    <p>Email: <span class="gray">glazkova.mv@bk.ru</span></p>-->
-<!--                    <p>Телефон: <span class="gray">+7-917-511-75-83</span></p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <hr>-->
-<!--        <p class="copyright gray"> Copyright MARKETPLACE © 2024. Все права защищены-->
-<!--        </p>-->
-
-<!--    </footer>-->
-<!--</body>-->
-
-<!--</html>-->
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Вход</title>
 </head>
+
 <body>
-<h2>Login</h2>
-<form method="POST" th:action="@{/login.html}">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"/>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password"/>
-    </div>
-<!--    <input type="submit" value="Login"/>-->
-    <button type="submit">Log In</button>
-    <h4><a href="/registration">Зарегистрироваться</a></h4>
-</form>
+    <header class="header__main center">
+        <div class="header__main__left">
+            <p class="logo__main">MARKETPLACE</p>
+        </div>
+        <nav class="header__main__right">
+            <a href="/registration" class="registration__link header__main__right__text text__decoration__none">Регистрация</a>
+            <button class="main__button">
+                <a href="index" class="main__button__text text__decoration__none">Стартовая страница</a>
+          </button>
+        </nav>
+    </header>
+
+    <section class="content center">
+        <div class="content__left">
+            <div class="entry__left__text">
+                <h1 class="welcome gray">Добро пожаловать<br> в MARKETPLACE!</h1>
+<!--                <h3 class="entry__description gray">Выберите удобный для Вас способ входа:</h3>-->
+                <h3 class="entry__description gray">Для входа на сайт введите почту и пароль, указанные при регистрации:</h3>
+            </div>
+            <form method="post" th:action="@{/login}" class="registration__form">
+                <div class="entry__form__group">
+                    <div class="form entry__form__email">
+                        <p class="email__form__text">Email</p>
+                        <input id="username" type="text" name="username" placeholder="Введите email">
+                    </div>
+    <!--                <p class="or">или</p>-->
+    <!--                <form class="form entry__form__phone">-->
+    <!--                    <p class="phone__form__text">Телефон</p>-->
+    <!--                    <input type="tel" placeholder="Формат: +79999999999">-->
+    <!--                </form>-->
+                    <div class="form entry__form__email">
+                        <p class="email__form__text">Пароль</p>
+                        <input id="password" name="password" type="password" placeholder="Введите пароль">
+                    </div>
+                </div>
+                <input class="main__button main__button__text text__decoration__none" type="submit" value="Войти">
+            </form>
+<!--            <button class="main__button">-->
+<!--                <a href="personal_office" class="main__button__text text__decoration__none">Войти</a>-->
+<!--            </button>-->
+        </div>
+        <img src="img/index.svg" alt="main__icon" class="main__icon">
+    </section>
+
+    <footer class="footer__ center">
+        <div class="footer__content">
+            <div class="footer__left">
+                <a href="login" class="logo__main text__decoration__none">MARKETPLACE</a>
+                <div class="footer__text gray">
+                    <p>Сделать заказ</p>
+                    <p>понятно</p>
+                    <p>быстро</p>
+                    <p>доступно</p>
+                </div>
+            </div>
+            <div class="footer__right">
+                <p class="contacts">Контакты</p>
+                <div class="footer__text">
+                    <p>Расположение: <span class="gray">Москва</span></p>
+                    <p>Email: <span class="gray">glazkova.mv@bk.ru</span></p>
+                    <p>Телефон: <span class="gray">+7-917-511-75-83</span></p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright gray"> Copyright MARKETPLACE © 2024. Все права защищены
+        </p>
+
+    </footer>
 </body>
+
 </html>
 
-<!--<html>-->
-<!--<head></head>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Login</title>-->
+<!--</head>-->
 <!--<body>-->
-<!--<h1>Login</h1>-->
-<!--<form name='f' th:action="/login" method="post"> // login - URL-адрес, по которому форма отправляется POST для запуска процесса аутентификации-->
-<!--    <table>-->
-<!--        <tr>-->
-<!--            <td>User:</td>-->
-<!--            <td><input type='text' name='username' value=''></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td>Password:</td>-->
-<!--            <td><input type='password' name='password' /></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td><input name="submit" type="submit" value="submit" /></td>-->
-<!--        </tr>-->
-<!--    </table>-->
+<!--<h2>Login</h2>-->
+<!--<form method="POST" th:action="@{/login}">-->
+<!--    <div>-->
+<!--        <label for="username">Username:</label>-->
+<!--        <input type="text" id="username" name="username"/>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="password">Password:</label>-->
+<!--        <input type="password" id="password" name="password"/>-->
+<!--    </div>-->
+<!--&lt;!&ndash;    <input type="submit" value="Login"/>&ndash;&gt;-->
+<!--    <button type="submit">Log In</button>-->
+<!--    <h4><a href="/registration">Зарегистрироваться</a></h4>-->
 <!--</form>-->
 <!--</body>-->
 <!--</html>-->
