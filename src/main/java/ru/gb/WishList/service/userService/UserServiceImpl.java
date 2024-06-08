@@ -1,38 +1,71 @@
 package ru.gb.WishList.service.userService;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.gb.WishList.domain.User;
+import ru.gb.WishList.entities.enums.Role;
+import ru.gb.WishList.entities.User;
 import ru.gb.WishList.exception.UserAlreadyExistException;
+//import ru.gb.WishList.repository.RoleRepository; // при реализации role через class
 import ru.gb.WishList.repository.UserRepository;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
 import jakarta.transaction.Transactional;
 import lombok.extern.java.Log;
+
 @Service
 @Log
 @AllArgsConstructor
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
+//    private final RoleRepository roleRepository; // при реализации role через class
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    // поиск пользователя в базе данных
     @Override
-    public User saveUser(User user) throws UserAlreadyExistException {
-        if (emailExists(user.getEmail())) {
-            throw new UserAlreadyExistException("Существует аккаунт с почтой: "
-                    + user.getEmail());
-        }
-//        user.setRoles(Arrays.asList("ROLE_USER"));
-        return userRepository.save(user);
+    public User registrate(User user){
+        return userRepository.save(createUser(user));
     }
+
+    //поиск пользователя в базе данных и сохранение в БД, если пользователь не найден
+
+    public User createUser(User user) throws UserAlreadyExistException {
+        Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
+        if (userOptional.isPresent()){
+            throw new UserAlreadyExistException("Существует аккаунт с почтой: "
+                    + user.getUsername());
+        }
+        User newUser = new User();
+        newUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        newUser.setLastName(user.getLastName());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setSurname(user.getSurname());
+        newUser.setBirthday(user.getBirthday());
+        newUser.setUsername(user.getUsername());
+        newUser.setRoles(Collections.singleton(Role.USER));
+        log.severe(newUser.toString()); // для отладки
+        return newUser;
+    }
+
+    // поиск пользователя в базе данных
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        return userOptional.orElseThrow();
+    }
+
     @Override
     public User updateUser(User user) {
         return userRepository.save(user);
     }
-    private boolean emailExists(String email) {
-        return !userRepository.findByEmail(email).isEmpty();
-    }
-
 
     @Override
     public List<User> findAllUsers(){
@@ -51,22 +84,6 @@ public class UserServiceImpl implements UserService{
         }
     }
 
-//    @Override
-//    public User updateUser(User user, Long id) {
-//        // мы должны сначала проверить, существует ли User с данным ID
-//        User existingUser = userRepository.findById(id).orElse(null);
-//        if (existingUser != null){
-//            // обновляем поля существующего User
-//            existingUser.setLastName(user.getLastName());
-//            existingUser.setFirstName(user.getFirstName());
-//            existingUser.setSurname(user.getSurname());
-//            existingUser.setNumber(user.getNumber());
-//            existingUser.setEmail(user.getEmail());
-//            existingUser.setBirthday(user.getBirthday());
-//            userRepository.save(existingUser);
-//        }
-//        return existingUser;
-//    }
     @Override
     public void deleteUser(Long id) {
         // проверяем, существует ли User с данным ID

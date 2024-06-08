@@ -1,6 +1,6 @@
 package ru.gb.WishList.service.productService;
 import java.util.List;
-import ru.gb.WishList.domain.Product;
+import ru.gb.WishList.entities.Product;
 
 public interface ProductService {
     public List<Product> findAllProducts();

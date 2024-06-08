@@ -1,6 +1,6 @@
 package ru.gb.WishList.service.giftService;
 
-import ru.gb.WishList.domain.Gift;
+import ru.gb.WishList.entities.Gift;
 import java.util.List;
 
 public interface GiftService {

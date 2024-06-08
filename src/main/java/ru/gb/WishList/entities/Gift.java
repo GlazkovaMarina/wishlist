@@ -1,7 +1,9 @@
-package ru.gb.WishList.domain;
+package ru.gb.WishList.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import ru.gb.WishList.entities.enums.Priority;
+import ru.gb.WishList.entities.enums.Status;
 
 /**
  * Gift - подарок
@@ -42,5 +44,8 @@ public class Gift{
     @ManyToOne
     private Product product;
 
-    // добавить ли сюда желающего подарка и кто забронил его?
+    // todo: если успею, то добавить контакт, который забронировал подарок.
+    // todo: если успею, реализовать базу контактов, которым есть доступ к прочтению списка подарков
+    // todo: написать тесты
+
 }

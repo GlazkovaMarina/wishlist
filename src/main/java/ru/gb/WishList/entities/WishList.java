@@ -1,4 +1,6 @@
-//package ru.gb.WishList.domain;
+// todo: первая задумка, после удалить
+
+//package ru.gb.WishList.entities;
 //
 //import java.util.Map;
 //

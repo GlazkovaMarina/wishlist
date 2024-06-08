@@ -1,4 +1,4 @@
-package ru.gb.WishList.domain;
+package ru.gb.WishList.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

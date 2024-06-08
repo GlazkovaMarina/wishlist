@@ -1,7 +1,7 @@
 package ru.gb.WishList.service.productService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.gb.WishList.domain.Product;
+import ru.gb.WishList.entities.Product;
 import ru.gb.WishList.repository.ProductRepository;
 import java.util.Optional;
 
@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService{
             Product product = productOptional.get();
             return product;
         } else {
-            // TODO: переделать возврат, чтоб не было ошибок
+            // TODO: переделать возврат, чтоб не было ошибок. Добавить исключение
             return null;
         }
     }

@@ -2,7 +2,7 @@ package ru.gb.WishList.service.giftService;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.gb.WishList.domain.Gift;
+import ru.gb.WishList.entities.Gift;
 import ru.gb.WishList.repository.GiftRepository;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class GiftServiceImpl implements GiftService{
             Gift gift = giftOptional.get();
             return gift;
         } else {
-            // TODO: переделать возврат, чтоб не было ошибок
+            // TODO: переделать возврат, чтоб не было ошибок. выбросить исключение
             return null;
         }
     }

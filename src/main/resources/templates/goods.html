@@ -14,7 +14,7 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/personal_office/{user_id}(user_id=${user.id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office/{user_id}(user_id=${user_id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -27,11 +27,11 @@
         <h2 th:case="null">К сожалению, все товары проданы! Совсем скоро мы завезем новый! Возвращайтесь к нам!</h2>
         <tr th:each="product : ${products}">
             <div class="goods__card__item">
-                <a th:href="@{/card_item/{user_id}/{item_id}(user_id=${user.id}, item_id=${product.id})}"> <img th:src="${product.image}" alt="Фото товара отсутствует" class="img__bord"></a>
+                <a th:href="@{/card_item/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}"> <img th:src="${product.image}" alt="Фото товара отсутствует" class="img__bord"></a>
                 <div class="item__info">
                     <p class="item__name" th:text="${product.name}"></p>
                     <p class="item__price color__F25822" th:text="${product.price}"></p>
-                    <a th:href="@{/new_present/{user_id}/{item_id}(user_id=${user.id}, item_id=${product.id})}">
+                    <a th:href="@{/new_present/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}">
                         <img width="50" height="50" src="https://img.icons8.com/ios/50/gift--v1.png" alt="gift--v1">
                     </a>
                 </div>

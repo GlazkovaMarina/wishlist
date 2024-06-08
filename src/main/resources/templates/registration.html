@@ -15,7 +15,7 @@
         </div>
         <nav class="header__main__right">
             <button class="main__button">
-                <a href="entry" class="main__button__text text__decoration__none">Вход</a>
+                <a href="login" class="main__button__text text__decoration__none">Вход</a>
             </button>
         </nav>
     </header>
@@ -25,8 +25,9 @@
             <h1 class="welcome gray">Добро пожаловать<br> в MARKETPLACE!</h1>
             <h3 class="entry__description gray">Для регистрации заполните,<br> пожалуйста,<br> данные:</h3>
         </div>
-        <form method="post" th:action="@{/registration}" th:object="${user}" class="registration__form">
-            <div class="registration__form__group">
+<!--        <form method="post" th:action="@{/registration}" th:object="${user}" class="registration__form">-->
+        <form method="post" th:object="${user}" class="registration__form">
+        <div class="registration__form__group">
                 <div class="form registration__form__lastname">
                     <p class="lastname__form__text">Фамилия</p>
                     <input id="lastName" name="lastName" placeholder="Введите фамилию" field="*{lastName}" type="text" required>
@@ -51,22 +52,22 @@
                 <div class="email__form">
                     <div class="form">
                         <p class="email__form__text">Email</p>
-                        <input id="email" name="email" type="email" field="*{email}" placeholder="Введите email" required>
+                        <input id="username" name="username" type="text" field="*{username}" placeholder="Введите email" required>
                     </div>
                     <span class="color__F25822" th:text="${error}"></span>
                 </div>
                 <div class="form registration__form__password">
                     <p class="email__form__text">Пароль</p>
-                    <input type="password" th:field="*{password}" placeholder="Введите пароль"/>
+                    <input id="password" name="password" type="password" field="*{password}" placeholder="Введите пароль"/>
 <!--                    <p th:each="error : ${#fields.errors('password')}"-->
 <!--                       th:text="${error}">Validation error</p>-->
                 </div>
-                <div>
-                </div>
-                <div class="form registration__form__matchingPassword">
-                    <p class="email__form__text">Пароль</p>
-                    <input type="password" th:field="*{matchingPassword}" placeholder="Повторите пароль"/>
-                </div>
+<!--                <div>-->
+<!--                </div>-->
+<!--                <div class="form registration__form__matchingPassword">-->
+<!--                    <p class="email__form__text">Пароль</p>-->
+<!--                    <input type="password" field="*{matchingPassword}" placeholder="Повторите пароль"/>-->
+<!--                </div>-->
             </div>
 <!--            <button class="main__button" type="submit">-->
 <!--                <a href="personal_office" class="main__button__text text__decoration__none">Зарегистрироваться</a>-->

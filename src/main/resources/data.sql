@@ -1,14 +1,14 @@
-INSERT INTO users (last_name, first_name, surname, birthday, email, role,  password, matching_password)
-VALUES ('Ivanov', 'Ivan', 'Ivanovich', (DATE '2015-12-17'), 'p', 'ADMIN', '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.', '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.');
-
-INSERT INTO users (last_name, first_name, surname, birthday, email, role, password, matching_password)
-VALUES ('Kirillov', 'Kirill', 'Kirillovich', (DATE '2010-11-23'), 'asdfg@mail.ru', 'USER', '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.', '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.');
-
-INSERT INTO users (last_name, first_name, surname, birthday, email, role, password, matching_password)
-VALUES ('Petrova', 'Olga', 'Ivanovna', (DATE '2000-09-23'), '123@gmail.com', 'USER', '$2a$10$ABLg7YW5CyLvL2UfXZlBSOCqErs88ZZaSqdQi7wZF5Ntt16nrywXa', '$2a$10$ABLg7YW5CyLvL2UfXZlBSOCqErs88ZZaSqdQi7wZF5Ntt16nrywXa');
-
-INSERT INTO users (last_name, first_name, surname, birthday, email, role, password, matching_password)
-VALUES ('Sonova', 'Inga', 'Olegovna', (DATE '1995-02-11'), 'qs3y@gmail.com', 'USER',  '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.', '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.');
+--INSERT INTO users (last_name, first_name, surname, birthday, username, role,  password, matching_password)
+--VALUES ('Ivanov', 'Ivan', 'Ivanovich', (DATE '2015-12-17'), 'p', 'ADMIN', '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.', '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.');
+--
+--INSERT INTO users (last_name, first_name, surname, birthday, username, role, password, matching_password)
+--VALUES ('Kirillov', 'Kirill', 'Kirillovich', (DATE '2010-11-23'), 'asdfg@mail.ru', 'USER', '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.', '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.');
+--
+--INSERT INTO users (last_name, first_name, surname, birthday, username, role, password, matching_password)
+--VALUES ('Petrova', 'Olga', 'Ivanovna', (DATE '2000-09-23'), '123@gmail.com', 'USER', '$2a$10$ABLg7YW5CyLvL2UfXZlBSOCqErs88ZZaSqdQi7wZF5Ntt16nrywXa', '$2a$10$ABLg7YW5CyLvL2UfXZlBSOCqErs88ZZaSqdQi7wZF5Ntt16nrywXa');
+--
+--INSERT INTO users (last_name, first_name, surname, birthday, username, role, password, matching_password)
+--VALUES ('Sonova', 'Inga', 'Olegovna', (DATE '1995-02-11'), 'qs3y@gmail.com', 'USER',  '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.', '$2a$10$fmIuqErPyXpt4YEAQewpp.xBx8sj7HWjdFchRbM.taiYGgVPf134.');
 
 INSERT INTO products (name, price, image, description, score)
 VALUES ('Смартфон', 34999, '/img/phone.svg', 'Смартфон нового поколения', 4.32);
@@ -27,9 +27,14 @@ VALUES ('Дрель', 2588, '/img/drill.svg', 'Дрель стандартная
 
 INSERT INTO products (name, price, image, description, score)
 VALUES ('Игрушка', 858, '/img/toys.svg', 'Игрушка 3+, материал: безопасный пластик', 4.4);
-
-insert into gifts (comment,owner_user_id,priority,product_product_id,status)
-values ('Для Олеси',1,'HIGH',6,'UNBOOKED');
-
-
-
+--
+--INSERT INTO roles (id, name)
+--  VALUES (1, 'ROLE_USER');
+--  INSERT INTO roles (id, name)
+--    VALUES (2, 'ROLE_ADMIN');
+--
+--insert into gifts (comment,owner_user_id,priority,product_product_id,status)
+--values ('Для Олеси',1,'HIGH',6,'UNBOOKED');
+--
+--
+--

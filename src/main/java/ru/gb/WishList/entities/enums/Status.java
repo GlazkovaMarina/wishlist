@@ -1,4 +1,4 @@
-package ru.gb.WishList.domain;
+package ru.gb.WishList.entities.enums;
 
 /**
  * Status - статус подарка
