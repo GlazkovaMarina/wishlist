@@ -2,6 +2,7 @@ package ru.gb.WishList.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import ru.gb.WishList.entities.User;
@@ -21,6 +22,7 @@ import java.util.Collections;
 // класс конфигурации Spring Security
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 // включили поддержку интеграции Spring Security и MVC
 public class SecurityConfig{
 
@@ -37,12 +39,12 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**", "/images/**", "/", "/index","/login**","/registration").permitAll()
-                        .requestMatchers("/card_item/**","/card_present/**","/correct_info/**", "/edit_present/**", "/goods/**", "/goods_admin/**", "/new_present/**","/personal_office/**", "/personal_office", "/wishlist/**").hasAnyRole("USER")
-                        .requestMatchers("/card_item_admin/**", "/edit_item/**", "/new_item/**", "/personal_office_admin/**").hasAnyRole("ADMIN"))
+                        .requestMatchers("/card_item/**","/card_present/**","/correct_info/**", "/edit_present/**", "/goods/**", "/goods_admin/**", "/new_present/**","/personal_office/**", "/personal_office", "/wishlist/**").authenticated()
+                        .requestMatchers("/user","/card_item_admin/**", "/edit_item/**", "/new_item/**", "/personal_office_admin/**").authenticated())
                 .httpBasic(Customizer.withDefaults())
-                .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(formLogin -> formLogin
                 .loginPage("/login") // пользовательская страница входа в систему
                 //.loginProcessingUrl("/perform_login") // URL-адрес для отправки имени пользователя и пароля

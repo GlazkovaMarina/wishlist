@@ -38,6 +38,11 @@ public class WishlistController {
     }
     // @PostMapping("/login") формируется Spring Boot автоматически
 
+    @PreAuthorize("hasAuthority('USER')")
+    @GetMapping("/user")
+    public String getUser(){
+        return "user";
+    }
 
     @GetMapping("/registration")
     public String registration (Model model){
@@ -86,8 +91,8 @@ public class WishlistController {
     //        return "redirect:/";
     //    }
 
-    // TODO: разобраться нужна ли аннотация @PreAuthorize
-//    @PreAuthorize("hasAuthority('USER')")
+
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/card_present/{user_id}/{gift_id}")
     public String getCardPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Model model){
         model.addAttribute("user_id", userId);
@@ -98,7 +103,7 @@ public class WishlistController {
     }
 
 
-//    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/edit_present/{user_id}/{gift_id}")
     public String getEditPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Model model){
         model.addAttribute("user_id", userId);
@@ -108,7 +113,7 @@ public class WishlistController {
         log.severe("Get edit_present");
         return "edit_present";
     }
-//    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/edit_present/{user_id}/{product_id}/{gift_id}")
     public String postEditPresent(@PathVariable("user_id") Long userId, @PathVariable("product_id") Long productId, @PathVariable("gift_id") Long giftId, Gift gift){
         log.severe("Post edit_present");
@@ -118,7 +123,7 @@ public class WishlistController {
         return returnPage;
     }
 
-//    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/wishlist/{user_id}")
     public String getWishlist(@PathVariable("user_id") Long userId, Model model){
         model.addAttribute("user_id", userId);
@@ -127,7 +132,7 @@ public class WishlistController {
         log.severe("Get wishlist");
         return "wishlist";
     }
-//    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/new_present/{user_id}/{item_id}")
     public String getNewPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
         model.addAttribute("user_id", userId);
@@ -137,7 +142,7 @@ public class WishlistController {
         log.severe("Get new_present");
         return "new_present";
     }
-//    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/new_present/{user_id}/{item_id}")
     public String getNewPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId,  Gift gift){
         User user = userService.findUserById(userId);
@@ -151,7 +156,7 @@ public class WishlistController {
     }
 
 
-    //    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     // Страница "Редактирование личных данных пользователя"
     @GetMapping("/correct_info/{id}")
     public String getCorrectInfo(@PathVariable("id") Long id, Model model){
@@ -162,7 +167,7 @@ public class WishlistController {
         return "correct_info.html";
     }
 
-    //    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     // Редактирование личных данных пользователя в БД
     @PostMapping("/correct_info/{id}")
     public String postCorrectInfo(User user, @PathVariable Long id){
@@ -175,7 +180,7 @@ public class WishlistController {
         return returnPage;
     }
 
-    //    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/personal_office/{user_id}")
     public String getPersonalOffice(Model model, @PathVariable("user_id") Long userId){
         User user = userService.findUserById(userId);
@@ -184,7 +189,7 @@ public class WishlistController {
         return "personal_office.html";
     }
 
-    //    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/personal_office_admin/{user_id}")
     public String getPersonalOfficeAdmin(Model model, @PathVariable("user_id") Long userId){
         User user = userService.findUserById(userId);
@@ -193,6 +198,7 @@ public class WishlistController {
         return "personal_office_admin.html";
     }
 
+    @PreAuthorize("hasAuthority('USER') ||hasAuthority('ADMIN')")
     @GetMapping("/card_item/{user_id}/{item_id}")
     public String getCardItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
         model.addAttribute("user_id", userId);
@@ -202,7 +208,7 @@ public class WishlistController {
         return "card_item";
     }
 
-    //    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/card_item_admin/{user_id}/{item_id}")
     public String getCardItemAdmin(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
         model.addAttribute("user_id", userId);
@@ -212,7 +218,7 @@ public class WishlistController {
         return "card_item_admin";
     }
 
-    //    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/edit_item/{user_id}/{item_id}")
     public String getEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
         model.addAttribute("user_id", userId);
@@ -222,7 +228,7 @@ public class WishlistController {
         return "edit_item";
     }
 
-    //        @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/edit_item/{user_id}/{item_id}")
     public String postEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Product product){
         productService.saveProduct(product);
@@ -231,7 +237,7 @@ public class WishlistController {
         return returnPage;
     }
 
-    //     @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/goods/{user_id}")
     public String getGoods(Model model, @PathVariable("user_id") Long userId){
         model.addAttribute("user_id", userId);
@@ -240,7 +246,7 @@ public class WishlistController {
         model.addAttribute("products", products);
         return "goods";
     }
-    //    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/goods_admin/{user_id}")
     public String getGoodsAdmin(Model model, @PathVariable("user_id") Long userId){
         model.addAttribute("user_id", userId);
@@ -249,7 +255,7 @@ public class WishlistController {
         model.addAttribute("products", products);
         return "goods_admin";
     }
-    //    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/new_item/{user_id}")
     public String getNewItem(@PathVariable("user_id") Long userId, Model model){
         log.severe("Get new_item");
