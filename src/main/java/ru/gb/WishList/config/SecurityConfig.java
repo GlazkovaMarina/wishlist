@@ -5,6 +5,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 import ru.gb.WishList.entities.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,9 +42,8 @@ public class SecurityConfig{
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/images/**", "/", "/index","/login**","/registration").permitAll()
-                        .requestMatchers("/card_item/**","/card_present/**","/correct_info/**", "/edit_present/**", "/goods/**", "/goods_admin/**", "/new_present/**","/personal_office/**", "/personal_office", "/wishlist/**").authenticated()
-                        .requestMatchers("/user","/card_item_admin/**", "/edit_item/**", "/new_item/**", "/personal_office_admin/**").authenticated())
+                        .requestMatchers("/css/**", "/img/**", "/", "/index","/login**","/registration").permitAll()
+                        .requestMatchers("/card_item/**","/card_present/**","/correct_info/**", "/edit_present/**", "/goods/**", "/new_present/**", "/personal_office", "/wishlist/**", "/edit_item/**", "/new_item/**").authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(formLogin -> formLogin
                 .loginPage("/login") // пользовательская страница входа в систему
@@ -54,10 +54,10 @@ public class SecurityConfig{
                         // Если для этого атрибута установлено значение false,
                         // пользователь будет перенаправлен на предыдущую страницу,
                         // которую он хотел посетить, прежде чем ему будет предложено пройти аутентификацию.
-                .logout(logout->logout
-                .deleteCookies("JSESSIONID"));
+                .logout(logout->logout.permitAll());
         return http.build();
     }
+
 
 //    // Менеджер аутентификации
 //    // Здесь мы настроим трех пользователей с жестко запрограммированными именем пользователя, паролем и ролью

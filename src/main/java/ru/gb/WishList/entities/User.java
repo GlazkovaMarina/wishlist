@@ -1,5 +1,6 @@
 package ru.gb.WishList.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -38,125 +39,92 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "users")
+@Schema(description = "Пользователь веб-приложения")
 public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
+    @Schema(description = "Идентификатор")
     private Long id;
-//    @NotEmpty(message = "Поле _фамилия_ не может быть пустым")
+//    @NotEmpty(message = "Поле 'фамилия' не может быть пустым")
     @Column (name = "last_name", nullable = false)
+    @Schema(description = "Фамилия")
     private String lastName;
 
-//    @NotEmpty(message = "Поле _имя_ не может быть пустым")
+//    @NotEmpty(message = "Поле 'имя' не может быть пустым")
     @Column (name = "first_name", nullable = false)
+    @Schema(description = "Имя")
     private String firstName;
-
+    @Schema(description = "Отчество")
     private String surname;
-//    @NotEmpty(message = "Поле _день рождения_ не может быть пустым")
+//    @NotEmpty(message = "Поле 'день рождения' не может быть пустым")
     @Column (nullable = false)
+    @Schema(description = "День рождения")
     private LocalDate birthday;
 
     // TODO: если разберусь с безопасностью, то реализовать аутентификацию и с помощью телефона
-////    @NotEmpty(message = "Поле _номер телефона_ не может быть пустым")
+////    @NotEmpty(message = "Поле 'номер телефона' не может быть пустым")
 //    @Column (nullable = false, unique = true)
 //    private Long number;
 
 //    @ValidEmail
-//    @NotEmpty(message = "Поле _электронная почта_ не может быть пустым")
+//    @NotEmpty(message = "Поле 'электронная почта' не может быть пустым")
     @Column (nullable = false, unique = true)
-    private String username;
-    //private String email;
-//    @NotEmpty(message = "Поле _пароль_ не может быть пустым")
+    @Schema(description = "Электронная почта")
+    private String username; // Чтобы упростить подключение spring security, название поля: username
+//    @NotEmpty(message = "Поле 'пароль' не может быть пустым")
     @Column(nullable=false)
+    @Schema(description = "Пароль")
     private String password;
+
+
     // TODO: если успею, то вернуть корректную проверку пароля
-//    @Column (name = "matching_password",nullable=false)
-//    private String matchingPassword;
+    //    @Column (name = "matching_password",nullable=false)
+    //    private String matchingPassword;
 
     @OneToMany(mappedBy="owner")
+    @Schema(description = "Список подарков")
     private Set<Gift> gifts;
 
+    //    @NotEmpty(message = "Поле 'полномочия' не может быть пустым")
     @Column (nullable = false)
     @Enumerated(EnumType.STRING)
+    @Schema(description = "Коллекция уникальных полномочий")
     private Set<Role> roles;
-//    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-//    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-//    @Enumerated(EnumType.STRING)
-//    private Set<Role> roles;
 
-    // TODO: удалить лишние реализации role
-    //    @Column (nullable = false)
-//    @Enumerated(EnumType.STRING)
-//    private Role role;
-
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    private Set<Role> roles;
-
-//    @ManyToMany
-//    @JoinTable(
-//        name = "users_roles",
-//        joinColumns = @JoinColumn(
-//                name = "user_id", referencedColumnName = "id"),
-//        inverseJoinColumns = @JoinColumn(
-//                name = "role_id", referencedColumnName = "id"))
-//    private Set<Role> roles;
-
-//Список ролей связан с пользователем отношением многие ко многим
-    // (один пользователь может иметь несколько ролей с одной стороны
-    // и у одной роли может быть несколько пользователей с другой);
-    // FetchType.EAGER – «жадная» загрузка, т.е. список ролей загружается
-    // вместе с пользователем сразу (не ждет пока к нему обратятся).
-
-
-//    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-//    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-//    @Enumerated(EnumType.STRING)
-//    private Set<Role> roles;
-//
-////    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-////    @JoinTable(
-////            name="users_roles",
-////            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
-////            inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
-////    private List<Role> roles = new ArrayList<>();
-
-
-
+    @Schema(description = "Указывает, истек ли срок действия учетной записи пользователя")
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @Schema(description = "Указывает, заблокирован или разблокирован пользователь")
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @Schema(description = "Указывает, истек ли срок действия учетных данных пользователя/пароля")
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @Schema(description = "Указывает, включен или отключен пользователь")
     public boolean isEnabled() {
         return true;
     }
 
     @Override
+    @Schema (description = "Возвращает полномочия, предоставленные пользователю")
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
 
     @Override
+    @Schema(description = "Возвращает имя пользователя, используемое для аутентификации пользователя")
     public String getUsername() {
         return username;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }

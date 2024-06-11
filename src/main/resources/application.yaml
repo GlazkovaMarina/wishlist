@@ -4,10 +4,10 @@ spring:
       WishList
   jpa:
     hibernate:
-#      ddl-auto: none
-      ddl-auto: update
-      generate-ddl: false
-#      generate-ddl: true
+      ddl-auto: none
+#      ddl-auto: update
+#      generate-ddl: false
+      generate-ddl: true
     show-sql: true
 #    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 #  datasource:
@@ -17,4 +17,10 @@ spring:
 
 #server:
 #  port: 8081
+
+logging:
+  level:
+    org:
+      springframework: TRACE
+
 

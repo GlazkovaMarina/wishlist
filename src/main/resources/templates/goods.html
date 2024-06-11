@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -14,11 +14,11 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/personal_office/{user_id}(user_id=${user_id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
-                  <a href="/" class="main__button__text text__decoration__none">Выход</a>
+                  <a href="/logout" class="main__button__text text__decoration__none">Выход</a>
             </button>
         </nav>
     </header>
@@ -31,7 +31,7 @@
                 <div class="item__info">
                     <p class="item__name" th:text="${product.name}"></p>
                     <p class="item__price color__F25822" th:text="${product.price}"></p>
-                    <a th:href="@{/new_present/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}">
+                    <a sec:authorize="hasAuthority('USER')" th:href="@{/new_present/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}">
                         <img width="50" height="50" src="https://img.icons8.com/ios/50/gift--v1.png" alt="gift--v1">
                     </a>
                 </div>

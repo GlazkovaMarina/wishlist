@@ -20,11 +20,11 @@
             <form  action="#" th:action="@{/wishlist/{id}(id=${user_id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Список подарков">
             </form>
-            <form  action="#" th:action="@{/personal_office/{id}(id=${user_id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
-                  <a href="/" class="main__button__text text__decoration__none">Выход</a>
+                  <a href="/logout" class="main__button__text text__decoration__none">Выход</a>
             </button>
         </nav>
     </header>

@@ -1,5 +1,6 @@
 package ru.gb.WishList.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
@@ -30,19 +31,26 @@ import java.util.Set;
 @Data
 @Entity
 @Table (name = "products")
-//@Inheritance(strategy = InheritanceType.JOINED)
+@Schema(description = "Товар")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
+    @Schema(description = "Идентификатор")
     private Long id;
     @Column (nullable = false)
+    @Schema(description = "Название товара")
     private String name;
+    @Schema(description = "Стоимость товара")
     private BigDecimal price;
+    @Schema(description = "Путь до фотографии товара")
     private String image;
+    @Schema(description = "Описание товара")
     private String description;
+    @Schema(description = "Рейтинг товара")
     private Float score;
     @OneToMany(mappedBy="product")
+    @Schema(description = "Товар в списке подарков")
     private Set<Gift> gifts;
 }

@@ -1,5 +1,6 @@
 package ru.gb.WishList.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 import ru.gb.WishList.entities.enums.Priority;
@@ -7,11 +8,6 @@ import ru.gb.WishList.entities.enums.Status;
 
 /**
  * Gift - подарок
- *
- * @id - идентификационный номер подарка в базе данных
- * @comment - уточнения от желающего подарок
- * @priority - приоритет к дарению
- * @status - статус подарка
  *
  * @@Data   -  дает нам геттеры для всех полей, сеттеры для всех нефинальных полей, правильные реализации toString,
  *            equals и hashCode, охватывающие все поля класса,
@@ -27,21 +23,28 @@ import ru.gb.WishList.entities.enums.Status;
 @Data
 @Entity
 @Table(name = "gifts")
+@Schema(description = "Подарок")
 public class Gift{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "gift_id")
+    @Schema(description = "Идентификатор подарка")
     private Long id;
+    @Schema(description = "Комментарий хозяина подарка")
     private String comment;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @Schema(description = "Приоритет подарка")
     private Priority priority;
     @Column (nullable = false)
     @Enumerated(EnumType.STRING)
+    @Schema(description = "Статус подарка")
     private Status status;
     @ManyToOne
+    @Schema(description = "Хозяин подарка")
     private User owner;
     @ManyToOne
+    @Schema(description = "Подарок")
     private Product product;
 
     // todo: если успею, то добавить контакт, который забронировал подарок.

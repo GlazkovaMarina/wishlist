@@ -20,7 +20,7 @@
             </form>
 <!--            <a href="personal_office" class="black header__main__right__text text__decoration__none">Личный кабинет</a>-->
             <button class="main__button">
-                <a href="/" class="main__button__text text__decoration__none">Выход</a>
+                <a href="/logout" class="main__button__text text__decoration__none">Выход</a>
             </button>
         </nav>
     </header>
@@ -30,8 +30,11 @@
             <form  action="#" th:action="@{/correct_info/{id}(id=${user.id})}" method="get" class="registration__form">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Редактировать личную информацию">
             </form>
-            <form  action="#" th:action="@{/wishlist/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form sec:authorize="hasAuthority('USER')" action="#" th:action="@{/wishlist/{id}(id=${user.id})}" method="get" class="registration__form">
                 <input class="links color_AAAAAA submit text__decoration__none" type="submit" value="Перейти в список подарков">
+            </form>
+            <form sec:authorize="hasAuthority('ADMIN')"  action="#" th:action="@{/new_item/{id}(id=${user.id})}" method="get" class="registration__form">
+                <input class="links color_AAAAAA submit text__decoration__none" type="submit" value="Добавить новый товар">
             </form>
         </div>
         <div class="content__right">
@@ -58,7 +61,7 @@
                 <div class="form registration__form__email">
                     <p class="email__form__text">Email:</p>
                     <!--                    <span th:text="${user.email}"></span>-->
-                    <input type="email" th:name="email" th:attr="value = ${user.email}" readonly>
+                    <input type="email" th:name="username" th:attr="value = ${user.username}" readonly>
                     <!--                    <input type="email" attr="value = ${user.email}" name="email" readonly>-->
                 </div>
 <!--                <div class="form registration__form__phone">-->

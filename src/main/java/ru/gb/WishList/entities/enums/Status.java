@@ -1,5 +1,8 @@
 package ru.gb.WishList.entities.enums;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  * Status - статус подарка
  *
@@ -7,13 +10,16 @@ package ru.gb.WishList.entities.enums;
  * @BOOKED - забронированный, то есть кто-то планирует подарить данный подарок
  **/
 
+@Schema(description = "Статус подарка: UNBOOKED, BOOKED")
 public enum Status {
     UNBOOKED("Не забронирован"),
     BOOKED("Забронирован");
 
+    @Schema(description = "Идентификатор на кириллице: Не забронирован, забронирован")
     public final String label;
 
-    private Status(String label) {
+    private Status(@Parameter(description = "Идентификатор на кириллице")String label) {
+
         this.label = label;
     }
 

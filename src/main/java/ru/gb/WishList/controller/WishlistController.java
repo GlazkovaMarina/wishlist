@@ -1,8 +1,13 @@
 package ru.gb.WishList.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import lombok.AllArgsConstructor;
+
+import java.security.Principal;
 import java.util.Collections;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
 import ru.gb.WishList.entities.Product;
 import ru.gb.WishList.entities.User;
 import org.springframework.stereotype.Controller;
@@ -31,45 +36,43 @@ public class WishlistController {
     private final ProductService productService;
     private final GiftService giftService;
 
+    @Operation(
+            summary = "Страница входа",
+            description = "Заполнение данных пользователя для аутентификации пользователя"
+    )
     @GetMapping("/login")
     public String getLogin() {
-        log.severe("Get login");
         return "login";
     }
     // @PostMapping("/login") формируется Spring Boot автоматически
+    // @PostMapping("/logout") формируется Spring Boot автоматически
 
-    @PreAuthorize("hasAuthority('USER')")
-    @GetMapping("/user")
-    public String getUser(){
-        return "user";
-    }
-
+    @Operation(
+            summary = "Страница регистрации",
+            description = "Заполнение данных пользователя для регистрации нового пользователя"
+    )
     @GetMapping("/registration")
-    public String registration (Model model){
-        User user = new User();
-        user.setRoles(Collections.singleton(Role.USER));
-        model.addAttribute("user", user);
-        model.addAttribute("error", "");
-        log.severe("GET registration");
+    public String register (Model model){
+        User user = new User(); // Создаем нового пользователя и передаем на страницу, чтобы потом передавать считанные данные не черз отдельные переменные
+        user.setRoles(Collections.singleton(Role.USER)); // Зарегистрироваться можно только для роли USER
+        model.addAttribute("user", user); // Добавляем объект на страницу с идентификатором user
+        model.addAttribute("error", ""); // TODO: переделать на более популярный вариант обработки ошибок
         return "registration";
     }
-
+    @Operation(
+            summary = "Страница регистрации",
+            description = "ДЛобавление нового пользователя в базу данных"
+    )
     @PostMapping("/registration")
     public ModelAndView registerUserAccount(User user, Model model) {
-        user.setRoles(Collections.singleton(Role.USER));
-        log.severe(user.toString());
         try {
-            log.severe("Post registration_DO");
-            userService.registrate(user);
-            log.severe("Post registration");
+            userService.register(user); // сохраняем нового пользователя в базе данных
         } catch (UserAlreadyExistException uaeEx) {
             ModelAndView mav = new ModelAndView("registration", "user", user);
             model.addAttribute("error", "Аккаунт c таким username/email уже существует. Нажмите _Вход_");
-            log.severe("Post registration_catch");
             return mav;
         }
-        String returnPage = "redirect:/login";
-        return new ModelAndView(returnPage);
+        return new ModelAndView("redirect:/login");
     }
 
     // TODO: добавить из этого примера валидацию
@@ -156,49 +159,44 @@ public class WishlistController {
     }
 
 
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     // Страница "Редактирование личных данных пользователя"
-    @GetMapping("/correct_info/{id}")
-    public String getCorrectInfo(@PathVariable("id") Long id, Model model){
-        User user = userService.findUserById(id);
+    @GetMapping("/correct_info/{user_id}")
+    public String getCorrectInfo(@PathVariable("user_id") Long userId, Model model){
+        User user = userService.findUserById(userId);
         model.addAttribute("user", user);
-        log.severe("Get correct_info");
-        //String returnPage = "/correct_info/" + id; // формируем персональный личный кабинет
-        return "correct_info.html";
+        return "correct_info";
     }
 
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     // Редактирование личных данных пользователя в БД
-    @PostMapping("/correct_info/{id}")
-    public String postCorrectInfo(User user, @PathVariable Long id){
-        User originUser = userService.findUserById(id);
-        log.severe("Post correct_info");
-        user.setId(id);
+    @PostMapping("/correct_info/{user_id}")
+    public String postCorrectInfo(User user, @PathVariable("user_id") Long userId){
+        User originUser = userService.findUserById(userId);
         user.setPassword(originUser.getPassword());
+        user.setRoles(originUser.getRoles());
         userService.updateUser(user);
-        String returnPage = "redirect:/personal_office/" + id; // формируем персональный личный кабинет
+        String returnPage = "redirect:/personal_office"; // формируем персональный личный кабинет
         return returnPage;
     }
 
-    @PreAuthorize("hasAuthority('USER')")
-    @GetMapping("/personal_office/{user_id}")
-    public String getPersonalOffice(Model model, @PathVariable("user_id") Long userId){
-        User user = userService.findUserById(userId);
-        model.addAttribute("user", user);
-        log.severe("GET personal_office");
-        return "personal_office.html";
+
+    @Operation(
+            summary = "Личный кабинет пользователя",
+            description = "Позволяет пользователю просмотреть свои личные данные, перейти на страницу 'Редактирование данных', 'Список подарков'. Для администратора доступно 'Добавление нового товара'"
+    )
+
+    @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
+    @GetMapping("/personal_office")
+    public String getPersonalOffice(Model model, Principal principal){
+        User currentUser = userService.findUserByUsername(principal.getName());
+        model.addAttribute("user", currentUser);
+        return "personal_office";
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/personal_office_admin/{user_id}")
-    public String getPersonalOfficeAdmin(Model model, @PathVariable("user_id") Long userId){
-        User user = userService.findUserById(userId);
-        model.addAttribute("user", user);
-        log.severe("GET personal_office");
-        return "personal_office_admin.html";
-    }
 
-    @PreAuthorize("hasAuthority('USER') ||hasAuthority('ADMIN')")
+
+    @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @GetMapping("/card_item/{user_id}/{item_id}")
     public String getCardItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
         model.addAttribute("user_id", userId);
@@ -206,16 +204,6 @@ public class WishlistController {
         model.addAttribute("product", product);
         log.severe("Get card_item");
         return "card_item";
-    }
-
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/card_item_admin/{user_id}/{item_id}")
-    public String getCardItemAdmin(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
-        model.addAttribute("user_id", userId);
-        Product product = productService.findProductById(itemId);
-        model.addAttribute("product", product);
-        log.severe("Get card_item");
-        return "card_item_admin";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -237,7 +225,7 @@ public class WishlistController {
         return returnPage;
     }
 
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @GetMapping("/goods/{user_id}")
     public String getGoods(Model model, @PathVariable("user_id") Long userId){
         model.addAttribute("user_id", userId);
@@ -245,15 +233,6 @@ public class WishlistController {
         List<Product> products =  productService.findAllProducts();
         model.addAttribute("products", products);
         return "goods";
-    }
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/goods_admin/{user_id}")
-    public String getGoodsAdmin(Model model, @PathVariable("user_id") Long userId){
-        model.addAttribute("user_id", userId);
-        log.severe("Get goods");
-        List<Product> products =  productService.findAllProducts();
-        model.addAttribute("products", products);
-        return "goods_admin";
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/new_item/{user_id}")
@@ -272,16 +251,3 @@ public class WishlistController {
     }
 
 }
-
-
-// TODO:  для написания тестов
-//        User user = new User();
-//        user.setLastName("Ivanov");
-//        user.setFirstName("Ivan");
-//        user.setSurname("Ivanovich");
-//        user.setNumber(79009090909L);
-//        user.setEmail("q@q.ru");
-//        String date = "2016-08-16";
-//        LocalDate localDate = LocalDate.parse(date);
-//        user.setBirthday(localDate);
-//        userService.save(user);
