@@ -2,10 +2,11 @@ package ru.gb.WishList.service.giftService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import ru.gb.WishList.entities.Gift;
 import java.util.List;
 
-@Schema(description = "Сервис подарков")
+@Tag(name="GiftService", description="Сервис подарков")
 public interface GiftService {
     @Operation (summary = "Найти все подарки",
                 description = "Вывод всех подарков")

@@ -1,6 +1,7 @@
 package ru.gb.WishList.service.userService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -9,7 +10,8 @@ import ru.gb.WishList.exception.UserAlreadyExistException;
 
 import java.util.List;
 
-@Schema(description = "Сервис пользователя")
+
+@Tag(name="UserService", description="Сервис пользователя")
 public interface UserService {
     @Operation(summary = "Найти всех пользователей",
             description = "Вывод всех пользователей, зарегестрированных на маркетплейсе")

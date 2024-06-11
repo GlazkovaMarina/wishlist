@@ -2,6 +2,7 @@ package ru.gb.WishList.service.userService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,6 +23,7 @@ import lombok.extern.java.Log;
 @Service
 @Log
 @AllArgsConstructor
+@Tag(name="UserServiceImpl", description="Сервис пользователя")
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Schema(description = "Репозиторий пользователя")

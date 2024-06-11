@@ -1,8 +1,9 @@
 package ru.gb.WishList.exception;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Schema(description = "Исключение 'Пользователь с такой электронной почтой уже существует'")
+@Tag(name="UserAlreadyExistException", description="Исключение 'Пользователь с такой электронной почтой уже существует'")
 public final class UserAlreadyExistException extends RuntimeException{
 
     public UserAlreadyExistException() {

@@ -2,6 +2,7 @@ package ru.gb.WishList.entities.enums;
 
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 /**
  * Status - статус подарка
@@ -10,7 +11,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @BOOKED - забронированный, то есть кто-то планирует подарить данный подарок
  **/
 
-@Schema(description = "Статус подарка: UNBOOKED, BOOKED")
+
+@Tag(name="Status", description="Статус подарка: UNBOOKED, BOOKED")
 public enum Status {
     UNBOOKED("Не забронирован"),
     BOOKED("Забронирован");

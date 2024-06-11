@@ -1,8 +1,9 @@
 package ru.gb.WishList.exception;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Schema(description = "Исключение 'Подарок с таким идентификатором не найден'")
+@Tag(name="ProductWithSuchIdNotFoundException", description="Исключение 'Подарок с таким идентификатором не найден'")
 public final class ProductWithSuchIdNotFoundException extends RuntimeException{
 
     public ProductWithSuchIdNotFoundException() {

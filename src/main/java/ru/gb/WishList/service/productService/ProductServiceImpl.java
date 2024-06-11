@@ -1,6 +1,7 @@
 package ru.gb.WishList.service.productService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.gb.WishList.entities.Product;
@@ -11,7 +12,7 @@ import java.util.Optional;
 import java.util.List;
 @Service
 @AllArgsConstructor
-@Schema(description = "Сервис товара")
+@Tag(name="ProductServiceImpl", description="Сервис товара")
 public class ProductServiceImpl implements ProductService{
 
     @Schema(description = "Репозиторий товара")

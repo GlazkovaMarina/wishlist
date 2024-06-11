@@ -1,8 +1,10 @@
 package ru.gb.WishList.exception;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Schema(description = "Исключение 'Пользователь с таким идентификатор не найден'")
+
+@Tag(name="UserWithSuchIdNotFoundException", description="Исключение 'Пользователь с таким идентификатор не найден'")
 public final class UserWithSuchIdNotFoundException extends RuntimeException{
 
     public UserWithSuchIdNotFoundException() {

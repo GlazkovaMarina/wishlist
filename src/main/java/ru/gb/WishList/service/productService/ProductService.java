@@ -3,9 +3,10 @@ import java.util.List;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import ru.gb.WishList.entities.Product;
 
-@Schema(description = "Сервис товара")
+@Tag(name="ProductService", description="Сервис товара")
 public interface ProductService {
 
     @Operation(summary = "Найти все товары",

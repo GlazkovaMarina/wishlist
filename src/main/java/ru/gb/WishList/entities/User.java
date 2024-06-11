@@ -1,6 +1,7 @@
 package ru.gb.WishList.entities;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -39,7 +40,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "users")
-@Schema(description = "Пользователь веб-приложения")
+@Tag(name="User", description="Пользователь веб-приложения")
 public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

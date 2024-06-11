@@ -2,6 +2,7 @@ package ru.gb.WishList.service.giftService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.gb.WishList.entities.Gift;
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-@Schema(description = "Сервис подарков")
+@Tag(name="GiftServiceImpl", description="Сервис подарков")
 public class GiftServiceImpl implements GiftService{
 
     @Schema(description = "Репозиторий подарков")

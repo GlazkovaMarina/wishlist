@@ -1,6 +1,7 @@
 package ru.gb.WishList.entities;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import lombok.Data;
 import ru.gb.WishList.entities.enums.Priority;
@@ -23,7 +24,7 @@ import ru.gb.WishList.entities.enums.Status;
 @Data
 @Entity
 @Table(name = "gifts")
-@Schema(description = "Подарок")
+@Tag(name="Gift", description="Подарок")
 public class Gift{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

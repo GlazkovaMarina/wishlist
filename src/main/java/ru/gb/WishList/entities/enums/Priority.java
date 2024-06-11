@@ -2,6 +2,7 @@ package ru.gb.WishList.entities.enums;
 
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 /**
  * Priority - приоритет подарка для хозяина списка подарков
@@ -9,7 +10,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @MIDDLE - средний
  * @LOW - низкий
  **/
-@Schema(description = "Приоритет подарка: HIGH, MIDDLE, LOW", example = "MIDDLE")
+
+@Tag(name="Priority", description="Приоритет подарка: HIGH, MIDDLE, LOW")
 public enum Priority {
     HIGH("Высокий"),
     MIDDLE("Средний"),

@@ -3,13 +3,14 @@ package ru.gb.WishList.repository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import ru.gb.WishList.entities.User;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
 import  org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-@Schema(description = "Репозиторий с пользователями")
+@Tag(name="UserRepository", description="Репозиторий с пользователями")
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Operation(

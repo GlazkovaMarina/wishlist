@@ -3,6 +3,7 @@ package ru.gb.WishList.service;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import ru.gb.WishList.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 import ru.gb.WishList.service.userService.UserServiceImpl;
 
 @Service
-@Schema(description = "Поставщик аутентификации. AuthenticationProvider обрабатывает запрос аутентификации, и возвращается полностью аутентифицированный объект с полными учетными данными.")
+@Tag(name="AuthenticationProviderService", description="Поставщик аутентификации. AuthenticationProvider обрабатывает запрос аутентификации, и возвращается полностью аутентифицированный объект с полными учетными данными.")
 public class AuthenticationProviderService implements AuthenticationProvider {
 
     @Autowired

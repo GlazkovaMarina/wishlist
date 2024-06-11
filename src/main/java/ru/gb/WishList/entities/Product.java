@@ -1,6 +1,7 @@
 package ru.gb.WishList.entities;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
@@ -31,7 +32,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table (name = "products")
-@Schema(description = "Товар")
+@Tag(name="Product", description="Товар")
 public class Product {
 
     @Id
