@@ -17,7 +17,7 @@ INSERT INTO products (name, price, image, description, score)
 VALUES ('Книга', 999, '/img/book.svg', 'А.С.Пушкин Евгений Онегин', 5);
 
 INSERT INTO products (name, price, image, description, score)
-VALUES ('Чайная пара', 13999, '/img/glass.svg', 'Керамическая кружка и блюдце для чая', 4.24);
+VALUES ('Чайная пара', 3999, '/img/glass.svg', 'Керамическая кружка и блюдце для чая', 4.24);
 
 INSERT INTO products (name, price, image, description, score)
 VALUES ('Утюг', 3489, '/img/iron.svg', 'Утюг - легкий, но отлично гладит', 3.12);

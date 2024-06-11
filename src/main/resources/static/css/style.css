@@ -212,6 +212,7 @@ input {
     grid-template-rows: repeat(3, 1fr);
     gap: 20px;
     justify-items: end;
+    align-items: center
 }
 
 .links {
