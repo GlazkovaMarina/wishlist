@@ -21,9 +21,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class GiftController {
 
-    private final UserService userService;
-    private final ProductService productService;
-    private final GiftService giftService;
+    private UserService userService;
+    private ProductService productService;
+    private GiftService giftService;
 
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/new_present/{user_id}/{item_id}")

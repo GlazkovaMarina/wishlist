@@ -53,6 +53,7 @@
                     <div class="form">
                         <p class="email__form__text">Email</p>
                         <input id="username" name="username" type="text" field="*{username}" placeholder="Введите email" required>
+                        <p th:if="${#fields.hasErrors('username')}" th:errorclass="error" th:errors="*{username}">Email Error</p>
                     </div>
                     <span class="color__F25822" th:text="${error}"></span>
                 </div>

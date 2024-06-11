@@ -2,6 +2,8 @@ package ru.gb.WishList.controller;
 
 import java.security.Principal;
 import java.util.Collections;
+
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import ru.gb.WishList.entities.User;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,7 @@ import lombok.AllArgsConstructor;
 @Controller
 @AllArgsConstructor
 public class UserController {
-    private final UserService userService;
+    private UserService userService;
 
      @Operation(
             summary = "Страница регистрации",

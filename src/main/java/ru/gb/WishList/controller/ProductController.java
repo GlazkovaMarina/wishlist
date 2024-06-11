@@ -1,12 +1,14 @@
 package ru.gb.WishList.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.servlet.ModelAndView;
 import ru.gb.WishList.entities.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.Model;
+import ru.gb.WishList.exception.ProductScoreIsNotCorrect;
 import ru.gb.WishList.service.productService.ProductService;
 import lombok.extern.java.Log;
 import java.util.List;
@@ -18,7 +20,7 @@ import lombok.AllArgsConstructor;
 @Controller
 @AllArgsConstructor
 public class ProductController {
-    private final ProductService productService;
+    private ProductService productService;
 
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @GetMapping("/card_item/{user_id}/{item_id}")
@@ -34,15 +36,23 @@ public class ProductController {
     public String getEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
         model.addAttribute("user_id", userId);
         Product product = productService.findProductById(itemId);
+        model.addAttribute("error", "");
         model.addAttribute("product", product);
         return "edit_item";
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/edit_item/{user_id}/{item_id}")
-    public String postEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Product product){
-        productService.saveProduct(product);
+    public ModelAndView postEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Product product, Model model){
+        try{
+            productService.saveProduct(product);
+        } catch (ProductScoreIsNotCorrect exc){
+            String errorPage = "/edit_item";
+            ModelAndView mav = new ModelAndView(errorPage, "product", product);
+            model.addAttribute("error", exc.getMessage());
+            return mav;
+        }
         String returnPage = "redirect:/card_item/" + userId + "/" + itemId; // формируем персональный личный кабинет
-        return returnPage;
+        return new ModelAndView(returnPage);
     }
 
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")

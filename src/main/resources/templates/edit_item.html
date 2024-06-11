@@ -53,6 +53,7 @@
                 <div class="form_row">
                     <p>Рейтинг</p>
                     <input class="input__new__item" type="text"  th:name="score" th:attr="value = ${product.score}">
+                    <span class="color__F25822" th:text="${error}"></span>
                 </div>
                 <input class="main__button main__button__text text__decoration__none" type="submit" value="Сохранить">
             </form>

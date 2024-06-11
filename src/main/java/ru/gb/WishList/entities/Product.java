@@ -3,6 +3,9 @@ package ru.gb.WishList.entities;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import java.math.BigDecimal;
 import java.util.Set;
@@ -50,6 +53,8 @@ public class Product {
     @Schema(description = "Описание товара")
     private String description;
     @Schema(description = "Рейтинг товара")
+    @Min(0)
+    @Max(5)
     private Float score;
     @OneToMany(mappedBy="product")
     @Schema(description = "Товар в списке подарков")
