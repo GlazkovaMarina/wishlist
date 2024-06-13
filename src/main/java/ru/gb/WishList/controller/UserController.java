@@ -42,7 +42,7 @@ public class UserController {
     }
     @Operation(
             summary = "Страница регистрации",
-            description = "ДЛобавление нового пользователя в базу данных"
+            description = "Добавление нового пользователя в базу данных"
     )
     @PostMapping("/registration")
     public ModelAndView registerUserAccount(User user, Model model) {
@@ -89,6 +89,10 @@ public class UserController {
         return "personal_office";
     }
 
+    @Operation(
+            summary = "Редактирование личных данных пользователя",
+            description = "Страница для редактирования личных данных пользователя"
+    )
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     // Страница "Редактирование личных данных пользователя"
     @GetMapping("/correct_info/{user_id}")
@@ -99,6 +103,10 @@ public class UserController {
         return "correct_info";
     }
 
+    @Operation(
+            summary = "Редактирование личных данных пользователя",
+            description = "Обновление личных данных пользователя в базе данных"
+    )
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @PostMapping("/correct_info/{user_id}")
     public String postCorrectInfo(User user, @PathVariable("user_id") Long userId){

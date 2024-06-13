@@ -14,16 +14,13 @@ import ru.gb.WishList.exception.ProductScoreIsNotCorrect;
 import ru.gb.WishList.service.productService.ProductService;
 import lombok.extern.java.Log;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-
-import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 
 @Tag(name="ProductController", description="Контроллер товаров")
 @Log
@@ -32,6 +29,10 @@ import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 public class ProductController {
     private ProductService productService;
 
+    @Operation(
+            summary = "Карточка товара",
+            description = "Отображение всей информации о товаре маркетплейса"
+    )
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @GetMapping("/card_item/{user_id}/{item_id}")
     public String getCardItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
@@ -42,6 +43,11 @@ public class ProductController {
         return "card_item";
     }
 
+
+    @Operation(
+            summary = "Редактирование карточки товара",
+            description = "Редактирование информации о товаре маркетплейса"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/edit_item/{user_id}/{item_id}")
     public String getEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
@@ -52,6 +58,11 @@ public class ProductController {
         model.addAttribute("product", product);
         return "edit_item";
     }
+
+    @Operation(
+            summary = "Редактирование карточки товара",
+            description = "Обновление информации о товаре маркетплейса в базе данных"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/edit_item/{user_id}/{item_id}")
     public ModelAndView postEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, @RequestParam("file") MultipartFile file, Product product, Model model) throws IOException{
@@ -68,6 +79,10 @@ public class ProductController {
         return new ModelAndView(returnPage);
     }
 
+    @Operation(
+            summary = "Товары маркетплейса",
+            description = "Карточки всех товаров маркетплейса с краткой информацией"
+    )
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @GetMapping("/goods/{user_id}")
     public String getGoods(Model model, @PathVariable("user_id") Long userId){
@@ -83,7 +98,10 @@ public class ProductController {
         model.addAttribute("products", products);
         return "goods";
     }
-
+    @Operation(
+            summary = "Создание нового товара",
+            description = "Добавление нового товара в маркетплейс"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/new_item/{user_id}")
     public String getNewItem(@PathVariable("user_id") Long userId, Model model){
@@ -92,7 +110,10 @@ public class ProductController {
         return "new_item";
     }
 
-
+    @Operation(
+            summary = "Создание нового товара",
+            description = "Добавление нового товара в базу данных маркетплейса"
+    )
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/new_item/{user_id}")
     public String postNewItem(@PathVariable("user_id") Long userId, @RequestParam("file") MultipartFile file, Product product) throws IOException{

@@ -12,6 +12,10 @@ import lombok.extern.java.Log;
 @Controller
 @AllArgsConstructor
 public class StartController {
+    @Operation(
+            summary = "Стартовая страница",
+            description = "Главная/стартовая страница веб-приложения"
+    )
     @GetMapping("/index")
     public String getStartPage(){
         log.info("getStartPage()");

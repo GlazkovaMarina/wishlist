@@ -1,5 +1,7 @@
 package ru.gb.WishList.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 import ru.gb.WishList.entities.Gift;
 import lombok.AllArgsConstructor;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name="GiftController", description="Контроллер подарков")
 @Log
 @Controller
 @AllArgsConstructor
@@ -30,6 +35,10 @@ public class GiftController {
     private ProductService productService;
     private GiftService giftService;
 
+    @Operation(
+            summary = "Создание нового подарка",
+            description = "Добавление нового подарка в список подарков пользователя"
+    )
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/new_present/{user_id}/{item_id}")
     public String getNewPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
@@ -40,6 +49,10 @@ public class GiftController {
         model.addAttribute("gift", new Gift());
         return "new_present";
     }
+    @Operation(
+            summary = "Создание нового подарка",
+            description = "Добавление нового подарка в базу данных"
+    )
     @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/new_present/{user_id}/{item_id}")
     public String postNewPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId,  Gift gift){
@@ -53,6 +66,10 @@ public class GiftController {
         return returnPage;
     }
 
+    @Operation(
+            summary = "Карточка подарка",
+            description = "Отображение всей информации о подарке"
+    )
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/card_present/{user_id}/{gift_id}")
     public String getCardPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Model model){
@@ -63,6 +80,10 @@ public class GiftController {
         return "card_present";
     }
 
+    @Operation(
+            summary = "Редактирование карточки подарка",
+            description = "Редактирование информации о подарке"
+    )
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/edit_present/{user_id}/{gift_id}")
     public String getEditPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Model model){
@@ -73,6 +94,11 @@ public class GiftController {
         model.addAttribute("product_id", gift.getProduct().getId());
         return "edit_present";
     }
+
+    @Operation(
+            summary = "Редактирование карточки подарка",
+            description = "Обновление информации о подарке в базе данных"
+    )
     @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/edit_present/{user_id}/{product_id}/{gift_id}")
     public String postEditPresent(@PathVariable("user_id") Long userId, @PathVariable("product_id") Long productId, @PathVariable("gift_id") Long giftId, Gift gift){
@@ -83,6 +109,10 @@ public class GiftController {
         return returnPage;
     }
 
+    @Operation(
+            summary = "Список подарков",
+            description = "Карточки подарков с краткой информацией"
+    )
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/wishlist/{user_id}")
     public String getWishlist(@PathVariable("user_id") Long userId, Model model, HttpServletRequest request){
@@ -99,7 +129,10 @@ public class GiftController {
         request.getSession().setAttribute("wishlist", gifts);
         return "wishlist";
     }
-
+    @Operation(
+            summary = "Скачать список подарков",
+            description = "Сохранения на компьютер списка подарков с полной информацией в Excel таблицу"
+    )
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/download_wishlist/{user_id}")
     public ModelAndView downloadWishlist(@PathVariable("user_id") Long userId, HttpServletRequest request){
