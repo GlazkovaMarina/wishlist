@@ -131,7 +131,7 @@ public class GiftController {
     }
     @Operation(
             summary = "Скачать список подарков",
-            description = "Сохранения на компьютер списка подарков с полной информацией в Excel таблицу"e
+            description = "Сохранения на компьютер списка подарков с полной информацией в Excel таблицу"
     )
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/download_wishlist/{user_id}")
