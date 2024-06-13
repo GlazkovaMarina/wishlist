@@ -100,8 +100,8 @@ public class GiftController {
             description = "Обновление информации о подарке в базе данных"
     )
     @PreAuthorize("hasAuthority('USER')")
-    @PostMapping("/edit_present/{user_id}/{product_id}/{gift_id}")
-    public String postEditPresent(@PathVariable("user_id") Long userId, @PathVariable("product_id") Long productId, @PathVariable("gift_id") Long giftId, Gift gift){
+    @PostMapping("/edit_present/{user_id}/{item_id}/{gift_id}")
+    public String postEditPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long productId, @PathVariable("gift_id") Long giftId, Gift gift){
         log.info("postEditPresent()");
         gift.setProduct(productService.findProductById(productId));
         giftService.saveGift(gift);
@@ -131,7 +131,7 @@ public class GiftController {
     }
     @Operation(
             summary = "Скачать список подарков",
-            description = "Сохранения на компьютер списка подарков с полной информацией в Excel таблицу"
+            description = "Сохранения на компьютер списка подарков с полной информацией в Excel таблицу"e
     )
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/download_wishlist/{user_id}")

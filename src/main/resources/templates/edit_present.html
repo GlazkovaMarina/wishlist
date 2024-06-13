@@ -32,7 +32,7 @@
     <section class="new__item center">
         <h3>Редактирование подарка</h3>
         <div class="new__item__group">
-            <form  action="#" th:action="@{/edit_present/{user_id}/{product_id}/{gift_id}(user_id=${user_id}, product_id=${product_id}, gift_id=${gift.id})}" method="post" class="form__action">
+            <form  action="#" th:action="@{/edit_present/{user_id}/{item_id}/{gift_id}(user_id=${user_id}, item_id=${product_id}, gift_id=${gift.id})}" method="post" class="form__action">
                 <div class="div__none">
                     <p class="id__form__text">Id</p>
                     <input th:name="id" th:attr="value = ${gift.id}" type="number">
