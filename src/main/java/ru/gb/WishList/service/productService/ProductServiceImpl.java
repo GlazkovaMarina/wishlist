@@ -35,12 +35,14 @@ public class ProductServiceImpl implements ProductService{
     @Operation(summary = "Найти все товары",
             description = "Вывод всех товаров маркетплейса")
     public List<Product> findAllProducts(){
+        log.info("findAllProducts()");
         return productRepository.findAll();
     }
 
     @Operation (summary = "Найти подарок по id",
             description = "Поиск подарка по идентификатору")
     public Product findProductById(Long productId){
+        log.info("findProductById()");
         Optional<Product> productOptional = productRepository.findById(productId);
         if (!productOptional.isPresent()) {
             throw new ProductWithSuchIdNotFoundException("Не найден подарок с таким идентификатором " + productId);
@@ -52,6 +54,7 @@ public class ProductServiceImpl implements ProductService{
             description = "Добавить подарок в базу данных")
     @Override
     public Product saveProduct(Product product, MultipartFile file) throws IOException{
+        log.info("saveProduct()");
         if (product.getScore() < 0 || product.getScore() > 5){
             throw new ProductScoreIsNotCorrect("Рейтинг должен быть значением от 0 до 5 включительно");
         }
@@ -60,6 +63,7 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.save(product);
     }
     public String uploadFile(MultipartFile file) throws IOException{
+        log.info("uploadFile()");
         StringBuilder fileNames = new StringBuilder();
         Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
         fileNames.append(file.getOriginalFilename());

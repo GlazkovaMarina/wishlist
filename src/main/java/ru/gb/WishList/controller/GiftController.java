@@ -33,6 +33,7 @@ public class GiftController {
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/new_present/{user_id}/{item_id}")
     public String getNewPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
+        log.info("getNewPresent()");
         model.addAttribute("user_id", userId);
         Product product = productService.findProductById(itemId);
         model.addAttribute("product", product);
@@ -41,7 +42,8 @@ public class GiftController {
     }
     @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/new_present/{user_id}/{item_id}")
-    public String getNewPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId,  Gift gift){
+    public String postNewPresent(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId,  Gift gift){
+        log.info("postNewPresent()");
         User user = userService.findUserById(userId);
         Product product = productService.findProductById(itemId);
         gift.setOwner(user);
@@ -54,6 +56,7 @@ public class GiftController {
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/card_present/{user_id}/{gift_id}")
     public String getCardPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Model model){
+        log.info("getCardPresent()");
         model.addAttribute("user_id", userId);
         Gift gift = giftService.findGiftById(giftId);
         model.addAttribute("gift", gift);
@@ -63,6 +66,7 @@ public class GiftController {
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/edit_present/{user_id}/{gift_id}")
     public String getEditPresent(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId, Model model){
+        log.info("getEditPresent()");
         model.addAttribute("user_id", userId);
         Gift gift = giftService.findGiftById(giftId);
         model.addAttribute("gift", gift);
@@ -72,6 +76,7 @@ public class GiftController {
     @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/edit_present/{user_id}/{product_id}/{gift_id}")
     public String postEditPresent(@PathVariable("user_id") Long userId, @PathVariable("product_id") Long productId, @PathVariable("gift_id") Long giftId, Gift gift){
+        log.info("postEditPresent()");
         gift.setProduct(productService.findProductById(productId));
         giftService.saveGift(gift);
         String returnPage = "redirect:/card_present/" + userId + "/" + giftId;
@@ -81,6 +86,7 @@ public class GiftController {
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/wishlist/{user_id}")
     public String getWishlist(@PathVariable("user_id") Long userId, Model model, HttpServletRequest request){
+        log.info("getWishlist()");
         model.addAttribute("user_id", userId);
         List<Gift> gifts =  giftService.findAllGifts();
         if (gifts.isEmpty()){
@@ -97,7 +103,7 @@ public class GiftController {
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/download_wishlist/{user_id}")
     public ModelAndView downloadWishlist(@PathVariable("user_id") Long userId, HttpServletRequest request){
-        log.severe("downloadWishlist");
+        log.info("downloadWishlist()");
         List<Gift> wishlist = (ArrayList<Gift>)request.getSession().getAttribute("wishlist");
         ModelAndView mav = new ModelAndView(new ExcelBuilder(), "wishlist", wishlist);
         return mav;

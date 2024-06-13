@@ -14,7 +14,7 @@ import lombok.extern.java.Log;
 public class StartController {
     @GetMapping("/index")
     public String getStartPage(){
-        log.severe("Get index");
+        log.info("getStartPage()");
         return "index";
     }
     @Operation(
@@ -23,6 +23,7 @@ public class StartController {
     )
     @GetMapping("/login")
     public String getLogin() {
+        log.info("getLogin()");
         return "login";
     }
     // @PostMapping("/login") формируется Spring Boot автоматически

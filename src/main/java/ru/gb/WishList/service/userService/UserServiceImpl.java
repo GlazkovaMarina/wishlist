@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             description = "Регистрация нового пользователя на маркетплейсе")
     @Override
     public User register(User user){
+        log.info("register()");
         return userRepository.save(createUser(user));
     }
 
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Operation (summary = "Создать нового пользователя",
             description = "Создание нового пользователя по полученным данных")
     public User createUser(User user) throws UserAlreadyExistException {
+        log.info("createUser()");
         Optional<User> userOptional = userRepository.findByUsername(user.getUsername()); // проверка на уникальность нового пользователя
         if (userOptional.isPresent()){
             throw new UserAlreadyExistException("Существует аккаунт с почтой: "
@@ -63,6 +65,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             description = "Поиск пользователя по электронной почте")
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("loadUserByUsername()");
         Supplier<UsernameNotFoundException> s =
                 () -> new UsernameNotFoundException("Проблемы во время аутентификации!");
         User user = userRepository.findByUsername(username).orElseThrow(s);
@@ -72,6 +75,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             description = "Поиск пользователя по электронной почте")
     @Override
     public User findUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("findUserByUsername()");
         Optional<User> userOptional = userRepository.findByUsername(username);
         if (!userOptional.isPresent()){
             throw new UsernameNotFoundException("Не найден пользователь с почтой " + username);
@@ -83,6 +87,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             description = "Обновить данные о пользователе в базе данных")
     @Override
     public User updateUser(User user) {
+        log.info("updateUser()");
         return userRepository.save(user);
     }
 
@@ -90,6 +95,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             description = "Вывод всех пользователей, зарегестрированных на маркетплейсе")
     @Override
     public List<User> findAllUsers(){
+        log.info("findAllUsers()");
         return userRepository.findAll();
     }
 
@@ -97,6 +103,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             description = "Поиск пользователя по идентификатору")
     @Override
     public User findUserById(Long userId){
+        log.info("findUserById()");
         Optional<User> userOptional = userRepository.findById(userId);
         if (!userOptional.isPresent()) {
             throw new UserWithSuchIdNotFoundException("Не найден подарок с таким идентификатором " + userId);
@@ -108,6 +115,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             description = "Удалить пользователя из базы данных")
     @Override
     public void deleteUser(Long id) {
+        log.info("deleteUser()");
         User user = findUserById(id);
         if (user != null){
             userRepository.deleteById(id);

@@ -10,7 +10,9 @@ import ru.gb.WishList.entities.Gift;
 import java.text.DateFormat;
 import java.util.List;
 import java.util.Map;
+import lombok.extern.java.Log;
 
+@Log
 public class ExcelBuilder extends AbstractXlsxView {
     private static final DateFormat DATE_FORMAT = DateFormat.getDateInstance(DateFormat.SHORT);
 
@@ -18,6 +20,7 @@ public class ExcelBuilder extends AbstractXlsxView {
     protected void buildExcelDocument(Map model, Workbook workbook, HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
 
+        log.info("buildExcelDocument()");
         // change the file name
         response.setHeader("Content-Disposition", "attachment; filename=\"wishlist.xls\"");
 

@@ -33,6 +33,7 @@ public class UserController {
     )
     @GetMapping("/registration")
     public String register (Model model){
+         log.info("register()");
         User user = new User(); // Создаем нового пользователя и передаем на страницу, чтобы потом передавать считанные данные не черз отдельные переменные
         user.setRoles(Collections.singleton(Role.USER)); // Зарегистрироваться можно только для роли USER
         model.addAttribute("user", user); // Добавляем объект на страницу с идентификатором user
@@ -45,6 +46,7 @@ public class UserController {
     )
     @PostMapping("/registration")
     public ModelAndView registerUserAccount(User user, Model model) {
+        log.info("registerUserAccount()");
         try {
             userService.register(user); // сохраняем нового пользователя в базе данных
         } catch (UserAlreadyExistException uaeEx) {
@@ -81,6 +83,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @GetMapping("/personal_office")
     public String getPersonalOffice(Model model, Principal principal){
+        log.info("getPersonalOffice()");
         User currentUser = userService.findUserByUsername(principal.getName());
         model.addAttribute("user", currentUser);
         return "personal_office";
@@ -90,6 +93,7 @@ public class UserController {
     // Страница "Редактирование личных данных пользователя"
     @GetMapping("/correct_info/{user_id}")
     public String getCorrectInfo(@PathVariable("user_id") Long userId, Model model){
+        log.info("getCorrectInfo()");
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
         return "correct_info";
@@ -98,6 +102,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @PostMapping("/correct_info/{user_id}")
     public String postCorrectInfo(User user, @PathVariable("user_id") Long userId){
+        log.info("postCorrectInfo()");
         User originUser = userService.findUserById(userId);
         user.setPassword(originUser.getPassword());
         user.setRoles(originUser.getRoles());
