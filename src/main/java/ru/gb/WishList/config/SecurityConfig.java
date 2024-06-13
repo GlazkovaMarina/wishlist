@@ -42,8 +42,8 @@ public class SecurityConfig{
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/img/**", "/", "/index","/login**","/registration", "/swagger-ui/**", "/v3/api-docs").permitAll()
-                        .requestMatchers("/card_item/**","/card_present/**","/correct_info/**", "/edit_present/**", "/goods/**", "/new_present/**", "/personal_office", "/wishlist/**", "/edit_item/**", "/new_item/**", "/download_wishlist/**","/image/**").authenticated())
+                        .requestMatchers("/favicon.ico","/css/**", "/img/**", "/", "/index","/login**","/registration", "/swagger-ui/**", "/v3/api-docs").permitAll()
+                        .requestMatchers("/card_item/**","/card_present/**","/correct_info/**", "/edit_present/**", "/goods/**", "/new_present/**", "/personal_office", "/wishlist/**", "/edit_item/**", "/new_item/**", "/download_wishlist/**").authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(formLogin -> formLogin
                 .loginPage("/login") // пользовательская страница входа в систему

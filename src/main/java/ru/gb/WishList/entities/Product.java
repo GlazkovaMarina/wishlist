@@ -59,11 +59,6 @@ public class Product {
     @OneToMany(mappedBy="product")
     @Schema(description = "Товар в списке подарков")
     private Set<Gift> gifts;
-    @OneToOne(mappedBy = "product")
-    private Image image;
-
-//    public void addImageToProduct(Image image) {
-//        image.setProduct(this);
-//        this.image = image;
-//    }
+    @Column(name = "image_path_fs")
+    private String imagePathFS;
 }

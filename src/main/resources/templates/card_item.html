@@ -43,7 +43,9 @@
                             <output class="output__description" type="text" th:text="${product.description}"></output>
                         </div>
                     </div>
-                    <img src="/image/${product.image.id}" alt="Фото товара отсутствует" class="img__bord">
+                    <img th:src="@{'/img/' + ${product.imagePathFS}}"
+                         th:title="${product.imagePathFS}"
+                         th:alt="${product.imagePathFS}" class="img__bord"/>
                 </div>
                 <input class="main__button main__button__text text__decoration__none" type="submit" value="Редактировать">
             </form>
@@ -61,7 +63,9 @@
                         <output class="output__description" type="text" th:text="${product.description}"></output>
                     </div>
                 </div>
-                <img th:src="${product.image}" alt="Фото товара отсутствует" class="img__bord">
+                <img th:src="@{'/img/' + ${product.imagePathFS}}"
+                     th:title="${product.imagePathFS}"
+                     th:alt="${product.imagePathFS}" class="img__bord"/>
             </div>
     </section>
 

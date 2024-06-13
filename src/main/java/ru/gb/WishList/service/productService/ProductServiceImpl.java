@@ -5,15 +5,19 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import ru.gb.WishList.entities.Image;
 import ru.gb.WishList.entities.Product;
 import ru.gb.WishList.exception.ProductScoreIsNotCorrect;
 import ru.gb.WishList.exception.ProductWithSuchIdNotFoundException;
-import ru.gb.WishList.repository.ImageRepository;
 import ru.gb.WishList.repository.ProductRepository;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.Optional;
 
 import java.util.List;
@@ -23,10 +27,10 @@ import java.util.List;
 @Tag(name="ProductServiceImpl", description="Сервис товара")
 public class ProductServiceImpl implements ProductService{
 
+    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/img"; // рабочий каталог пользователя
+
     @Schema(description = "Репозиторий товара")
     private final ProductRepository productRepository;
-
-    private final ImageRepository imageRepository;
 
     @Operation(summary = "Найти все товары",
             description = "Вывод всех товаров маркетплейса")
@@ -51,28 +55,16 @@ public class ProductServiceImpl implements ProductService{
         if (product.getScore() < 0 || product.getScore() > 5){
             throw new ProductScoreIsNotCorrect("Рейтинг должен быть значением от 0 до 5 включительно");
         }
-        Image image;
-        log.info("saveProduct");
-        if (file.getSize() != 0) {
-            image = toImageEntity(file);
-            log.info("do image.toString");
-            //product.addImageToProduct(image);
-            log.info("after addImageToProduct");
-            image = imageRepository.save(image);
-            log.info(image.getId().toString());
-            product.setImage(image);
-        }
+        if (!file.isEmpty())
+            product.setImagePathFS(uploadFile(file));
         return productRepository.save(product);
     }
-
-    private Image toImageEntity(MultipartFile file) throws IOException {
-        Image image = new Image();
-        image.setName(file.getName());
-        image.setOriginalFileName(file.getOriginalFilename());
-        image.setContentType(file.getContentType());
-        image.setSize(file.getSize());
-        image.setBytes(file.getBytes());
-        return image;
+    public String uploadFile(MultipartFile file) throws IOException{
+        StringBuilder fileNames = new StringBuilder();
+        Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
+        fileNames.append(file.getOriginalFilename());
+        Files.write(fileNameAndPath, file.getBytes());
+        return fileNames.toString();
     }
 
 }

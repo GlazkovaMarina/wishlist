@@ -44,7 +44,11 @@
                         <output class="output__description" type="text" th:text="${product.description}"></output>
                     </div>
                 </div>
-                <a th:href="@{/card_item/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}"> <img th:src="${product.image}" alt="Фото товара отсутствует" class="img__bord"></a>
+                <a th:href="@{/card_item/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}">
+                    <img th:src="@{'/img/' + ${product.imagePathFS}}"
+                         th:title="${product.imagePathFS}"
+                         th:alt="${product.imagePathFS}" class="img__bord"/>
+                </a>
             </div>
             <div class="form__action">
             <div class="form_row">

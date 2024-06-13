@@ -4,10 +4,10 @@ spring:
       WishList
   jpa:
     hibernate:
-#      ddl-auto: none
-#      generate-ddl: false
-      generate-ddl: true
-      ddl-auto: update
+      ddl-auto: none
+      generate-ddl: false
+#      generate-ddl: true
+#      ddl-auto: update
     show-sql: true
 #    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 #  datasource:

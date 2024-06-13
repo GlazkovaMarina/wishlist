@@ -91,18 +91,6 @@ public class ProductController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/new_item/{user_id}")
     public String postNewItem(@PathVariable("user_id") Long userId, @RequestParam("file") MultipartFile file, Product product) throws IOException{
-//        if (file != null && !file.getOriginalFilename().isEmpty()){
-//
-//            File uploadDir = new File(uploadPath);
-//            if (!uploadDir.exists()) {
-//                uploadDir.mkdir();
-//            }
-//
-//            String uuidFile = UUID.randomUUID().toString();
-//            String resultFilename = uuidFile + "." + file.getOriginalFilename();
-//            file.transferTo(new File(resultFilename));
-//            product.setImage(resultFilename);
-//        }
         productService.saveProduct(product, file);
         String returnPage = "redirect:/goods/" + userId;
         return returnPage;

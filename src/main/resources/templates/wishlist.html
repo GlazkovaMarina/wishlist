@@ -36,7 +36,9 @@
                 <tr th:each="gift : ${gifts}">
                     <div class="goods__card__item">
                         <a th:href="@{/card_present/{user_id}/{gift_id}(user_id=${user_id}, gift_id=${gift.id})}">
-                            <img th:src="${gift.product.image}" alt="Фото товара отсутствует" class="img__bord">
+                            <img th:src="@{'/img/' + ${gift.product.imagePathFS}}"
+                                 th:title="${gift.product.imagePathFS}"
+                                 th:alt="${gift.product.imagePathFS}" class="img__bord"/>
                         </a>
                         <div class="item__info">
                             <p class="item__name" th:text="${gift.product.name}"></p>

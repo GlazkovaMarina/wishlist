@@ -39,9 +39,13 @@
                 </div>
                 <div class="form_row">
                     <p>Фото товара</p>
-                    <input type="file" id="file" name="file">
-<!--                    <input class="input__new__item" type="text" th:name="image" th:attr="value = ${product.image}" >-->
-<!--                    <input class="input__new__item" type="file" name="photo" placeholder="Добавить фото">-->
+                    <img th:src="@{'/img/' + ${product.imagePathFS}}"
+                         th:title="${product.imagePathFS}"
+                         th:alt="${product.imagePathFS}" class="img__bord"/>
+                    <input type="file" name="file">
+                </div>
+                <div class="div__none">
+                    <input class="input__new__item" type="text" th:name="imagePathFS" th:attr="value = ${product.imagePathFS}">
                 </div>
                 <div class="form_row">
                     <p>Цена</p>

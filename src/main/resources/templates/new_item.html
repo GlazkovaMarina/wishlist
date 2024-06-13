@@ -36,8 +36,14 @@
             </div>
             <div class="form_row">
                 <p>Фото товара</p>
-                <input type="file" id="file" name="file">
+                <input type="file" name="file">
             </div>
+<!--            <form method="post" th:action="@{/upload}" enctype="multipart/form-data">-->
+<!--                <div class="form-group">-->
+<!--                    <input type="file" name="image" accept="image/*" class="form-control-file">-->
+<!--                </div>-->
+<!--                <button type="submit" class="btn btn-primary">Upload image</button>-->
+<!--            </form>-->
             <div class="form_row">
                 <p>Цена</p>
                 <input class="input__new__item" type="text" id="price" name="price" field="{product.price}" placeholder="Введите цену">

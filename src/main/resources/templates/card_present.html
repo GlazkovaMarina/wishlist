@@ -62,7 +62,9 @@
                         <output class="output__description gray"  type="text" th:text="${gift.comment}"></output>
                     </div>
                 </div>
-                <img th:src="${gift.product.image}" alt="Фото товара отсутствует" class="img__bord">
+                <img th:src="@{'/img/' + ${gift.product.imagePathFS}}"
+                     th:title="${gift.product.imagePathFS}"
+                     th:alt="${gift.product.imagePathFS}" class="img__bord"/>
             </div>
             <input class="main__button main__button__text text__decoration__none" type="submit" value="Редактировать">
         </form>
