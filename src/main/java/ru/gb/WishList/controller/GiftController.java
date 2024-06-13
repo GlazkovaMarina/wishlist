@@ -2,7 +2,6 @@ package ru.gb.WishList.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import ru.gb.WishList.entities.Product;
 import ru.gb.WishList.entities.User;
@@ -15,7 +14,7 @@ import ru.gb.WishList.service.userService.UserService;
 import ru.gb.WishList.service.productService.ProductService;
 import ru.gb.WishList.service.giftService.GiftService;
 import lombok.extern.java.Log;
-import ru.gb.WishList.entities.ExcelBuilder;
+import ru.gb.WishList.files.ExcelBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
