@@ -14,11 +14,11 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/goods/{user_id}(user_id=${user_id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/goods/{user_id}(user_id=${user_id})}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
             </form>
 
-            <form  action="#" th:action="@{/personal_office}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -29,14 +29,14 @@
 
     <section class="new__item center">
         <h3>Добавление товара</h3>
-        <form  action="#" th:action="@{/new_item/{user_id}(user_id=${user_id})}" method="post" class="registration__form">
+        <form  method="post" enctype="multipart/form-data" th:action="@{/new_item/{user_id}(user_id=${user_id})}" class="form__action">
             <div class="form_row">
                 <p>Название</p>
                 <input class="input__new__item" type="text" id="name" name="name" field="{product.name}" placeholder="Введите название" required>
             </div>
             <div class="form_row">
                 <p>Фото товара</p>
-                <input class="input__new__item" type="text" id="image" name="image" field="{product.image}" placeholder="Введите путь до фотографии">
+                <input type="file" id="file" name="file">
             </div>
             <div class="form_row">
                 <p>Цена</p>

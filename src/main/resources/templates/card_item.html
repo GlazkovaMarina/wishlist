@@ -15,10 +15,10 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/goods/{id}(id=${user_id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/goods/{id}(id=${user_id})}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
             </form>
-            <form  action="#" th:action="@{/personal_office}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -29,7 +29,7 @@
 
     <section class="card__item center">
         <h2>Карточка товара</h2>
-            <form sec:authorize="hasAuthority('ADMIN')"  action="#" th:action="@{/edit_item/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}" method="get" class="registration__form">
+            <form sec:authorize="hasAuthority('ADMIN')"  action="#" th:action="@{/edit_item/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}" method="get" class="form__action">
                 <div class="item">
                     <div class="item__info">
                         <p class="item__name" th:text="${product.name}"></p>
@@ -43,10 +43,11 @@
                             <output class="output__description" type="text" th:text="${product.description}"></output>
                         </div>
                     </div>
-                    <img th:src="${product.image}" alt="Фото товара отсутствует" class="img__bord">
+                    <img src="/image/${product.image.id}" alt="Фото товара отсутствует" class="img__bord">
                 </div>
                 <input class="main__button main__button__text text__decoration__none" type="submit" value="Редактировать">
             </form>
+
             <div sec:authorize="hasAuthority('USER')" class="item">
                 <div class="item__info">
                     <p class="item__name" th:text="${product.name}"></p>

@@ -14,13 +14,12 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/goods/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/goods/{id}(id=${user.id})}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
             </form>
-            <form  action="#" th:action="@{/personal_office/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
-<!--            <a href="personal_office" class="black header__main__right__text text__decoration__none">Личный кабинет</a>-->
             <button class="main__button">
                   <a href="/logout" class="main__button__text text__decoration__none">Выход</a>
             </button>
@@ -30,7 +29,7 @@
         <div class="entry__left__text">
             <h3 class="entry__description gray">Редактирование личных данных:</h3>
         </div>
-        <form  action="#" th:action="@{/correct_info/{id}(id=${user.id})}" method="post" class="registration__form">
+        <form  action="#" th:action="@{/correct_info/{id}(id=${user.id})}" method="post" class="form__action">
 
             <div class="registration__form__group">
                 <div class="div__none">
@@ -63,9 +62,6 @@
                 </div>
             </div>
             <input class="main__button main__button__text text__decoration__none" type="submit" value="Изменить">
-<!--            <button  type="submit">-->
-<!--                <a href="personal_office" class="main__button__text text__decoration__none">Изменить</a>-->
-<!--            </button>-->
         </form>
     </section>
 

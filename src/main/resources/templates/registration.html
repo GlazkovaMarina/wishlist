@@ -25,13 +25,11 @@
             <h1 class="welcome gray">Добро пожаловать<br> в MARKETPLACE!</h1>
             <h3 class="entry__description gray">Для регистрации заполните,<br> пожалуйста,<br> данные:</h3>
         </div>
-<!--        <form method="post" th:action="@{/registration}" th:object="${user}" class="registration__form">-->
-        <form method="post" th:object="${user}" class="registration__form">
+        <form method="post" th:object="${user}" class="form__action">
         <div class="registration__form__group">
                 <div class="form registration__form__lastname">
                     <p class="lastname__form__text">Фамилия</p>
                     <input id="lastName" name="lastName" placeholder="Введите фамилию" field="*{lastName}" type="text" autofocus="autofocus" required>
-<!--                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>-->
                 </div>
                 <div class="form registration__form__bd">
                     <p class="bd__form__text">День рождения</p>
@@ -60,8 +58,6 @@
                 <div class="form registration__form__password">
                     <p class="email__form__text">Пароль</p>
                     <input id="password" name="password" type="password" field="*{password}" placeholder="Введите пароль" required>
-<!--                    <p th:each="error : ${#fields.errors('password')}"-->
-<!--                       th:text="${error}">Validation error</p>-->
                 </div>
 <!--                <div>-->
 <!--                </div>-->
@@ -70,9 +66,6 @@
 <!--                    <input type="password" field="*{matchingPassword}" placeholder="Повторите пароль"/>-->
 <!--                </div>-->
             </div>
-<!--            <button class="main__button" type="submit">-->
-<!--                <a href="personal_office" class="main__button__text text__decoration__none">Зарегистрироваться</a>-->
-<!--            </button>-->
             <input class="main__button main__button__text text__decoration__none" type="submit" value="Зарегистрироваться">
         </form>
     </section>

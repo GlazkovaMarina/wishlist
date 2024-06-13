@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -48,8 +50,6 @@ public class Product {
     private String name;
     @Schema(description = "Стоимость товара")
     private BigDecimal price;
-    @Schema(description = "Путь до фотографии товара")
-    private String image;
     @Schema(description = "Описание товара")
     private String description;
     @Schema(description = "Рейтинг товара")
@@ -59,4 +59,11 @@ public class Product {
     @OneToMany(mappedBy="product")
     @Schema(description = "Товар в списке подарков")
     private Set<Gift> gifts;
+    @OneToOne(mappedBy = "product")
+    private Image image;
+
+//    public void addImageToProduct(Image image) {
+//        image.setProduct(this);
+//        this.image = image;
+//    }
 }

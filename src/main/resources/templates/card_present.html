@@ -14,13 +14,13 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/goods/{id}(id=${user_id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/goods/{id}(id=${user_id})}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
             </form>
-            <form  action="#" th:action="@{/wishlist/{id}(id=${user_id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/wishlist/{id}(id=${user_id})}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Список подарков">
             </form>
-            <form  action="#" th:action="@{/personal_office}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -30,7 +30,7 @@
     </header>
     <section class="card__item center">
         <h2>Карточка подарка</h2>
-        <form  action="#" th:action="@{/edit_present/{user_id}/{gift_id}(user_id=${user_id}, gift_id=${gift.id})}" method="get" class="registration__form">
+        <form  action="#" th:action="@{/edit_present/{user_id}/{gift_id}(user_id=${user_id}, gift_id=${gift.id})}" method="get" class="form__action">
             <div class="item">
                 <div class="gift__info">
                     <div class="score__group">

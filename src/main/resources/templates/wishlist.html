@@ -14,10 +14,10 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/goods/{id}(id=${user_id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/goods/{id}(id=${user_id})}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
             </form>
-            <form  action="#" th:action="@{/personal_office}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -25,80 +25,29 @@
             </button>
         </nav>
     </header>
-    <section th:switch="${gifts}" class="wishlist center">
+    <section class="wishlist center">
         <h2 class="gray">Список подарков</h2>
-        <h2 th:case="null">К сожалению, Вы еще не добавили ни одного подарка! Переходите в раздел товаров и попробуйте сделать это прямо сейчас!</h2>
-        <div class="goods">
-        <tr th:each="gift : ${gifts}">
-            <div class="goods__card__item">
-                <a th:href="@{/card_present/{user_id}/{gift_id}(user_id=${user_id}, gift_id=${gift.id})}">
-                    <img th:src="${gift.product.image}" alt="Фото товара отсутствует" class="img__bord">
-                </a>
-                <div class="item__info">
-                    <p class="item__name" th:text="${gift.product.name}"></p>
-<!--                    <p class="item__price color__F25822" th:text="${gift.product.price}"></p>-->
-                    <p class="item__price color__F25822" th:text="${gift.status.label}"></p>
-                    <p class="item__price color__F25822" th:text="${gift.priority.label}"></p>
-                </div>
+        <h4 th:if="${response=='NoData'}">К сожалению, Вы еще не добавили ни одного подарка! Переходите в раздел товаров и попробуйте сделать это прямо сейчас!</h4>
+        <div th:if="${response=='Data'}">
+            <form  action="#" th:action="@{/download_wishlist/{id}(id=${user_id})}" method="get" class="form__action">
+                <input class="links color__F25822 submit text__decoration__none" type="submit" value="Скачать список подарков в Excel">
+            </form>
+            <div class="goods">
+                <tr th:each="gift : ${gifts}">
+                    <div class="goods__card__item">
+                        <a th:href="@{/card_present/{user_id}/{gift_id}(user_id=${user_id}, gift_id=${gift.id})}">
+                            <img th:src="${gift.product.image}" alt="Фото товара отсутствует" class="img__bord">
+                        </a>
+                        <div class="item__info">
+                            <p class="item__name" th:text="${gift.product.name}"></p>
+                            <p class="item__price color__F25822" th:text="${gift.status.label}"></p>
+                            <p class="item__price color__F25822" th:text="${gift.priority.label}"></p>
+                        </div>
+                    </div>
+                </tr>
             </div>
-        </tr>
         </div>
     </section>
-
-
-
-<!--    <section class="wishlist center">-->
-<!--        <h2 class="gray">Список подарков</h2>-->
-<!--        <div class="goods">-->
-<!--            <div class="goods__card__item card__present" onclick="location.href='card_present.html';">-->
-<!--                <div class="img__bord">-->
-<!--                    <img src="../static/img/phone.svg" alt="phone" class="item__card__img">-->
-<!--                </div>-->
-<!--                <div class="item__info">-->
-<!--                    <p class="item__name">Смартфон</p>-->
-<!--                    <p class="item__price color__F25822">34999</p>-->
-<!--                    <p class="item__whose ">Забронирован:</p>-->
-<!--                    <p class="item__whose gray">Иван Иванов</p>-->
-<!--                    <p class="item__priority ">Приоритет:</p>-->
-<!--                    <p class="item__priority gray">средний</p>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; <div class="img__bord"> &ndash;&gt;-->
-<!--                &lt;!&ndash; <img th:src="${item.image}" alt="image of item" class="item__card__img"> &ndash;&gt;-->
-<!--                &lt;!&ndash; </div> &ndash;&gt;-->
-<!--                &lt;!&ndash; <div class="item__info"> &ndash;&gt;-->
-<!--                &lt;!&ndash; <p class="item__name" th:text="${item.name}"></p>-->
-<!--                    <p class="item__price color__F25822" th:text="${item.price}"></p> &ndash;&gt;-->
-<!--                &lt;!&ndash; </div> &ndash;&gt;-->
-<!--            </div>-->
-<!--            <div class="goods__card__item card__present" onclick="location.href='card_present.html';">-->
-<!--                <div class="img__bord">-->
-<!--                    <img src="../static/img/book.svg" alt="book" class="item__card__img">-->
-<!--                </div>-->
-<!--                <div class="item__info">-->
-<!--                    <p class="item__name">Книга</p>-->
-<!--                    <p class="item__price color__F25822">999</p>-->
-<!--                    <p class="item__whose ">Забронирован:</p>-->
-<!--                    <p class="item__whose gray">анонимно</p>-->
-<!--                    <p class="item__priority ">Приоритет:</p>-->
-<!--                    <p class="item__priority gray">высокий</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="goods__card__item card__present" onclick="location.href='card_present.html';">-->
-<!--                <div class="img__bord">-->
-<!--                    <img src="../static/img/iron.svg" alt="iron" class="item__card__img">-->
-<!--                </div>-->
-<!--                <div class="item__info">-->
-<!--                    <p class="item__name">Утюг</p>-->
-<!--                    <p class="item__price color__F25822">3489</p>-->
-<!--                    <p class="item__whose ">Забронирован:</p>-->
-<!--                    <p class="item__whose gray">анонимно</p>-->
-<!--                    <p class="item__priority ">Приоритет:</p>-->
-<!--                    <p class="item__priority gray">низкий</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        </div>-->
-<!--    </section>-->
 
     <footer class="footer__ center">
         <div class="footer__content">

@@ -1,6 +1,8 @@
 package ru.gb.WishList.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ru.gb.WishList.entities.Product;
 import org.springframework.stereotype.Controller;
@@ -11,9 +13,17 @@ import org.springframework.ui.Model;
 import ru.gb.WishList.exception.ProductScoreIsNotCorrect;
 import ru.gb.WishList.service.productService.ProductService;
 import lombok.extern.java.Log;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+
+import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 
 @Tag(name="ProductController", description="Контроллер товаров")
 @Log
@@ -42,9 +52,9 @@ public class ProductController {
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/edit_item/{user_id}/{item_id}")
-    public ModelAndView postEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Product product, Model model){
+    public ModelAndView postEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, @RequestParam("file") MultipartFile file, Product product, Model model) throws IOException{
         try{
-            productService.saveProduct(product);
+            productService.saveProduct(product, file);
         } catch (ProductScoreIsNotCorrect exc){
             String errorPage = "/edit_item";
             ModelAndView mav = new ModelAndView(errorPage, "product", product);
@@ -60,6 +70,12 @@ public class ProductController {
     public String getGoods(Model model, @PathVariable("user_id") Long userId){
         model.addAttribute("user_id", userId);
         List<Product> products =  productService.findAllProducts();
+        if (products.isEmpty()){
+            model.addAttribute("response", "NoData");
+        }
+        else{
+            model.addAttribute("response", "Data");
+        }
         model.addAttribute("products", products);
         return "goods";
     }
@@ -71,10 +87,23 @@ public class ProductController {
         return "new_item";
     }
 
+
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping("/new_item/{user_id}")
-    public String postNewItem(@PathVariable("user_id") Long userId, Product product){
-        productService.saveProduct(product);
+    @PostMapping(value = "/new_item/{user_id}")
+    public String postNewItem(@PathVariable("user_id") Long userId, @RequestParam("file") MultipartFile file, Product product) throws IOException{
+//        if (file != null && !file.getOriginalFilename().isEmpty()){
+//
+//            File uploadDir = new File(uploadPath);
+//            if (!uploadDir.exists()) {
+//                uploadDir.mkdir();
+//            }
+//
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+//            file.transferTo(new File(resultFilename));
+//            product.setImage(resultFilename);
+//        }
+        productService.saveProduct(product, file);
         String returnPage = "redirect:/goods/" + userId;
         return returnPage;
     }

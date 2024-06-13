@@ -14,13 +14,13 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/goods/{id}(id=${user_id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/goods/{id}(id=${user_id})}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
             </form>
-            <form  action="#" th:action="@{/wishlist/{id}(id=${user_id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/wishlist/{id}(id=${user_id})}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Список подарков">
             </form>
-            <form  action="#" th:action="@{/personal_office}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -46,7 +46,7 @@
                 </div>
                 <a th:href="@{/card_item/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}"> <img th:src="${product.image}" alt="Фото товара отсутствует" class="img__bord"></a>
             </div>
-            <div class="registration__form">
+            <div class="form__action">
             <div class="form_row">
                 <h4>Выберите статус подарка:</h4>
                 <div class="radiobutton">
@@ -72,18 +72,6 @@
                     <input id="LOW" type="radio" name="priority" value="LOW" field="{gift.priority}">
                     <label for="LOW">Низкий</label>
                 </div>
-
-                <!--                <div th:each="priority : ${T(ru.gb.WishList.entities.Priority).values()}">-->
-                <!--                    <input name="priority" type="radio" th:value="${gift.priority}"/><label for="priority" th:text="| &nbsp; ${priority.label} |">Something is wrong !</label>-->
-                <!--                </div>-->
-
-                <!--                <h4>Выберите приоритет подарка:</h4>-->
-                <!--                <select field="{gift.priority}">-->
-                <!--                    <option th:each="enumm: ${T(ru.gb.WishList.entities.Priority).values()}"-->
-                <!--                            th:text="${enumm.label}"-->
-                <!--                            th:value = "${enumm}">-->
-                <!--                    </option>-->
-                <!--                </select>-->
             </div>
             <div class="form_row">
                 <h4>Введите комментарий к подарку:</h4>

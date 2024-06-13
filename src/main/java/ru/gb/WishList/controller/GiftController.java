@@ -1,6 +1,9 @@
 package ru.gb.WishList.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.ModelAndView;
 import ru.gb.WishList.entities.Product;
 import ru.gb.WishList.entities.User;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,9 @@ import ru.gb.WishList.service.userService.UserService;
 import ru.gb.WishList.service.productService.ProductService;
 import ru.gb.WishList.service.giftService.GiftService;
 import lombok.extern.java.Log;
+import ru.gb.WishList.entities.ExcelBuilder;
+
+import java.util.ArrayList;
 import java.util.List;
 import ru.gb.WishList.entities.Gift;
 import lombok.AllArgsConstructor;
@@ -75,11 +81,28 @@ public class GiftController {
 
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/wishlist/{user_id}")
-    public String getWishlist(@PathVariable("user_id") Long userId, Model model){
+    public String getWishlist(@PathVariable("user_id") Long userId, Model model, HttpServletRequest request){
         model.addAttribute("user_id", userId);
         List<Gift> gifts =  giftService.findAllGifts();
+        if (gifts.isEmpty()){
+            model.addAttribute("response", "NoData");
+        }
+        else{
+            model.addAttribute("response", "Data");
+        }
         model.addAttribute("gifts", gifts);
+        request.getSession().setAttribute("wishlist", gifts);
         return "wishlist";
     }
+
+    @PreAuthorize("hasAuthority('USER')")
+    @GetMapping("/download_wishlist/{user_id}")
+    public ModelAndView downloadWishlist(@PathVariable("user_id") Long userId, HttpServletRequest request){
+        log.severe("downloadWishlist");
+        List<Gift> wishlist = (ArrayList<Gift>)request.getSession().getAttribute("wishlist");
+        ModelAndView mav = new ModelAndView(new ExcelBuilder(), "wishlist", wishlist);
+        return mav;
+    }
+
 
 }

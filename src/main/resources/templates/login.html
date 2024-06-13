@@ -25,20 +25,14 @@
         <div class="content__left">
             <div class="entry__left__text">
                 <h1 class="welcome gray">Добро пожаловать<br> в MARKETPLACE!</h1>
-<!--                <h3 class="entry__description gray">Выберите удобный для Вас способ входа:</h3>-->
                 <h3 class="entry__description gray">Для входа на сайт введите почту и пароль, указанные при регистрации:</h3>
             </div>
-            <form method="post" th:action="@{/login}" class="registration__form">
+            <form method="post" th:action="@{/login}" class="form__action">
                 <div class="entry__form__group">
                     <div class="form entry__form__email">
                         <p class="email__form__text">Email</p>
                         <input id="username" type="text" name="username" placeholder="Введите email">
                     </div>
-    <!--                <p class="or">или</p>-->
-    <!--                <form class="form entry__form__phone">-->
-    <!--                    <p class="phone__form__text">Телефон</p>-->
-    <!--                    <input type="tel" placeholder="Формат: +79999999999">-->
-    <!--                </form>-->
                     <div class="form entry__form__email">
                         <p class="email__form__text">Пароль</p>
                         <input id="password" name="password" type="password" placeholder="Введите пароль">
@@ -46,9 +40,6 @@
                 </div>
                 <input class="main__button main__button__text text__decoration__none" type="submit" value="Войти">
             </form>
-<!--            <button class="main__button">-->
-<!--                <a href="personal_office" class="main__button__text text__decoration__none">Войти</a>-->
-<!--            </button>-->
         </div>
         <img src="img/index.svg" alt="main__icon" class="main__icon">
     </section>
@@ -81,28 +72,3 @@
 </body>
 
 </html>
-
-
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Login</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h2>Login</h2>-->
-<!--<form method="POST" th:action="@{/login}">-->
-<!--    <div>-->
-<!--        <label for="username">Username:</label>-->
-<!--        <input type="text" id="username" name="username"/>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <label for="password">Password:</label>-->
-<!--        <input type="password" id="password" name="password"/>-->
-<!--    </div>-->
-<!--&lt;!&ndash;    <input type="submit" value="Login"/>&ndash;&gt;-->
-<!--    <button type="submit">Log In</button>-->
-<!--    <h4><a href="/registration">Зарегистрироваться</a></h4>-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->

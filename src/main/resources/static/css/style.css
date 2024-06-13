@@ -197,7 +197,7 @@ input {
     margin-bottom: 35px;
     box-sizing: border-box;
 }
-.registration__form{
+.form__action{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -345,7 +345,7 @@ output {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 35xpx;
+    gap: 15px;
 }
 
 

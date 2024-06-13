@@ -14,11 +14,9 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-<!--            <a href="/goods" class="black header__main__right__text text__decoration__none">Товары</a>-->
-            <form  action="#" th:action="@{/goods/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/goods/{id}(id=${user.id})}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Товары">
             </form>
-<!--            <a href="personal_office" class="black header__main__right__text text__decoration__none">Личный кабинет</a>-->
             <button class="main__button">
                 <a href="/logout" class="main__button__text text__decoration__none">Выход</a>
             </button>
@@ -27,13 +25,13 @@
 
     <section class="content center">
         <div class="content__left">
-            <form  action="#" th:action="@{/correct_info/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/correct_info/{id}(id=${user.id})}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Редактировать личную информацию">
             </form>
-            <form sec:authorize="hasAuthority('USER')" action="#" th:action="@{/wishlist/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form sec:authorize="hasAuthority('USER')" action="#" th:action="@{/wishlist/{id}(id=${user.id})}" method="get" class="form__action">
                 <input class="links color_AAAAAA submit text__decoration__none" type="submit" value="Перейти в список подарков">
             </form>
-            <form sec:authorize="hasAuthority('ADMIN')"  action="#" th:action="@{/new_item/{id}(id=${user.id})}" method="get" class="registration__form">
+            <form sec:authorize="hasAuthority('ADMIN')"  action="#" th:action="@{/new_item/{id}(id=${user.id})}" method="get" class="form__action">
                 <input class="links color_AAAAAA submit text__decoration__none" type="submit" value="Добавить новый товар">
             </form>
         </div>
@@ -42,39 +40,23 @@
             <div class="registration__form__group">
                 <div class="form registration__form__lastname">
                     <p class="lastname__form__text">Фамилия:</p>
-<!--                    <span th:text="${user.lastName}"></span>-->
                     <input type="text" th:name="lastName" th:attr="value = ${user.lastName}" readonly>
-<!--                    <input type="text" attr="value = ${user.lastName}" name="lastName" readonly>-->
                 </div>
                 <div class="form registration__form__bd">
                     <p class="bd__form__text">День рождения:</p>
-<!--                    <span th:text="${user.birthday}"></span>-->
                     <input type="date" th:name="birthday" th:attr="value = ${user.birthday}" readonly>
-<!--                    <input type="date" th:attr="value=${user.birthday}" name="birthday" readonly>-->
                 </div>
                 <div class="form registration__form__name">
                     <p class="name__form__text">Имя:</p>
-<!--                    <span th:text="${user.firstName}"></span>-->
                     <input type="text" th:name="firstName" th:attr="value = ${user.firstName}" readonly>
-<!--                    <input type="text" attr="value = ${user.firstName}" name="firstName" readonly>-->
                 </div>
                 <div class="form registration__form__email">
                     <p class="email__form__text">Email:</p>
-                    <!--                    <span th:text="${user.email}"></span>-->
                     <input type="email" th:name="username" th:attr="value = ${user.username}" readonly>
-                    <!--                    <input type="email" attr="value = ${user.email}" name="email" readonly>-->
                 </div>
-<!--                <div class="form registration__form__phone">-->
-<!--                    <p class="phone__form__text">Телефон:</p>-->
-<!--&lt;!&ndash;                    <span th:text="${user.number}"></span>&ndash;&gt;-->
-<!--                    <input type="text" th:name="number" th:attr="value = ${user.number}" readonly>-->
-<!--&lt;!&ndash;                    <input type="tel" attr="value = ${user.number}" name="number" readonly>&ndash;&gt;-->
-<!--                </div>-->
                 <div class="form registration__form__name">
                     <p class="name__form__text">Отчество:</p>
-<!--                    <span th:text="${user.surname}"></span>-->
                     <input type="text" th:name="surname" th:attr="value = ${user.surname}" readonly>
-<!--                    <input type="text" attr="value = ${user.surname}" name="surname" readonly>-->
                 </div>
             </div>
         </div>

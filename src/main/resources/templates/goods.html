@@ -14,7 +14,7 @@
             <p class="logo__main">MARKETPLACE</p>
         </div>
         <nav class="header__main__right">
-            <form  action="#" th:action="@{/personal_office}" method="get" class="registration__form">
+            <form  action="#" th:action="@{/personal_office}" method="get" class="form__action">
                 <input class="links color_6A646D submit text__decoration__none" type="submit" value="Личный кабинет">
             </form>
             <button class="main__button">
@@ -23,16 +23,20 @@
         </nav>
     </header>
 
-    <section th:switch="${products}" class="goods center">
-        <h2 th:case="null">К сожалению, все товары проданы! Совсем скоро мы завезем новый! Возвращайтесь к нам!</h2>
-        <tr th:each="product : ${products}">
+    <section class="goods center">
+        <h3 th:if="${response=='NoData'}">К сожалению, все товары проданы! Совсем скоро мы завезем новые! Возвращайтесь к нам!</h3>
+        <tr th:if="${response=='Data'}" th:each="product : ${products}">
             <div class="goods__card__item">
-                <a th:href="@{/card_item/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}"> <img th:src="${product.image}" alt="Фото товара отсутствует" class="img__bord"></a>
+                <a th:href="@{/card_item/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}">
+<!--                    <img src="@{/image/{image_id} (image_id=${product.image.id})}" alt="Фото товара отсутствует" class="img__bord">-->
+                    <img src="@{/image/{image_id} (image_id=${product.image.id})}" height="300px" alt="Фото товара отсутствует" class="img__bord">
+
+                </a>
                 <div class="item__info">
                     <p class="item__name" th:text="${product.name}"></p>
                     <p class="item__price color__F25822" th:text="${product.price}"></p>
                     <a sec:authorize="hasAuthority('USER')" th:href="@{/new_present/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}">
-                        <img width="50" height="50" src="https://img.icons8.com/ios/50/gift--v1.png" alt="gift--v1">
+                        <img width="50px" height="50px" src="https://img.icons8.com/ios/50/gift--v1.png" alt="gift--v1">
                     </a>
                 </div>
             </div>
