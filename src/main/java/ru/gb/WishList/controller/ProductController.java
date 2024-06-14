@@ -35,7 +35,7 @@ public class ProductController {
     )
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @GetMapping("/card_item/{user_id}/{item_id}")
-    public String getCardItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
+    public String getCardItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model) {
         log.info("getCardItem()");
         model.addAttribute("user_id", userId);
         Product product = productService.findProductById(itemId);
@@ -50,7 +50,7 @@ public class ProductController {
     )
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/edit_item/{user_id}/{item_id}")
-    public String getEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model){
+    public String getEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, Model model) {
         log.info("getEditItem()");
         model.addAttribute("user_id", userId);
         Product product = productService.findProductById(itemId);
@@ -65,11 +65,11 @@ public class ProductController {
     )
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/edit_item/{user_id}/{item_id}")
-    public ModelAndView postEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, @RequestParam("file") MultipartFile file, Product product, Model model) throws IOException{
+    public ModelAndView postEditItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId, @RequestParam("file") MultipartFile file, Product product, Model model) throws IOException {
         log.info("postEditItem()");
-        try{
+        try {
             productService.saveProduct(product, file);
-        } catch (ProductScoreIsNotCorrect exc){
+        } catch (ProductScoreIsNotCorrect exc) {
             String errorPage = "/edit_item";
             ModelAndView mav = new ModelAndView(errorPage, "product", product);
             model.addAttribute("error", exc.getMessage());
@@ -85,26 +85,26 @@ public class ProductController {
     )
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @GetMapping("/goods/{user_id}")
-    public String getGoods(Model model, @PathVariable("user_id") Long userId){
+    public String getGoods(Model model, @PathVariable("user_id") Long userId) {
         log.info("getGoods()");
         model.addAttribute("user_id", userId);
-        List<Product> products =  productService.findAllProducts();
-        if (products.isEmpty()){
+        List<Product> products = productService.findAllProducts();
+        if (products.isEmpty()) {
             model.addAttribute("response", "NoData");
-        }
-        else{
+        } else {
             model.addAttribute("response", "Data");
         }
         model.addAttribute("products", products);
         return "goods";
     }
+
     @Operation(
             summary = "Создание нового товара",
             description = "Добавление нового товара в маркетплейс"
     )
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/new_item/{user_id}")
-    public String getNewItem(@PathVariable("user_id") Long userId, Model model){
+    public String getNewItem(@PathVariable("user_id") Long userId, Model model) {
         log.info("getNewItem()");
         model.addAttribute("user_id", userId);
         return "new_item";
@@ -116,11 +116,23 @@ public class ProductController {
     )
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/new_item/{user_id}")
-    public String postNewItem(@PathVariable("user_id") Long userId, @RequestParam("file") MultipartFile file, Product product) throws IOException{
+    public String postNewItem(@PathVariable("user_id") Long userId, @RequestParam("file") MultipartFile file, Product product) throws IOException {
         log.info("postNewItem()");
         productService.saveProduct(product, file);
         String returnPage = "redirect:/goods/" + userId;
         return returnPage;
+    }
+
+    @Operation(
+            summary = "Удаление товара",
+            description = "Удаление товара из базы данных маркетплейса"
+    )
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping(value = "/delete_item/{user_id}/{item_id}")
+    public String deleteItem(@PathVariable("user_id") Long userId, @PathVariable("item_id") Long itemId) {
+        log.info("deleteItem()");
+        productService.deleteProduct(itemId);
+        return "redirect:/goods/" + userId;
     }
 
 }

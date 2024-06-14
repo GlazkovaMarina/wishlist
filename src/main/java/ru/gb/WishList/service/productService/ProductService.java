@@ -15,11 +15,15 @@ public interface ProductService {
             description = "Вывод всех товаров маркетплейса")
     public List<Product> findAllProducts();
 
-    @Operation (summary = "Найти подарок по id",
-            description = "Поиск подарка по идентификатору")
+    @Operation (summary = "Найти товар по id",
+            description = "Поиск товара по идентификатору")
     public Product findProductById(Long id);
 
-    @Operation (summary = "Сохранить подарок в БД",
-            description = "Добавить подарок в базу данных")
+    @Operation (summary = "Сохранить товар в БД",
+            description = "Добавить товар в базу данных")
     public Product saveProduct(Product product, MultipartFile file) throws IOException;
+
+    @Operation (summary = "Удалить товар",
+            description = "Удалить товар из базы данных")
+    public void deleteProduct(Long id);
 }

@@ -39,19 +39,19 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.findAll();
     }
 
-    @Operation (summary = "Найти подарок по id",
-            description = "Поиск подарка по идентификатору")
+    @Operation (summary = "Найти товар по id",
+            description = "Поиск товара по идентификатору")
     public Product findProductById(Long productId){
         log.info("findProductById()");
         Optional<Product> productOptional = productRepository.findById(productId);
         if (!productOptional.isPresent()) {
-            throw new ProductWithSuchIdNotFoundException("Не найден подарок с таким идентификатором " + productId);
+            throw new ProductWithSuchIdNotFoundException("Не найден товар с таким идентификатором " + productId);
         }
         return productOptional.get();
     }
 
-    @Operation (summary = "Сохранить подарок в БД",
-            description = "Добавить подарок в базу данных")
+    @Operation (summary = "Сохранить товар в БД",
+            description = "Добавить товар в базу данных")
     @Override
     public Product saveProduct(Product product, MultipartFile file) throws IOException{
         log.info("saveProduct()");
@@ -70,5 +70,18 @@ public class ProductServiceImpl implements ProductService{
         Files.write(fileNameAndPath, file.getBytes());
         return fileNames.toString();
     }
+
+    @Override
+    @Operation (summary = "Удалить товар",
+            description = "Удалить товар из базы данных")
+    public void deleteProduct(Long productId){
+        log.info("deleteProduct()");
+        Optional<Product> productOptional = productRepository.findById(productId);
+        if (!productOptional.isPresent()) {
+            throw new ProductWithSuchIdNotFoundException("Не найден товар с таким идентификатором " + productId);
+        }
+        productRepository.delete(productOptional.get());
+    }
+
 
 }

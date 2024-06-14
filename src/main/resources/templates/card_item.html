@@ -49,8 +49,11 @@
                 </div>
                 <input class="main__button main__button__text text__decoration__none" type="submit" value="Редактировать">
             </form>
+        <form sec:authorize="hasAuthority('ADMIN')"  action="#" th:action="@{/delete_item/{user_id}/{item_id}(user_id=${user_id}, item_id=${product.id})}" method="post" class="form__action">
+            <input class="main__button main__button__text text__decoration__none" type="submit" value="Удалить">
+        </form>
 
-            <div sec:authorize="hasAuthority('USER')" class="item">
+        <div sec:authorize="hasAuthority('USER')" class="item">
                 <div class="item__info">
                     <p class="item__name" th:text="${product.name}"></p>
                     <p class="item__price color__F25822" th:text="${product.price}"></p>
