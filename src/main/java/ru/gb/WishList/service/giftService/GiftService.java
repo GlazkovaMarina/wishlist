@@ -17,4 +17,8 @@ public interface GiftService {
     @Operation (summary = "Добавить подарок в список подарков",
             description = "Сохранение подарка в базе данных")
     public Gift saveGift(Gift gift);
+
+    @Operation (summary = "Удалить подарок",
+            description = "Удалить подарок из базы данных")
+    public void deleteGift(Long giftId);
 }

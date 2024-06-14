@@ -142,5 +142,17 @@ public class GiftController {
         return mav;
     }
 
+    @Operation(
+            summary = "Удаление подарка",
+            description = "Удаление подарка из базы данных"
+    )
+    @PreAuthorize("hasAuthority('USER')")
+    @PostMapping(value = "/delete_present/{user_id}/{gift_id}")
+    public String deleteGift(@PathVariable("user_id") Long userId, @PathVariable("gift_id") Long giftId) {
+        log.info("deleteGift()");
+        giftService.deleteGift(giftId);
+        return "redirect:/wishlist/" + userId;
+    }
+
 
 }

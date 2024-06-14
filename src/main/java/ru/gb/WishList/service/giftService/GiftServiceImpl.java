@@ -6,7 +6,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.gb.WishList.entities.Gift;
+import ru.gb.WishList.entities.Product;
 import ru.gb.WishList.exception.GiftWithSuchIdNotFoundException;
+import ru.gb.WishList.exception.ProductWithSuchIdNotFoundException;
 import ru.gb.WishList.repository.GiftRepository;
 import java.util.List;
 import java.util.Optional;
@@ -43,5 +45,16 @@ public class GiftServiceImpl implements GiftService{
     {
         log.info("saveGift()");
         return giftRepository.save(gift);
+    }
+    @Override
+    @Operation (summary = "Удалить подарок",
+            description = "Удалить подарок из базы данных")
+    public void deleteGift(Long giftId){
+        log.info("deleteGift()");
+        Optional<Gift> giftOptional = giftRepository.findById(giftId);
+        if (!giftOptional.isPresent()) {
+            throw new GiftWithSuchIdNotFoundException("Не найден подарок с таким идентификатором " + giftId);
+        }
+        giftRepository.delete(giftOptional.get());
     }
 }

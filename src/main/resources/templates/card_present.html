@@ -68,6 +68,9 @@
             </div>
             <input class="main__button main__button__text text__decoration__none" type="submit" value="Редактировать">
         </form>
+        <form action="#" th:action="@{/delete_present/{user_id}/{gift_id}(user_id=${user_id}, gift_id=${gift.id})}" method="post" class="form__action">
+            <input class="main__button main__button__text text__decoration__none" type="submit" value="Удалить">
+        </form>
     </section>
 
     <footer class="footer__ center">
